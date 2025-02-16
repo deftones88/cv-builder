@@ -1,9 +1,10 @@
-import { cn } from "@shared/util/cn";
+import { Alignment } from "@shared/constants/types";
+import { cn } from "@shared/util";
 import { PropsWithChildren } from "react";
 
 type PanelTitleProps = PropsWithChildren & {
   className?: string;
-  align?: "left" | "center" | "right";
+  align?: Alignment;
 };
 
 export const PanelTitle = ({

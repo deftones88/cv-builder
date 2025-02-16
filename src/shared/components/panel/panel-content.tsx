@@ -1,4 +1,4 @@
-import { cn } from "@shared/util/cn";
+import { cn } from "@shared/util";
 import { PropsWithChildren } from "react";
 
 type PanelContentProps = PropsWithChildren & { className?: string };

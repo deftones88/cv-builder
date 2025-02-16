@@ -38,32 +38,13 @@ export const Default: Story = {
     collapsible: false,
     children: (
       <>
-        <Panel.Title>Panel Title</Panel.Title>
+        <Panel.Title>Default Panel Title</Panel.Title>
         <Panel.Content>
-          <p>This is the panel content.</p>
+          <p>This is the left panel content.</p>
           <p>You can put any content here.</p>
         </Panel.Content>
       </>
     ),
-  },
-  decorators: [
-    (Story) => (
-      <div className="w-screen h-screen flex">
-        <Story />
-        <div className="flex-1 bg-gray-50 p-4">
-          <h1 className="text-xl font-bold">Main Content Area</h1>
-          <p>This shows how the panel looks in a layout context.</p>
-        </div>
-      </div>
-    ),
-  ],
-};
-
-// Collapsible panel
-export const Collapsible: Story = {
-  args: {
-    ...Default.args,
-    collapsible: true,
   },
   decorators: [
     (Story) => (
@@ -83,6 +64,15 @@ export const RightPosition: Story = {
   args: {
     ...Default.args,
     position: "right",
+    children: (
+      <>
+        <Panel.Title>Right Panel Title</Panel.Title>
+        <Panel.Content>
+          <p>This is the right panel content.</p>
+          <p>You can put any content here.</p>
+        </Panel.Content>
+      </>
+    ),
   },
   decorators: [
     (Story) => (
@@ -97,11 +87,21 @@ export const RightPosition: Story = {
   ],
 };
 
-// Different sizes
-export const SmallPanel: Story = {
+// Collapsible panel
+export const LeftCollapsible: Story = {
   args: {
     ...Default.args,
-    width: "sm",
+    position: "left",
+    collapsible: true,
+    children: (
+      <>
+        <Panel.Title>Default Panel Title</Panel.Title>
+        <Panel.Content>
+          <p>This is the left panel content.</p>
+          <p>You can put any content here.</p>
+        </Panel.Content>
+      </>
+    ),
   },
   decorators: [
     (Story) => (
@@ -116,22 +116,55 @@ export const SmallPanel: Story = {
   ],
 };
 
-export const LargePanel: Story = {
+// Collapsible panel
+export const RightCollapsible: Story = {
   args: {
     ...Default.args,
-    width: "lg",
+    position: "right",
+    collapsible: true,
+    children: (
+      <>
+        <Panel.Title>Right Panel Title</Panel.Title>
+        <Panel.Content>
+          <p>This is the right panel content.</p>
+          <p>You can put any content here.</p>
+        </Panel.Content>
+      </>
+    ),
   },
   decorators: [
     (Story) => (
       <div className="w-screen h-screen flex">
-        <Story />
         <div className="flex-1 bg-gray-50 p-4">
           <h1 className="text-xl font-bold">Main Content Area</h1>
           <p>This shows how the panel looks in a layout context.</p>
         </div>
+        <Story />
       </div>
     ),
   ],
+};
+
+// Different widths
+export const WidthVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      {["sm", "md", "lg", "xl"].map((width) => (
+        <div key={width} className="flex h-64 overflow-hidden border-b">
+          <Panel position="left" width={width as "sm" | "md" | "lg" | "xl"}>
+            <div className="p-4">
+              <h2 className="text-lg font-bold">{width.toUpperCase()} Width</h2>
+              <p className="mt-2">Panel with {width} width setting</p>
+            </div>
+          </Panel>
+          <div className="flex-1 bg-gray-100 p-4">Main Content</div>
+        </div>
+      ))}
+    </div>
+  ),
+  parameters: {
+    layout: "padded",
+  },
 };
 
 // Panel with complex content
@@ -181,25 +214,6 @@ export const ComplexContent: Story = {
       </div>
     ),
   ],
-};
-
-// Panel with decorators for visual context
-export const InLayout: Story = {
-  decorators: [
-    (Story) => (
-      <div className="w-screen h-screen flex">
-        <Story />
-        <div className="flex-1 bg-gray-50 p-4">
-          <h1 className="text-xl font-bold">Main Content Area</h1>
-          <p>This shows how the panel looks in a layout context.</p>
-        </div>
-      </div>
-    ),
-  ],
-  args: {
-    ...Default.args,
-    collapsible: true,
-  },
 };
 
 // Panel with error state example
