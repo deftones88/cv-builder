@@ -1,9 +1,9 @@
-import { Alignment, Size } from "@shared/lib/constants/types";
+import { Alignment, Size } from "@shared/constants/types";
 import { cn } from "@shared/lib/utils";
 import { PropsWithChildren, useState } from "react";
 import { PanelTitle } from "./panel-title";
 import { PanelContent } from "./panel-content";
-import { Button } from "../shadcn-ui";
+import { Button } from "../shadcnui";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type PanelProps = PropsWithChildren & {

@@ -14,7 +14,8 @@
     "components": "@shared/components",
     "utils": "@shared/lib/utils",
     "lib": "@shared/lib",
-    "ui": "@shared/components/shadcnui"
+    "ui": "@shared/components/shadcnui",
+    "hooks": "@shared/hooks"
   },
   "iconLibrary": "lucide"
 }

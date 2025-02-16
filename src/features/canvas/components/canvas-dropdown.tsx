@@ -4,7 +4,7 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-} from "@shared/components/shadcn-ui";
+} from "@shared/components/shadcnui";
 import { Dispatch, SetStateAction } from "react";
 import { PAPER_PRESETS } from "../constants/canvas-dropdown";
 
