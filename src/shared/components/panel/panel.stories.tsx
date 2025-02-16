@@ -24,6 +24,11 @@ const meta: Meta<typeof Panel> = {
       control: "boolean",
       description: "접기/열기",
     },
+    variant: {
+      control: "radio",
+      options: ["border", "shadow"],
+      description: "보더 스타일",
+    },
   },
 };
 
@@ -36,6 +41,7 @@ export const Default: Story = {
     width: "md",
     position: "left",
     collapsible: false,
+    variant: "border",
     children: (
       <>
         <Panel.Title>Default Panel Title</Panel.Title>

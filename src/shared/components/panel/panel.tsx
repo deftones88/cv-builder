@@ -1,5 +1,5 @@
-import { Alignment, Size } from "@shared/constants/types";
-import { cn } from "@shared/util";
+import { Alignment, Size } from "@shared/lib/constants/types";
+import { cn } from "@shared/lib/utils";
 import { PropsWithChildren, useState } from "react";
 import { PanelTitle } from "./panel-title";
 import { PanelContent } from "./panel-content";
@@ -11,6 +11,7 @@ type PanelProps = PropsWithChildren & {
   width?: Size;
   collapsible?: boolean;
   className?: string;
+  elevated?: boolean;
 };
 
 export const Panel = ({
@@ -19,8 +20,9 @@ export const Panel = ({
   className = "",
   collapsible = false,
   position = "left",
+  elevated = false,
 }: PanelProps) => {
-  const [isCollapsed, setIsCollapsed] = useState(collapsible);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const getWidthClass = (size: Size): string => {
     const widthClasses: Record<Size, string> = {
@@ -33,6 +35,13 @@ export const Panel = ({
     return widthClasses[size] || widthClasses.md;
   };
 
+  const getElevated = (elevated: boolean) => {
+    if (elevated) {
+      return isLeft ? "shadow-lg" : "shadow-lg";
+    } else {
+      return isLeft ? "border-r" : "border-l ml-auto";
+    }
+  };
   const isLeft = position === "left";
 
   return (
@@ -49,11 +58,11 @@ export const Panel = ({
       )}
       <div
         className={cn(
-          "mx-auto h-full flex flex-col content-center justify-center bg-gray-100 transition-all duration-300 bg-white py-2 px-3",
+          "mx-auto h-full flex flex-col content-center justify-center bg-white transition-all duration-300 py-2 px-3",
           isCollapsed
             ? "!w-0 overflow-hidden opacity-0 invisible p-0"
             : getWidthClass(width),
-          isLeft ? "border-r" : "border-l ml-auto",
+          getElevated(elevated),
           isLeft && collapsible && !isCollapsed && "pl-15",
           className,
         )}

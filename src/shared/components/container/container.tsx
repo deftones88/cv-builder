@@ -1,5 +1,5 @@
-import { Alignment } from "@shared/constants/types";
-import { cn } from "@shared/util";
+import { Alignment } from "@shared/lib/constants/types";
+import { cn } from "@shared/lib/utils";
 import { HTMLAttributes, PropsWithChildren } from "react";
 
 type ContainerProps = PropsWithChildren &

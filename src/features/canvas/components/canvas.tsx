@@ -3,15 +3,12 @@ import { Container } from "@shared/components/container";
 
 export const Canvas = () => {
   return (
-    <Container
-      align="center"
-      className="bg-gray-100 w-full h-full justify-between py-5"
-    >
+    <Container align="center" className="bg-zinc-200 w-full h-full">
       <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
         Canvas
       </h3>
-      <div className="scroll-m-20 w-full max-w-lg">
-        <AspectRatio ratio={210 / 297} className="bg-white" />
+      <div className="scroll-m-20 w-lg h-full flex items-center">
+        <AspectRatio ratio={210 / 297} className="bg-white shadow-xl" />
       </div>
     </Container>
   );
