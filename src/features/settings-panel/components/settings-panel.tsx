@@ -1,3 +1,9 @@
+import { Panel } from "@shared/components/panel";
+
 export const SettingsPanel = () => {
-  return <div className="border-1">SettingsPanel</div>;
+  return (
+    <Panel position="right" width="lg" collapsible>
+      <Panel.Title>Settings Panel</Panel.Title>
+    </Panel>
+  );
 };

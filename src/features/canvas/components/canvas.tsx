@@ -1,3 +1,5 @@
+import { Container } from "@shared/components/container";
+
 export const Canvas = () => {
-  return <div className="border-1">Canvas</div>;
+  return <Container>Canvas</Container>;
 };
