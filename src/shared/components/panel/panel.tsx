@@ -3,7 +3,7 @@ import { cn } from "@shared/lib/utils";
 import { PropsWithChildren, useState } from "react";
 import { PanelTitle } from "./panel-title";
 import { PanelContent } from "./panel-content";
-import { Button } from "../shadcnui";
+import { Button } from "../shadcn-ui";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type PanelProps = PropsWithChildren & {
