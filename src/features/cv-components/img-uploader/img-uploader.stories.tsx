@@ -8,8 +8,18 @@ const meta: Meta<typeof ImgUploader> = {
   argTypes: {
     ratio: {
       control: 'radio',
-      options: ['1/1', '2/3', '3/4', '4/3', '16/9', '9/16'],
+      options: ['1/1', '2/3', '3/2', '3/4', '4/3', '9/16', '16/9'],
       description: 'ratio selection',
+    },
+    size: {
+      control: 'radio',
+      options: ['sm', 'md', 'lg'],
+      description: 'size selection',
+    },
+    rounded: {
+      control: 'boolean',
+      options: [true, false],
+      description: 'rounded edge selection',
     },
   },
 };
@@ -20,5 +30,7 @@ type Story = StoryObj<typeof ImgUploader>;
 export const Default: Story = {
   args: {
     ratio: '2/3',
+    size: 'sm',
+    rounded: false,
   },
 };
