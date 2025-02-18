@@ -2,11 +2,14 @@ import { createElement, JSX } from 'react';
 import { InputVariants } from './title-input.types';
 
 type TitleInputProps = {
-  variant: InputVariants;
-  title: string;
+  variant?: InputVariants;
+  title?: string;
 };
 
-export const TitleInput = ({ variant, title }: TitleInputProps) => {
+export const TitleInput = ({
+  variant = 'h3',
+  title = 'Sample Title',
+}: TitleInputProps) => {
   const tagName: Record<InputVariants, keyof JSX.IntrinsicElements> = {
     h1: 'h1',
     h2: 'h2',

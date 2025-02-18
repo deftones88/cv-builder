@@ -6,14 +6,14 @@ import { LIST_STYLE_TYPE } from './list-item.types';
 
 type ListItemProps = {
   titleOptions?: { variant: InputVariants; title: string };
-  list: string[];
-  listStyle: LIST_STYLE_TYPE;
+  list?: string[];
+  listStyle?: LIST_STYLE_TYPE;
 };
 
 export const ListItem = ({
   titleOptions = undefined,
   list = ['test list'],
-  listStyle,
+  listStyle = 'disc',
 }: ListItemProps) => {
   const ListTag = LIST_STYLE_TYPE_MAP[listStyle];
 
