@@ -1,4 +1,4 @@
-import { Alignment, Size } from '@shared/constants';
+import { Alignment, SizeFull } from '@shared/constants';
 import { cn } from '@shared/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { PropsWithChildren, useState } from 'react';
@@ -8,7 +8,7 @@ import { PanelTitle } from './panel-title';
 
 type PanelProps = PropsWithChildren & {
   position?: Omit<Alignment, 'center'>;
-  width?: Size;
+  width?: SizeFull;
   collapsible?: boolean;
   className?: string;
   elevated?: boolean;
@@ -24,15 +24,15 @@ export const Panel = ({
 }: PanelProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const getWidthClass = (size: Size): string => {
-    const widthClasses: Record<Size, string> = {
+  const getWidthClass = (sizeFull: SizeFull): string => {
+    const widthClasses: Record<SizeFull, string> = {
       xs: 'w-xs',
       sm: 'w-sm',
       md: 'w-md',
       lg: 'w-lg',
       xl: 'w-xl',
     };
-    return widthClasses[size] || widthClasses.md;
+    return widthClasses[sizeFull] || widthClasses.md;
   };
 
   const getElevated = (elevated: boolean) => {
