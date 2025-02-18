@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 /* @tailwind base;
 @tailwind components; */
 /* @tailwind utilities; */
@@ -55,4 +55,37 @@
   --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+@layer utilities {
+  .list-upper-roman {
+    @apply list-[upper-roman];
+  }
+  .list-decimal-leading-zero {
+    @apply list-[decimal-leading-zero];
+  }
+  .list-lower-alpha {
+    @apply list-[lower-alpha];
+  }
+  .list-lower-roman {
+    @apply list-[lower-roman];
+  }
+  .list-upper-alpha {
+    @apply list-[upper-alpha];
+  }
+  .list-decimal {
+    @apply list-[decimal];
+  }
+  .list-none {
+    @apply list-[none];
+  }
+  .list-disc {
+    @apply list-[disc];
+  }
+  .list-circle {
+    @apply list-[circle];
+  }
+  .list-square {
+    @apply list-[square];
+  }
 }
