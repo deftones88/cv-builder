@@ -1,4 +1,4 @@
-import { AspectRatio, RatioSizeKey } from './img-uploader.types';
+import { AspectRatio, RatioSizeKey } from './img-placeholder.types';
 
 export const ACCEPTED_FILE_TYPES: string[] = [
   'image/png',

@@ -3,22 +3,22 @@ import { ImageUpIcon } from 'lucide-react';
 import {
   AspectRatioClasses,
   AspectRatioWHClasses,
-} from './img-uploader.constants';
-import { AspectRatio, UploaderSize } from './img-uploader.types';
+} from './img-placeholder.constants';
+import { AspectRatio, UploaderSize } from './img-placeholder.types';
 
-type ImgUploaderProps = {
+type ImgPlaceholderProps = {
   ratio?: AspectRatio;
   size?: UploaderSize;
   image?: string;
   rounded?: boolean;
 };
 
-export const ImgUploader = ({
+export const ImgPlaceholder = ({
   ratio = '2/3',
   size = 'sm',
   image = undefined,
   rounded = false,
-}: ImgUploaderProps) => {
+}: ImgPlaceholderProps) => {
   // const [image, setImage] = useState<string | null>(null);
   // const inputRef = useRef<HTMLInputElement>(null);
 
