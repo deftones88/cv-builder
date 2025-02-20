@@ -35,6 +35,5 @@ export const TitleInput = ({
     muted: "text-sm text-gray-500",
   };
 
-  console.log("Received props in TitleInput:", { variant, title });
   return createElement(tagName[variant], { className: styles[variant] }, title);
 };

@@ -1,5 +1,10 @@
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { SelectionElements } from "@shared/constants";
+import { cn } from "@shared/lib/utils";
 import { ComponentElementInstance } from "@shared/types";
+import { useComponentsStore } from "@stores";
+import { GrabIcon, MousePointerClickIcon } from "lucide-react";
+import { useState } from "react";
 
 type CanvasComponentWrapperProps = {
   component: ComponentElementInstance;
@@ -8,7 +13,88 @@ type CanvasComponentWrapperProps = {
 export const CanvasComponentWrapper = ({
   component,
 }: CanvasComponentWrapperProps) => {
-  const ComponentElement = SelectionElements[component.type].component;
-  const props = component.settings;
-  return <ComponentElement {...props} />;
+  const selectComponent = useComponentsStore((state) => state.selectComponent);
+  const [mouseIsOver, setMouseIsOver] = useState(false);
+  const { settings: props, id, type } = component;
+  const ComponentElement = SelectionElements[type].component;
+
+  const topHalf = useDroppable({
+    id: id + "-top",
+    data: {
+      type,
+      elementId: id,
+      isTopHalfElement: true,
+    },
+  });
+  const bottomHalf = useDroppable({
+    id: id + "-bottom",
+    data: {
+      type,
+      elementId: id,
+      isBottomHalfElement: true,
+    },
+  });
+
+  const draggable = useDraggable({
+    id: id + "-drag-handler",
+    data: {
+      type,
+      elementId: id,
+      isComponentElement: true,
+    },
+  });
+
+  if (draggable.isDragging) return null;
+
+  return (
+    <div
+      ref={draggable.setNodeRef}
+      {...draggable.listeners}
+      {...draggable.attributes}
+      className="relative w-full min-h-[10px] hover:cursor-pointer rounded-md border-none hover:border-none"
+      onMouseEnter={() => {
+        setMouseIsOver(true);
+      }}
+      onMouseLeave={() => {
+        setMouseIsOver(false);
+      }}
+      onClick={(event) => {
+        event.stopPropagation();
+        selectComponent(id);
+      }}
+    >
+      <div
+        ref={topHalf.setNodeRef}
+        className="absolute w-full h-1/2 rounded-t-md"
+      />
+      <div
+        ref={bottomHalf.setNodeRef}
+        className="absolute w-full bottom-0 h-1/2 rounded-b-md"
+      />
+      {mouseIsOver && (
+        <>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="flex text-sm gap-2 text-black">
+              <MousePointerClickIcon size="20" /> 혹은
+              <GrabIcon size="20" />
+            </div>
+          </div>
+        </>
+      )}
+      {topHalf.isOver && (
+        <div className="absolute top-0 w-full rounded-t-md h-[7px] bg-zinc-500" />
+      )}
+      {bottomHalf.isOver && (
+        <div className="absolute bottom-0 w-full rounded-b-md h-[7px] bg-zinc-500" />
+      )}
+      <div
+        className={cn(
+          "w-full pointer-event-none opacity-100 py-2",
+          mouseIsOver && "py-4 min-h-[50px] opacity-30 bg-zinc-200 rounded-md",
+        )}
+      >
+        <ComponentElement {...props} />
+      </div>
+    </div>
+  );
 };

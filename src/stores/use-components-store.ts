@@ -1,11 +1,9 @@
 import { ComponentElementInstance, Position } from "@shared/types";
 import { create } from "zustand";
 
-// type ComponentType = 'text' | 'list' | 'image';
-
 type ComponentsStore = {
   components: ComponentElementInstance[];
-  selectedId: string | null;
+  component: ComponentElementInstance | null;
   // Actions
   addComponent: (component: Omit<ComponentElementInstance, "id">) => void;
   removeComponent: (id: string) => void;
@@ -19,7 +17,7 @@ type ComponentsStore = {
 
 export const useComponentsStore = create<ComponentsStore>((set) => ({
   components: [],
-  selectedId: null,
+  component: null,
 
   addComponent: (component) => {
     const newId = crypto.randomUUID();
@@ -32,7 +30,7 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
   removeComponent: (id) =>
     set((state) => ({
       components: state.components.filter((c) => c.id !== id),
-      selectedId: state.selectedId === id ? null : state.selectedId,
+      // component: state.component?.id === id ? null : state.component,
     })),
 
   moveComponent: (id, position) =>
@@ -49,7 +47,15 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
       ),
     })),
 
-  selectComponent: (id) => set({ selectedId: id }),
+  selectComponent: (id) => {
+    if (!id) {
+      set({ component: null });
+    } else {
+      set((state) => ({
+        component: state.components.find((el) => el.id === id) ?? null,
+      }));
+    }
+  },
 }));
 
 // import { useDroppable } from '@dnd-kit/core';

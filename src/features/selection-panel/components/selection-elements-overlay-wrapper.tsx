@@ -1,20 +1,17 @@
 import { Active, DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useState } from "react";
 import { SelectionElementOverlay } from "./selection-elements-overlay";
-import {
-  HEADINGS_CATEGORY,
-  LIST_CATEGORY,
-  MEDIA_CATEGORY,
-} from "./selection-list.constants";
-import { SelectionBtnElement } from "./selection-list.types";
+import { categoryMap } from "./selection-list.constants";
 import { Elements } from "@shared/types";
+import { useComponentsStore } from "@stores";
+import { SelectionElements } from "@shared/constants";
 
 export const SelectionElementOverlayWrapper = () => {
   const [draggedItem, setDraggedItem] = useState<Active | null>(null);
+  const components = useComponentsStore((state) => state.components);
 
   useDndMonitor({
     onDragStart: (event) => {
-      console.log(event);
       setDraggedItem(event.active);
     },
     onDragCancel: () => {
@@ -25,27 +22,40 @@ export const SelectionElementOverlayWrapper = () => {
     },
   });
 
-  if (!draggedItem) return null;
+  if (!draggedItem?.data?.current) return null;
 
   let node = <div>No drag overlay</div>;
-  const isSelectionListBtnElement =
-    draggedItem.data?.current?.isComponentBtnElement;
-  const categoryMap: Record<Elements, SelectionBtnElement[]> = {
-    TextInput: HEADINGS_CATEGORY,
-    ImgPlaceholder: MEDIA_CATEGORY,
-    ListItem: LIST_CATEGORY,
-  };
 
+  //#region selection list button element
+  const isSelectionListBtnElement =
+    draggedItem.data.current.isComponentBtnElement;
   if (isSelectionListBtnElement) {
-    const { type, categoryIdx } = draggedItem.data?.current ?? {
-      type: "TextInput",
-      categoryIdx: 0,
-    };
+    const { type, categoryIdx } = draggedItem.data.current;
     node = (
       <SelectionElementOverlay
         element={categoryMap[type as Elements][categoryIdx]}
       />
     );
   }
+  //#endregion
+  //#region component element
+  const isComponentElement = draggedItem.data.current.isComponentElement;
+  if (isComponentElement) {
+    const { elementId } = draggedItem.data.current;
+    const component = components.find((el) => el.id === elementId);
+    if (!component) {
+      node = <div>Element not found!</div>;
+    } else {
+      const { settings: props, type } = component;
+      const ComponentElement = SelectionElements[type].component;
+      node = (
+        <div className="w-full pointer-event-none py-4 min-h-[50px] opacity-30 bg-zinc-200 rounded-md">
+          <ComponentElement {...props} />
+        </div>
+      );
+    }
+  }
+  //#endregion
+
   return <DragOverlay>{node}</DragOverlay>;
 };

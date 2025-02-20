@@ -16,6 +16,7 @@ import {
   SelectionBtnElement,
   SelectionCategoryList,
 } from "./selection-list.types";
+import { Elements } from "@shared/types";
 
 export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
   {
@@ -162,3 +163,9 @@ export const SELECTION_CATEGORY: SelectionCategoryList[] = [
     type: "ListItem",
   },
 ];
+
+export const categoryMap: Record<Elements, SelectionBtnElement[]> = {
+  TextInput: HEADINGS_CATEGORY,
+  ImgPlaceholder: MEDIA_CATEGORY,
+  ListItem: LIST_CATEGORY,
+};

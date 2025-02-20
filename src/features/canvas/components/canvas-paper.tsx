@@ -43,12 +43,12 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
   return (
     <div className="scroll-m-20 w-lg h-full flex items-center">
       <AspectRatio
+        ref={droppable.setNodeRef}
         ratio={selectedDimension}
         className={cn(
-          "bg-white shadow-xl flex flex-col flex-grow items-center justify-start flex-1",
+          "bg-white shadow-xl flex flex-col flex-grow items-center justify-start flex-1 py-5 px-8",
           droppable.isOver && "ring-1 ring-primary/20",
         )}
-        ref={droppable.setNodeRef}
       >
         {!components.length && !droppable.isOver && (
           <p className="text-3xl text-muted-foreground flex flex-grow items-center font-bold">
