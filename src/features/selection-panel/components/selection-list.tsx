@@ -2,7 +2,7 @@ import { ChevronRight, type LucideIcon } from "lucide-react";
 
 import {
   SidebarGroup,
-  SidebarGroupLabel,
+  // SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -13,24 +13,25 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@shared/components/shadcnui";
+import { JSX } from "react";
 
 export function SelectionList({
   items,
 }: {
   items: {
     title: string;
-    url: string;
+    // url: string;
     icon?: LucideIcon;
     isActive?: boolean;
     items?: {
       title: string;
-      url: string;
+      component: () => JSX.Element;
     }[];
   }[];
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -52,10 +53,9 @@ export function SelectionList({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
+                        <span>{subItem.title}</span>
                       </SidebarMenuSubButton>
+                      <subItem.component />
                     </SidebarMenuSubItem>
                   ))}
                 </SidebarMenuSub>

@@ -1,1 +1,1 @@
-export { ImgUploader } from './img-placeholder';
+export { ImgPlaceholder } from "./img-placeholder";

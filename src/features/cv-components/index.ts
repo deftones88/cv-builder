@@ -1,2 +1,2 @@
-export { ImgUploader } from './img-placeholder';
-export { TitleInput } from './title-input';
+export { ImgPlaceholder } from "./img-placeholder";
+export { TitleInput } from "./title-input";
