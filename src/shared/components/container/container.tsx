@@ -1,6 +1,6 @@
-import { Alignment } from '@shared/constants';
-import { cn } from '@shared/lib/utils';
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import { Alignment } from "@shared/types";
+import { cn } from "@shared/lib/utils";
+import { HTMLAttributes, PropsWithChildren } from "react";
 
 type ContainerProps = PropsWithChildren &
   HTMLAttributes<HTMLDivElement> & {
@@ -9,16 +9,16 @@ type ContainerProps = PropsWithChildren &
 
 export const Container = ({
   children,
-  align = 'left',
+  align = "left",
   ...props
 }: ContainerProps) => {
   const { className, ...rest } = props;
   return (
     <div
       className={cn(
-        'mx-auto p-2 flex flex-col content-center justify-center',
+        "mx-auto p-2 flex flex-col content-center justify-center",
         `items-${align}`,
-        className
+        className,
       )}
       {...rest}
     >

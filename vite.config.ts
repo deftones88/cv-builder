@@ -9,7 +9,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@features": path.resolve(__dirname, "./src/features"),
+      "@layouts": path.resolve(__dirname, "./src/layouts"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
       "@shared": path.resolve(__dirname, "./src/shared"),
+      "@stores": path.resolve(__dirname, "./src/stores"),
     },
   },
 });

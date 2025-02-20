@@ -7,17 +7,18 @@ import {
 } from "@shared/components/shadcnui";
 import { Dispatch, SetStateAction } from "react";
 import { PAPER_PRESETS } from "../constants/canvas-dropdown";
+import { Paper } from "./canvas-paper.types";
 
 type CanvasDropdownProps = {
   paperSize: string;
-  setPaperSize: Dispatch<SetStateAction<string>>;
+  setPaperSize: Dispatch<SetStateAction<Paper>>;
 };
 
 export const CanvasDropdown = ({
   paperSize,
   setPaperSize,
 }: CanvasDropdownProps) => {
-  const handleValueChange = (value: string) => {
+  const handleValueChange = (value: Paper) => {
     setPaperSize(value);
   };
   return (

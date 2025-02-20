@@ -8,7 +8,7 @@ import {
   SidebarRail,
 } from "@shared/components/shadcnui";
 import { TitleBar } from "./title-bar";
-import { SELECTION_CATEGORY } from "../constants";
+import { SELECTION_CATEGORY } from "./selection-list.constants";
 
 export const SelectionPanel = () => {
   return (

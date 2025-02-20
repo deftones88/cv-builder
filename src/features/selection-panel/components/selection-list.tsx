@@ -1,4 +1,4 @@
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 import {
   SidebarGroup,
@@ -6,29 +6,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
+  SidebarMenuSub,
 } from "@shared/components/shadcnui";
-import { JSX } from "react";
+import { SelectionCategoryList } from "./selection-list.types";
+import { SelectionElement } from "./selection-element";
 
-export function SelectionList({
-  items,
-}: {
-  items: {
-    title: string;
-    // url: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
-    items?: {
-      title: string;
-      component: () => JSX.Element;
-    }[];
-  }[];
-}) {
+type SelectionListProp = { items: SelectionCategoryList[] };
+
+export function SelectionList({ items }: SelectionListProp) {
   return (
     <SidebarGroup>
       {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
@@ -49,14 +37,13 @@ export function SelectionList({
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <span>{subItem.title}</span>
-                      </SidebarMenuSubButton>
-                      <subItem.component />
-                    </SidebarMenuSubItem>
+                <SidebarMenuSub className="grid grid-cols-2 gap-2 p-2">
+                  {item.items?.map((subItem, idx) => (
+                    <SelectionElement
+                      element={subItem}
+                      categoryIdx={idx}
+                      key={subItem.title}
+                    />
                   ))}
                 </SidebarMenuSub>
               </CollapsibleContent>

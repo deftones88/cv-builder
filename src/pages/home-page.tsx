@@ -1,14 +1,21 @@
 import { Canvas } from "@features/canvas";
-import { SelectionPanel } from "@features/selection-panel";
-import { MainLayout } from "../layouts";
+import {
+  SelectionElementOverlayWrapper,
+  SelectionPanel,
+} from "@features/selection-panel";
 import { SettingsPanel } from "@features/settings-panel";
+import { DndContext } from "@dnd-kit/core";
+import { MainLayout } from "@layouts";
 
 export const HomePage = () => {
   return (
     <MainLayout>
-      <SelectionPanel />
-      <Canvas />
-      <SettingsPanel />
+      <DndContext>
+        <SelectionPanel />
+        <Canvas />
+        <SettingsPanel />
+        <SelectionElementOverlayWrapper />
+      </DndContext>
     </MainLayout>
   );
 };

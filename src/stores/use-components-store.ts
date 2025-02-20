@@ -1,16 +1,19 @@
-import { create } from 'zustand';
-import { Component, Position } from './components-store.types';
+import { ComponentElementInstance, Position } from "@shared/types";
+import { create } from "zustand";
 
 // type ComponentType = 'text' | 'list' | 'image';
 
 type ComponentsStore = {
-  components: Component[];
+  components: ComponentElementInstance[];
   selectedId: string | null;
   // Actions
-  addComponent: (component: Omit<Component, 'id'>) => void;
+  addComponent: (component: Omit<ComponentElementInstance, "id">) => void;
   removeComponent: (id: string) => void;
   moveComponent: (id: string, position: Position) => void;
-  updateSettings: (id: string, settings: Partial<Record<string, any>>) => void;
+  updateSettings: (
+    id: string,
+    settings: Partial<Record<string, unknown>>,
+  ) => void;
   selectComponent: (id: string | null) => void;
 };
 
@@ -35,14 +38,14 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
   moveComponent: (id, position) =>
     set((state) => ({
       components: state.components.map((c) =>
-        c.id === id ? { ...c, position } : c
+        c.id === id ? { ...c, position } : c,
       ),
     })),
 
   updateSettings: (id, newSettings) =>
     set((state) => ({
       components: state.components.map((c) =>
-        c.id === id ? { ...c, settings: { ...c.settings, ...newSettings } } : c
+        c.id === id ? { ...c, settings: { ...c.settings, ...newSettings } } : c,
       ),
     })),
 

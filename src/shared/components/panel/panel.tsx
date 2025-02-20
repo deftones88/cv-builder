@@ -1,13 +1,13 @@
-import { Alignment, SizeFull } from '@shared/constants';
-import { cn } from '@shared/lib/utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { PropsWithChildren, useState } from 'react';
-import { Button } from '../shadcnui';
-import { PanelContent } from './panel-content';
-import { PanelTitle } from './panel-title';
+import { Alignment, SizeFull } from "@shared/types";
+import { cn } from "@shared/lib/utils";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { PropsWithChildren, useState } from "react";
+import { Button } from "../shadcnui";
+import { PanelContent } from "./panel-content";
+import { PanelTitle } from "./panel-title";
 
 type PanelProps = PropsWithChildren & {
-  position?: Omit<Alignment, 'center'>;
+  position?: Omit<Alignment, "center">;
   width?: SizeFull;
   collapsible?: boolean;
   className?: string;
@@ -16,58 +16,58 @@ type PanelProps = PropsWithChildren & {
 
 export const Panel = ({
   children,
-  width = 'md',
-  className = '',
+  width = "md",
+  className = "",
   collapsible = false,
-  position = 'left',
+  position = "left",
   elevated = false,
 }: PanelProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const getWidthClass = (sizeFull: SizeFull): string => {
     const widthClasses: Record<SizeFull, string> = {
-      xs: 'w-xs',
-      sm: 'w-sm',
-      md: 'w-md',
-      lg: 'w-lg',
-      xl: 'w-xl',
+      xs: "w-xs",
+      sm: "w-sm",
+      md: "w-md",
+      lg: "w-lg",
+      xl: "w-xl",
     };
     return widthClasses[sizeFull] || widthClasses.md;
   };
 
   const getElevated = (elevated: boolean) => {
     if (elevated) {
-      return isLeft ? 'shadow-lg' : 'shadow-lg';
+      return isLeft ? "shadow-lg" : "shadow-lg";
     } else {
-      return isLeft ? 'border-r' : 'border-l ml-auto';
+      return isLeft ? "border-r" : "border-l ml-auto";
     }
   };
-  const isLeft = position === 'left';
+  const isLeft = position === "left";
 
   return (
-    <div className='relative'>
+    <div className="relative">
       {collapsible && (
         <Button
-          variant='outline'
-          size='icon'
+          variant="outline"
+          size="icon"
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className={cn('absolute top-2 z-10', isLeft ? 'left-2' : 'right-2')}
+          className={cn("absolute top-2 z-10", isLeft ? "left-2" : "right-2")}
         >
           {isLeft === isCollapsed ? <ChevronRight /> : <ChevronLeft />}
         </Button>
       )}
       <div
         className={cn(
-          'mx-auto h-full flex flex-col content-center justify-center bg-white transition-all duration-300 py-2 px-3',
+          "mx-auto h-full flex flex-col content-center justify-center bg-white transition-all duration-300 py-2 px-3",
           isCollapsed
-            ? '!w-0 overflow-hidden opacity-0 invisible p-0'
+            ? "!w-0 overflow-hidden opacity-0 invisible p-0"
             : getWidthClass(width),
           getElevated(elevated),
-          isLeft && collapsible && !isCollapsed && 'pl-15',
-          className
+          isLeft && collapsible && !isCollapsed && "pl-15",
+          className,
         )}
       >
-        <div className='flex-1 overflow-auto'>{children}</div>
+        <div className="flex-1 overflow-auto">{children}</div>
       </div>
     </div>
   );

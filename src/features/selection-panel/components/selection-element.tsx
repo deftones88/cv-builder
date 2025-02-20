@@ -1,0 +1,45 @@
+import {
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+} from "@shared/components/shadcnui";
+import { SelectionBtnElement } from "./selection-list.types";
+import { cn } from "@shared/lib/utils";
+import { useDraggable } from "@dnd-kit/core";
+
+type SelectionElementProps = {
+  element: SelectionBtnElement;
+  categoryIdx: number;
+};
+
+export const SelectionElement = ({
+  element,
+  categoryIdx,
+}: SelectionElementProps) => {
+  const { title, icon: Icon, className, type, props } = element;
+  const draggable = useDraggable({
+    id: `element-btn-${title}`,
+    data: {
+      type,
+      title,
+      props,
+      categoryIdx: categoryIdx,
+      isComponentBtnElement: true,
+    },
+  });
+  return (
+    <SidebarMenuSubItem className="flex w-full h-full">
+      <SidebarMenuSubButton
+        className={cn(
+          "flex flex-col items-center justify-center w-full h-full p-2 space-y-2 rounded-md border border-border hover:bg-accent cursor-grab",
+          draggable.isDragging && "ring-1 ring-primary",
+        )}
+        ref={draggable.setNodeRef}
+        {...draggable.listeners}
+        {...draggable.attributes}
+      >
+        <span className="h-2">{title}</span>
+        <Icon className={cn("w-6 h-6", className)} />
+      </SidebarMenuSubButton>
+    </SidebarMenuSubItem>
+  );
+};

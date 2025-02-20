@@ -1,6 +1,6 @@
-import { Alignment } from '@shared/constants';
-import { cn } from '@shared/lib/utils';
-import { PropsWithChildren } from 'react';
+import { Alignment } from "@shared/types";
+import { cn } from "@shared/lib/utils";
+import { PropsWithChildren } from "react";
 
 type PanelTitleProps = PropsWithChildren & {
   className?: string;
@@ -10,11 +10,11 @@ type PanelTitleProps = PropsWithChildren & {
 export const PanelTitle = ({
   children,
   className,
-  align = 'left',
+  align = "left",
 }: PanelTitleProps) => {
   return (
     <h2
-      className={cn('text-xl font-semibold mb-4', `text-${align}`, className)}
+      className={cn("text-xl font-semibold mb-4", `text-${align}`, className)}
     >
       {children}
     </h2>

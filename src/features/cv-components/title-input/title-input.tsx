@@ -1,7 +1,7 @@
 import { createElement, JSX } from "react";
 import { InputVariants } from "./title-input.types";
 
-type TitleInputProps = {
+export type TitleInputProps = {
   variant?: InputVariants;
   title?: string;
 };
@@ -35,5 +35,6 @@ export const TitleInput = ({
     muted: "text-sm text-gray-500",
   };
 
+  console.log("Received props in TitleInput:", { variant, title });
   return createElement(tagName[variant], { className: styles[variant] }, title);
 };
