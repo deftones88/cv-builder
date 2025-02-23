@@ -6,7 +6,11 @@ export type Position = {
   y: number;
 };
 
-export type Elements = "TextInput" | "ImgPlaceholder" | "ListItem";
+export type Elements =
+  | "TextInput"
+  | "ImgPlaceholder"
+  | "OrderedListItem"
+  | "UnorderedListItem";
 
 export type ComponentElement = {
   type: Elements;

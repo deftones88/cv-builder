@@ -1,2 +1,5 @@
 export { ListItem } from "./list-item";
-export { ListItemComponentElement } from "./list-item.element";
+export {
+  OrderedListItemComponentElement,
+  UnorderedListItemComponentElement,
+} from "./list-item.element";

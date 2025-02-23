@@ -1,13 +1,14 @@
 import {
   AArrowDownIcon,
   AArrowUpIcon,
-  BookOpen,
   Heading,
   Heading1Icon,
   Heading2Icon,
   Heading3Icon,
   Heading4Icon,
   Image,
+  ListIcon,
+  ListOrderedIcon,
   PilcrowIcon,
   RectangleVertical,
   Square,
@@ -138,24 +139,20 @@ export const IMAGE_CATEGORY: SelectionBtnElement[] = [
 
 export const LIST_CATEGORY: SelectionBtnElement[] = [
   {
-    title: "Introduction",
-    icon: Heading1Icon,
-    type: "ListItem",
+    title: "Ordered",
+    icon: ListOrderedIcon,
+    type: "OrderedListItem",
+    props: {
+      listStyle: "decimal",
+    },
   },
   {
-    title: "Get Started",
-    icon: Heading1Icon,
-    type: "ListItem",
-  },
-  {
-    title: "Tutorials",
-    icon: Heading1Icon,
-    type: "ListItem",
-  },
-  {
-    title: "Changelog",
-    icon: Heading1Icon,
-    type: "ListItem",
+    title: "Unordered",
+    icon: ListIcon,
+    type: "UnorderedListItem",
+    props: {
+      listStyle: "disc",
+    },
   },
 ];
 
@@ -177,14 +174,15 @@ export const SELECTION_CATEGORY: SelectionCategoryList[] = [
   {
     title: "List",
     // url: "#",
-    icon: BookOpen,
+    icon: ListIcon,
     items: LIST_CATEGORY,
-    type: "ListItem",
+    type: "OrderedListItem",
   },
 ];
 
 export const categoryMap: Record<Elements, SelectionBtnElement[]> = {
   TextInput: HEADINGS_CATEGORY,
   ImgPlaceholder: IMAGE_CATEGORY,
-  ListItem: LIST_CATEGORY,
+  OrderedListItem: LIST_CATEGORY,
+  UnorderedListItem: LIST_CATEGORY,
 };
