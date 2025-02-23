@@ -8,3 +8,8 @@ export * from "./sheet";
 export * from "./sidebar";
 export * from "./skeleton";
 export * from "./tooltip";
+export * from "./label";
+export * from "./form";
+export * from "./radio-group";
+export * from "./checkbox";
+export * from "./textarea";

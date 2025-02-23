@@ -1,32 +1,35 @@
-// import { Panel } from "@shared/components/panel";
-
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
   SidebarRail,
-  SidebarTrigger,
 } from "@shared/components/shadcnui";
-// import { SelectionElements } from "@shared/constants";
+import { SelectionElements } from "@shared/constants";
 import { useComponentsStore } from "@stores";
+import { SettingsPanelForm } from "./settings-panel-form";
+import { SettingsTitleBar } from "./settings-title-bar";
 
 export const SettingsPanel = () => {
-  const component = useComponentsStore((state) => state.component);
-  if (!component) return null;
-  // const { settings: props, type } = component;
-  // const ComponentElement = SelectionElements[type].component;
+  let component = useComponentsStore((state) => state.component);
+  if (!component)
+    //return null;
+    component = {
+      id: "1",
+      type: "TextInput",
+      settings: {},
+      position: { x: 0, y: 0 },
+    };
+
+  const settingsFormField = SelectionElements[component.type].settingsFormField;
   return (
-    // <Panel position="right" width="md" collapsible elevated>
-    //   <Panel.Title>Settings Panel</Panel.Title>
-    // </Panel>
-    <Sidebar side="right" collapsible="icon">
+    <Sidebar side="right" collapsible="icon" className="w-110">
       <SidebarHeader>
-        <SidebarTrigger />
-        <h2>Settings Panel</h2>
+        <SettingsTitleBar />
       </SidebarHeader>
-      <SidebarContent>
-        {/* <ComponentElement {...props} /> */}
-        {component.type}
+      <SidebarContent className="group-data-[state=collapsed]:opacity-0 group-data-[state=expanded]:opacity-100">
+        <div className="px-6">
+          <SettingsPanelForm settingsFormField={settingsFormField} />
+        </div>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

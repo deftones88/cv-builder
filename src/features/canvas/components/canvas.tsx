@@ -1,7 +1,6 @@
 import { Container } from "@shared/components/container";
 import { useState } from "react";
-import { CanvasDropdown } from "./canvas-dropdown";
-import { PAPER_PRESETS } from "../constants/canvas-dropdown";
+import { CanvasDropdown, PAPER_PRESETS } from "./canvas-dropdown";
 import { Paper } from "./canvas-paper.types";
 import { CanvasPaper } from "./canvas-paper";
 import { useComponentsStore } from "@stores";
@@ -19,7 +18,7 @@ export const Canvas = () => {
   return (
     <Container
       align="center"
-      className="bg-zinc-200 w-full h-full"
+      className="bg-zinc-200 w-full h-full pr-45"
       onClick={() => {
         if (component) selectComponent(null);
       }}

@@ -2,13 +2,15 @@ import {
   AArrowDownIcon,
   AArrowUpIcon,
   BookOpen,
-  Bot,
+  Heading,
   Heading1Icon,
   Heading2Icon,
   Heading3Icon,
   Heading4Icon,
+  Image,
   PilcrowIcon,
-  SquareTerminal,
+  RectangleVertical,
+  Square,
   TextQuoteIcon,
   TypeIcon,
 } from "lucide-react";
@@ -99,21 +101,38 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
   },
 ];
 
-export const MEDIA_CATEGORY: SelectionBtnElement[] = [
+export const IMAGE_CATEGORY: SelectionBtnElement[] = [
   {
-    title: "Genesis",
-    icon: Heading1Icon,
+    title: "Square",
+    icon: Square,
     type: "ImgPlaceholder",
+    props: {
+      ratio: "1/1",
+    },
   },
   {
-    title: "Explorer",
-    icon: Heading1Icon,
+    title: "2/3",
+    icon: RectangleVertical,
     type: "ImgPlaceholder",
+    props: {
+      ratio: "2/3",
+    },
   },
   {
-    title: "Quantum",
-    icon: Heading1Icon,
+    title: "3/4",
+    icon: RectangleVertical,
     type: "ImgPlaceholder",
+    props: {
+      ratio: "3/4",
+    },
+  },
+  {
+    title: "9/16",
+    icon: RectangleVertical,
+    type: "ImgPlaceholder",
+    props: {
+      ratio: "9/16",
+    },
   },
 ];
 
@@ -142,17 +161,17 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
 
 export const SELECTION_CATEGORY: SelectionCategoryList[] = [
   {
-    title: "Headings",
-    icon: SquareTerminal,
+    title: "Heading",
+    icon: Heading,
     isActive: true,
     items: HEADINGS_CATEGORY,
     type: "TextInput",
   },
   {
-    title: "Media",
+    title: "Image",
     // url: "#",
-    icon: Bot,
-    items: MEDIA_CATEGORY,
+    icon: Image,
+    items: IMAGE_CATEGORY,
     type: "ImgPlaceholder",
   },
   {
@@ -166,6 +185,6 @@ export const SELECTION_CATEGORY: SelectionCategoryList[] = [
 
 export const categoryMap: Record<Elements, SelectionBtnElement[]> = {
   TextInput: HEADINGS_CATEGORY,
-  ImgPlaceholder: MEDIA_CATEGORY,
+  ImgPlaceholder: IMAGE_CATEGORY,
   ListItem: LIST_CATEGORY,
 };

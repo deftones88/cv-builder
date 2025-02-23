@@ -7,7 +7,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@shared/components/shadcnui";
-import { TitleBar } from "./title-bar";
+import { SelectionTitleBar } from "./selection-title-bar";
 import { SELECTION_CATEGORY } from "./selection-list.constants";
 
 export const SelectionPanel = () => {
@@ -17,7 +17,7 @@ export const SelectionPanel = () => {
     // </Panel>
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <TitleBar />
+        <SelectionTitleBar />
       </SidebarHeader>
       <SidebarContent>
         <SelectionList items={SELECTION_CATEGORY} />

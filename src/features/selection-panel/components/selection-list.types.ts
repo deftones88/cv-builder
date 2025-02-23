@@ -19,4 +19,4 @@ export type SelectionBtnElement = {
   props?: unknown;
 };
 
-export type SelectionCategory = "Headings" | "Media" | "List";
+export type SelectionCategory = "Heading" | "Image" | "List";

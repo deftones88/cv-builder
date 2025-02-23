@@ -5,7 +5,7 @@ import {
 } from "@shared/components/shadcnui";
 import { BlocksIcon } from "lucide-react";
 
-export const TitleBar = () => {
+export const SelectionTitleBar = () => {
   return (
     <SidebarMenu>
       <SidebarMenuButton
@@ -17,7 +17,7 @@ export const TitleBar = () => {
           <BlocksIcon />
         </div>
         <div className="grid flex-1 text-left text-sm leading-tight">
-          <span className="truncate text-lg">Selection Panel</span>
+          <span className="truncate text-lg">선택</span>
         </div>
       </SidebarMenuButton>
     </SidebarMenu>

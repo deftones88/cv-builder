@@ -6,7 +6,7 @@ import {
 } from "./img-placeholder.constants";
 import { AspectRatio, UploaderSize } from "./img-placeholder.types";
 
-export type ImgPlaceholderProps = {
+type ImgPlaceholderProps = {
   ratio?: AspectRatio;
   size?: UploaderSize;
   image?: string;

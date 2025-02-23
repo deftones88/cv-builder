@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { FormField } from "./form";
 
 export type Position = {
   x: number;
@@ -10,7 +11,7 @@ export type Elements = "TextInput" | "ImgPlaceholder" | "ListItem";
 export type ComponentElement = {
   type: Elements;
   component: FC;
-  propertiesComponent: FC;
+  settingsFormField: FormField[];
 };
 
 export type ComponentElementInstance = {

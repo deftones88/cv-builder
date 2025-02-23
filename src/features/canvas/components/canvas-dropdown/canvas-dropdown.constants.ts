@@ -1,4 +1,4 @@
-import { Paper } from "../components/canvas-paper.types";
+import { Paper } from "../canvas-paper.types";
 
 export const PAPER_PRESETS: { label: Paper; dimension: number }[] = [
   { label: "A4", dimension: 210 / 297 },
