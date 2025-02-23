@@ -7,8 +7,10 @@ export type FormField = {
   id: number;
   type: FieldType;
   label: string;
-  value?: string | boolean | number | string[];
+  value?: string | boolean | number | (string | boolean | number)[];
   options?: string[];
+  propName: string;
+  map?: Record<string, string>;
 };
 
 export type FormValues = {

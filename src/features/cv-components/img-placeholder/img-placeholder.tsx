@@ -19,6 +19,10 @@ export const ImgPlaceholder = ({
   image = undefined,
   rounded = false,
 }: ImgPlaceholderProps) => {
+  // const getImage = (file: File) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  // };
   // const [image, setImage] = useState<string | null>(null);
   // const inputRef = useRef<HTMLInputElement>(null);
 

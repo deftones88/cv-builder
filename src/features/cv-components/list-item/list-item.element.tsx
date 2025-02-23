@@ -14,6 +14,7 @@ export const OrderedListItemComponentElement: ComponentElement = {
       type: FIELD_TYPES.ARRAY,
       label: "목록 내용",
       value: ["내용을 입력하세요1", "내용을 입력하세요2"],
+      propName: "list",
     },
     {
       id: 2,
@@ -28,6 +29,7 @@ export const OrderedListItemComponentElement: ComponentElement = {
         "upper-alpha",
         "lower-alpha",
       ],
+      propName: "listStyle",
     },
   ],
 };
@@ -41,6 +43,7 @@ export const UnorderedListItemComponentElement: ComponentElement = {
       type: FIELD_TYPES.ARRAY,
       label: "목록 내용",
       value: ["내용을 입력하세요1", "내용을 입력하세요2"],
+      propName: "list",
     },
     {
       id: 2,
@@ -48,6 +51,7 @@ export const UnorderedListItemComponentElement: ComponentElement = {
       label: "불렛 종류",
       value: "불렛 종류룰 고르세요",
       options: ["disc", "circle", "square", "없음"],
+      propName: "listStyle",
     },
   ],
 };

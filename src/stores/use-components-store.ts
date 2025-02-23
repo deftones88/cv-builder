@@ -21,9 +21,11 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
 
   addComponent: (component) => {
     const newId = crypto.randomUUID();
+    const newComponent = { ...component, id: newId };
     set((state) => ({
-      components: [...state.components, { ...component, id: newId }],
+      components: [...state.components, newComponent],
       selectedId: newId,
+      component: newComponent,
     }));
   },
 

@@ -14,7 +14,7 @@ export const FormRadio = ({
   name,
   ...props
 }: FormFieldWithControls) => {
-  const { options } = props;
+  const { value, options } = props;
 
   return (
     <FormField
@@ -25,7 +25,7 @@ export const FormRadio = ({
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}
-              defaultValue={field.value as string}
+              defaultValue={value as string}
               className="flex flex-col space-y-1"
             >
               {options?.map((option) => (

@@ -13,21 +13,38 @@ export const FormCheckbox = ({
   name,
   ...props
 }: FormFieldWithControls) => {
-  const { value } = props;
+  const { options } = props;
 
   return (
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
-        <FormItem className="flex">
-          <FormControl>
-            <Checkbox
-              checked={field.value as boolean}
-              onCheckedChange={field.onChange}
+      render={() => (
+        <FormItem>
+          {options?.map((option, index) => (
+            <FormField
+              key={index}
+              control={control}
+              name={name}
+              render={({ field }) => (
+                <FormItem key={index} className="flex flex-row items-center">
+                  <FormControl>
+                    <Checkbox
+                      checked={(field.value as boolean[])[index]}
+                      onCheckedChange={(checked) => {
+                        const newValue = [...(field.value as boolean[])];
+                        newValue[index] = checked as boolean;
+                        return field.onChange(newValue);
+                      }}
+                    />
+                  </FormControl>
+                  <FormLabel className="text-sm font-normal">
+                    {option}
+                  </FormLabel>
+                </FormItem>
+              )}
             />
-          </FormControl>
-          <FormLabel>{value}</FormLabel>
+          ))}
           <FormMessage />
         </FormItem>
       )}
