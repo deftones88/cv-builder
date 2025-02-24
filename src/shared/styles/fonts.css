@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'GowunBatang';
+  src: url('../assets/fonts/Gowun_Batang/GowunBatang-Regular.ttf')
+    format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'GowunBatang';
+  src: url('../assets/fonts/Gowun_Batang/GowunBatang-Bold.ttf')
+    format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'GowunDodum';
+  src: url('../assets/fonts/Gowun_Dodum/GowunDodum-Regular.ttf')
+    format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../assets/fonts/Pretendard/PretendardVariable.ttf')
+    format('truetype-variations');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Gasoek';
+  src: url('../assets/fonts/Gasoek/Gasoek-Heavy.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'CookieRun';
+  src: url('../assets/fonts/CookieRun/CookieRun-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'CookieRun';
+  src: url('../assets/fonts/CookieRun/CookieRun-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'CookieRun';
+  src: url('../assets/fonts/CookieRun/CookieRun-Black.ttf') format('truetype');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Dohyeon';
+  src: url('../assets/fonts/Dohyeon/Dohyeon.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Orbit';
+  src: url('../assets/fonts/Orbit/Orbit-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-Thin.ttf') format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-Black.ttf') format('truetype');
+  font-weight: 900;
+}
+
+.font-gowun-batang {
+  font-family: 'GowunBatang';
+}
+
+.font-gowun-dodum {
+  font-family: 'GowunDodum';
+}
+
+.font-pretendard {
+  font-family: 'Pretendard';
+}
+
+.font-gasoek {
+  font-family: 'Gasoek';
+}
+
+.font-cookie-run {
+  font-family: 'CookieRun';
+}
+
+.font-dohyeon {
+  font-family: 'Dohyeon';
+}
+
+.font-orbit {
+  font-family: 'Orbit';
+}
+
+.font-hahmlet {
+  font-family: 'Hahmlet';
+}

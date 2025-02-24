@@ -1,17 +1,21 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 /* @tailwind base;
 @tailwind components; */
 /* @tailwind utilities; */
 
 @plugin "tailwindcss-animate";
+@import './shared/styles/fonts.css';
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Pretendard', 'GowunBatang', 'GowunDodum', 'Gasoek', 'CookieRun',
+    'Dohyeon', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  --font-primary: 'Pretendard', system-ui, sans-serif;
+  --font-secondary: 'GowunBatang', system-ui, sans-serif;
+  --font-display: 'Gasoek', serif;
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87);
   background-color: #242424; */
@@ -57,6 +61,7 @@
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
+/* list style type */
 @layer utilities {
   .list-upper-roman {
     @apply list-[upper-roman];
