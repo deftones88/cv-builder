@@ -3,17 +3,17 @@ import { FIELD_TYPES } from '@shared/constants';
 import { FormValues } from '@shared/types';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import { FormUploader } from './form-uploader';
+import { FormRadio } from './form-radio';
 
-const meta: Meta<typeof FormUploader> = {
-  title: 'Form Component/FormUploader',
-  component: FormUploader,
+const meta: Meta<typeof FormRadio> = {
+  title: 'Form Component/FormRadio',
+  component: FormRadio,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
     docs: {
       description: {
-        component: 'React Hook Form에 연결된 파일 업로드 필드',
+        component: 'React Hook Form에 연결된 Radio 필드',
       },
     },
   },
@@ -39,19 +39,21 @@ const meta: Meta<typeof FormUploader> = {
       description: '폼 컴포넌트 타입',
       table: {
         type: { summary: Object.values(FIELD_TYPES).join(' | ') },
-        defaultValue: { summary: FIELD_TYPES.UPLOADER },
+        defaultValue: { summary: FIELD_TYPES.RADIO },
       },
     },
     value: {
-      // description: '이미지 파일',
-      table: { disable: true },
+      control: 'text',
+      description: '선택된 옵션의 값',
+      table: {
+        type: { summary: 'text' },
+      },
     },
     options: {
       control: { disable: true },
-      description: 'placeholder 값과 input type file의 accept 속성',
+      description: '옵션 목록',
       table: {
-        type: { summary: 'string[0] : placeholder, string[1] : accept' },
-        defaultValue: { summary: "['이미지 파일을 선택하세요.','image/*']" },
+        type: { summary: 'string[]' },
       },
     },
     propName: {
@@ -59,7 +61,11 @@ const meta: Meta<typeof FormUploader> = {
       table: { disable: true },
     },
     map: {
-      table: { disable: true },
+      control: { disable: true },
+      description: '옵션 목록 값 매핑 정보',
+      table: {
+        type: { summary: 'string[]' },
+      },
     },
   },
   decorators: [
@@ -69,11 +75,16 @@ const meta: Meta<typeof FormUploader> = {
           fields: [
             {
               id: 1,
-              type: FIELD_TYPES.UPLOADER,
-              label: '파일 업로드',
-              value: '업로드할 파일을 선택해주세요',
-              options: ['이미지 파일을 선택하세요.', 'image/*'],
-              propName: 'image',
+              type: FIELD_TYPES.RADIO,
+              label: '크기',
+              value: 'small',
+              options: ['small', 'medium', 'large'],
+              propName: 'size',
+              map: {
+                small: 'sm',
+                medium: 'md',
+                large: 'lg',
+              },
             },
           ],
         },
@@ -85,9 +96,10 @@ const meta: Meta<typeof FormUploader> = {
             <Story
               args={{
                 control: form.control,
-                name: 'fields.0.value',
-                value: fieldData.value,
+                name: `fields.0.value`,
                 options: fieldData.options,
+                value: fieldData.value,
+                map: fieldData.map,
               }}
             />
           </form>
@@ -98,10 +110,6 @@ const meta: Meta<typeof FormUploader> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof FormUploader>;
+type Story = StoryObj<typeof FormRadio>;
 
-export const Default: Story = {
-  args: {
-    label: '2/3',
-  },
-};
+export const Default: Story = {};

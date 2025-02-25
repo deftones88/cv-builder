@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ListItem } from './list-item';
 
 const meta: Meta<typeof ListItem> = {
-  title: 'CVComponents/ListItem',
+  title: 'CV Components/ListItem',
   component: ListItem,
   tags: ['autodocs'],
   argTypes: {

@@ -1,10 +1,7 @@
 export {
   ImgPlaceholder,
   ImgPlaceholderComponentElement,
-} from "./img-placeholder";
-export { TitleInput, TitleInputComponentElement } from "./title-input";
-export {
-  ListItem,
-  UnorderedListItemComponentElement,
-  OrderedListItemComponentElement,
-} from "./list-item";
+} from './img-placeholder';
+export { ListItem } from './list-item/list-item';
+export * from './list-item/list-item.element';
+export { TitleInput, TitleInputComponentElement } from './title-input';

@@ -1,5 +1,2 @@
-export { ListItem } from "./list-item";
-export {
-  OrderedListItemComponentElement,
-  UnorderedListItemComponentElement,
-} from "./list-item.element";
+export { ListItem } from './list-item';
+export * from './list-item.element';

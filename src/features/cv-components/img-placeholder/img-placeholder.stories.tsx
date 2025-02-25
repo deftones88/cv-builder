@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ImgPlaceholder } from './img-placeholder';
 
 const meta: Meta<typeof ImgPlaceholder> = {
-  title: 'CVComponents/ImgPlaceholder',
+  title: 'CV Components/ImgPlaceholder',
   component: ImgPlaceholder,
   tags: ['autodocs'],
   argTypes: {

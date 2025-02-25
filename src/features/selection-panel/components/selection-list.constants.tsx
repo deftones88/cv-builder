@@ -1,3 +1,4 @@
+import { Elements } from '@shared/types';
 import {
   AArrowDownIcon,
   AArrowUpIcon,
@@ -14,169 +15,168 @@ import {
   Square,
   TextQuoteIcon,
   TypeIcon,
-} from "lucide-react";
+} from 'lucide-react';
 import {
   SelectionBtnElement,
   SelectionCategoryList,
-} from "./selection-list.types";
-import { Elements } from "@shared/types";
+} from './selection-list.types';
 
 export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
   {
-    title: "H1",
+    title: 'H1',
     icon: Heading1Icon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "h1",
+      variant: 'h1',
     },
   },
   {
-    title: "H2",
+    title: 'H2',
     icon: Heading2Icon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "h2",
+      variant: 'h2',
     },
   },
   {
-    title: "H3",
+    title: 'H3',
     icon: Heading3Icon,
-    type: "TextInput",
+    type: 'TextInput',
   },
   {
-    title: "H4",
+    title: 'H4',
     icon: Heading4Icon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "h4",
+      variant: 'h4',
     },
   },
   {
-    title: "p",
+    title: 'p',
     icon: PilcrowIcon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "p",
+      variant: 'p',
     },
   },
   {
-    title: "blockquote",
+    title: 'blockquote',
     icon: TextQuoteIcon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "blockquote",
+      variant: 'blockquote',
     },
   },
   {
-    title: "Lead",
+    title: 'Lead',
     icon: TypeIcon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "lead",
+      variant: 'lead',
     },
   },
   {
-    title: "Large",
+    title: 'Large',
     icon: AArrowUpIcon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "large",
+      variant: 'large',
     },
   },
   {
-    title: "Small",
+    title: 'Small',
     icon: AArrowDownIcon,
-    type: "TextInput",
+    type: 'TextInput',
     props: {
-      variant: "small",
+      variant: 'small',
     },
   },
   {
-    title: "Muted",
+    title: 'Muted',
     icon: TypeIcon,
-    className: "text-[#777]",
-    type: "TextInput",
+    className: 'text-[#777]',
+    type: 'TextInput',
     props: {
-      variant: "muted",
+      variant: 'muted',
     },
   },
 ];
 
 export const IMAGE_CATEGORY: SelectionBtnElement[] = [
   {
-    title: "Square",
+    title: 'Square',
     icon: Square,
-    type: "ImgPlaceholder",
+    type: 'ImgPlaceholder',
     props: {
-      ratio: "1/1",
+      ratio: '1/1',
     },
   },
   {
-    title: "2/3",
+    title: '2/3',
     icon: RectangleVertical,
-    type: "ImgPlaceholder",
+    type: 'ImgPlaceholder',
     props: {
-      ratio: "2/3",
+      ratio: '2/3',
     },
   },
   {
-    title: "3/4",
+    title: '3/4',
     icon: RectangleVertical,
-    type: "ImgPlaceholder",
+    type: 'ImgPlaceholder',
     props: {
-      ratio: "3/4",
+      ratio: '3/4',
     },
   },
   {
-    title: "9/16",
+    title: '9/16',
     icon: RectangleVertical,
-    type: "ImgPlaceholder",
+    type: 'ImgPlaceholder',
     props: {
-      ratio: "9/16",
+      ratio: '9/16',
     },
   },
 ];
 
 export const LIST_CATEGORY: SelectionBtnElement[] = [
   {
-    title: "Ordered",
+    title: 'Ordered',
     icon: ListOrderedIcon,
-    type: "OrderedListItem",
+    type: 'OrderedListItem',
     props: {
-      listStyle: "decimal",
+      listStyle: 'decimal',
     },
   },
   {
-    title: "Unordered",
+    title: 'Unordered',
     icon: ListIcon,
-    type: "UnorderedListItem",
+    type: 'UnorderedListItem',
     props: {
-      listStyle: "disc",
+      listStyle: 'disc',
     },
   },
 ];
 
 export const SELECTION_CATEGORY: SelectionCategoryList[] = [
   {
-    title: "Heading",
+    title: 'Heading',
     icon: Heading,
     isActive: true,
     items: HEADINGS_CATEGORY,
-    type: "TextInput",
+    type: 'TextInput',
   },
   {
-    title: "Image",
+    title: 'Image',
     // url: "#",
     icon: Image,
     items: IMAGE_CATEGORY,
-    type: "ImgPlaceholder",
+    type: 'ImgPlaceholder',
   },
   {
-    title: "List",
+    title: 'List',
     // url: "#",
     icon: ListIcon,
     items: LIST_CATEGORY,
-    type: "OrderedListItem",
+    type: 'OrderedListItem',
   },
 ];
 
