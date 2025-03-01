@@ -8,7 +8,7 @@ export type FormField = {
   id: number;
   type: FieldType;
   label: string;
-  value?: string | boolean | number | (string | boolean | number)[];
+  value?: string | boolean | number | (string | boolean | number)[] | File;
   options?: string[];
   propName: string;
   map?: Record<string, string>;

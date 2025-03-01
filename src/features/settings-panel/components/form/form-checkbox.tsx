@@ -30,7 +30,11 @@ export const FormCheckbox = ({
                 <FormItem key={index} className="flex flex-row items-center">
                   <FormControl>
                     <Checkbox
-                      checked={(field.value as boolean[])[index]}
+                      checked={
+                        Array.isArray(field.value)
+                          ? (field.value[index] as boolean)
+                          : false
+                      }
                       onCheckedChange={(checked) => {
                         const newValue = [...(field.value as boolean[])];
                         newValue[index] = checked as boolean;

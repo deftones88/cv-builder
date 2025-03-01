@@ -15,7 +15,6 @@ export const FormRadio = ({
   ...props
 }: FormFieldWithControls) => {
   const { value, options } = props;
-
   return (
     <FormField
       control={control}

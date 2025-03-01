@@ -7,7 +7,6 @@ import {
   Input,
 } from "@shared/components/shadcnui";
 import { FormFieldWithControls } from "@shared/types";
-import { useComponentsStore } from "@stores";
 import { X } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 
@@ -19,9 +18,6 @@ export const FormUploader = ({
 }: FormFieldWithControls) => {
   const { id, label, options = ["파일을 올려주세요", "image/*"] } = props;
   const [placeholder, accept] = options;
-
-  const updateSettings = useComponentsStore((state) => state.updateSettings);
-  const component = useComponentsStore((state) => state.component);
 
   const [fileName, setFileName] = useState<string | null>(
     (settings.image as File)?.name ?? null,
@@ -35,14 +31,14 @@ export const FormUploader = ({
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       fieldOnChange(file);
-      updateSettings(component!.id, { image: file });
       setFileName(file.name);
     }
   };
-  const handleDelete = () => {
-    updateSettings(component!.id, { image: undefined });
+  const handleDelete = (fieldOnChange: (...event: unknown[]) => void) => {
+    fieldOnChange(null);
     setFileName(null);
   };
+
   return (
     <FormField
       control={control}
@@ -66,7 +62,7 @@ export const FormUploader = ({
                 />
               </div>
             </FormControl>
-            <Button onClick={handleDelete}>
+            <Button onClick={() => handleDelete(field.onChange)}>
               <X />
             </Button>
             <FormMessage />

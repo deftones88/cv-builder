@@ -4,16 +4,17 @@ import { FormValues } from "@shared/types";
 import { FIELD_COMPONENTS } from "./form";
 import { useComponentsStore } from "@stores";
 import { SelectionElements } from "@shared/constants";
+import { useCallback, useEffect } from "react";
 
 export const SettingsPanelForm = () => {
   const updateSettings = useComponentsStore((state) => state.updateSettings);
   const component = useComponentsStore((state) => state.component);
 
   const { id, type, settings } = component!;
-  const newSettings = { ...settings };
 
-  const settingsFormField =
-    SelectionElements[type].getSettingsFormField(newSettings);
+  const settingsFormField = SelectionElements[type].getSettingsFormField({
+    ...settings,
+  });
 
   const form = useForm<FormValues>({
     values: { fields: settingsFormField ?? [] },
@@ -23,22 +24,35 @@ export const SettingsPanelForm = () => {
     name: "fields",
   });
 
-  const applyChanges = (data: FormValues) => {
-    const { fields } = data;
-    // mapping value with map values
-    fields.forEach((field) => {
-      const { value, propName, map } = field;
-      newSettings[propName] = map ? map[value as string] : value;
+  const applyChanges = useCallback(
+    (data: FormValues) => {
+      const { fields } = data;
+      const updatedSettings = { ...settings };
+      // mapping value with map values
+      fields.forEach((field) => {
+        const { value, propName, map } = field;
+        updatedSettings[propName] = map ? map[value as string] : value;
+      });
+      updateSettings(id, updatedSettings ?? {});
+    },
+    [updateSettings, id, settings],
+  );
+
+  useEffect(() => {
+    const subscription = form.watch((data) => {
+      applyChanges(data as FormValues);
     });
 
-    updateSettings(id, newSettings ?? {});
-  };
+    return () => subscription.unsubscribe();
+  }, [form, applyChanges]);
 
   return (
     <Form {...form}>
       <form
-        onBlur={form.handleSubmit(applyChanges)}
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit(applyChanges);
+        }}
       >
         {fields.map((field, index) => {
           const Component = FIELD_COMPONENTS[field.type];
@@ -49,7 +63,7 @@ export const SettingsPanelForm = () => {
                 <Component
                   control={form.control}
                   name={`fields.${index}.value`}
-                  settings={newSettings}
+                  settings={{ ...settings }}
                   {...field}
                 />
               </div>

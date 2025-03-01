@@ -52,12 +52,14 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
     {
       console.log("move component", id, position);
     },
-  updateSettings: (id, newSettings) =>
+  updateSettings: (id, newSettings) => {
+    console.log("update", newSettings);
     set((state) => ({
       components: state.components.map((c) =>
         c.id === id ? { ...c, settings: { ...c.settings, ...newSettings } } : c,
       ),
-    })),
+    }));
+  },
 
   selectComponent: (id) => {
     if (!id) {
