@@ -13,32 +13,34 @@ export const FormCheckbox = ({
   name,
   ...props
 }: FormFieldWithControls) => {
-  const { options } = props;
-
+  const { value: defaultValue, options } = props;
+  if (!options?.length) return;
+  //  defaultValues.length === options.length
+  const initialValues = options.map(
+    (_, i) => (defaultValue as boolean[])[i] === true,
+  );
   return (
     <FormField
       control={control}
       name={name}
-      render={() => (
-        <FormItem>
-          {options?.map((option, index) => (
-            <FormField
-              key={index}
-              control={control}
-              name={name}
-              render={({ field }) => (
+      render={({ field }) => {
+        // field.value === Array(options.length)
+        const values =
+          Array.isArray(field.value) && field.value.length === options?.length
+            ? field.value
+            : initialValues;
+        return (
+          <FormItem>
+            {options?.map((option, index) => (
+              <div key={`${option}.${index}`}>
                 <FormItem key={index} className="flex flex-row items-center">
                   <FormControl>
                     <Checkbox
-                      checked={
-                        Array.isArray(field.value)
-                          ? (field.value[index] as boolean)
-                          : false
-                      }
+                      checked={values[index] === true}
                       onCheckedChange={(checked) => {
-                        const newValue = [...(field.value as boolean[])];
-                        newValue[index] = checked as boolean;
-                        return field.onChange(newValue);
+                        const newValue = [...values];
+                        newValue[index] = checked === true;
+                        field.onChange(newValue);
                       }}
                     />
                   </FormControl>
@@ -46,12 +48,12 @@ export const FormCheckbox = ({
                     {option}
                   </FormLabel>
                 </FormItem>
-              )}
-            />
-          ))}
-          <FormMessage />
-        </FormItem>
-      )}
+              </div>
+            ))}
+            <FormMessage />
+          </FormItem>
+        );
+      }}
     />
   );
 };
