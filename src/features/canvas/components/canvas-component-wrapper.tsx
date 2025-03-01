@@ -82,10 +82,10 @@ export const CanvasComponentWrapper = ({
         </>
       )}
       {topHalf.isOver && (
-        <div className="absolute top-0 w-full rounded-t-md h-[7px] bg-zinc-500" />
+        <div className="absolute top-0 w-full rounded-t-md h-[7px] bg-zinc-500 z-50" />
       )}
       {bottomHalf.isOver && (
-        <div className="absolute bottom-0 w-full rounded-b-md h-[7px] bg-zinc-500" />
+        <div className="absolute bottom-0 w-full rounded-b-md h-[7px] bg-zinc-500 z-50" />
       )}
       <div
         className={cn(

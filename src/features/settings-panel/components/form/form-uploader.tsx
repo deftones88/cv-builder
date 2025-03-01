@@ -7,38 +7,40 @@ import {
   Input,
 } from "@shared/components/shadcnui";
 import { FormFieldWithControls } from "@shared/types";
+import { useComponentsStore } from "@stores";
 import { X } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 
 export const FormUploader = ({
   control,
   name,
-  // settings,
+  settings,
   ...props
 }: FormFieldWithControls) => {
-  const {
-    id,
-    label,
-    // value,
-    options = ["파일을 올려주세요", "image/*"],
-  } = props;
+  const { id, label, options = ["파일을 올려주세요", "image/*"] } = props;
   const [placeholder, accept] = options;
 
-  const [fileName, setFileName] = useState<string | null>(null);
+  const updateSettings = useComponentsStore((state) => state.updateSettings);
+  const component = useComponentsStore((state) => state.component);
+
+  const [fileName, setFileName] = useState<string | null>(
+    (settings.image as File)?.name ?? null,
+  );
 
   const handleChange = (
     fieldOnChange: (...event: unknown[]) => void,
     e: ChangeEvent<HTMLInputElement>,
   ) => {
     e.preventDefault();
-    console.log(e.target.files);
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       fieldOnChange(file);
+      updateSettings(component!.id, { image: file });
       setFileName(file.name);
     }
   };
   const handleDelete = () => {
+    updateSettings(component!.id, { image: undefined });
     setFileName(null);
   };
   return (

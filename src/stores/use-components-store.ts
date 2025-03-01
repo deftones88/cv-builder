@@ -50,7 +50,7 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
     //   ),
     // })),
     {
-      console.log("movecomponent", id, position);
+      console.log("move component", id, position);
     },
   updateSettings: (id, newSettings) =>
     set((state) => ({
