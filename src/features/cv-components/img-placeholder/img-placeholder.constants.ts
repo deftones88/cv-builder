@@ -33,7 +33,3 @@ export const AspectRatioWHClasses: Record<RatioSizeKey, string> = {
   "16/9md": "max-w-[213px]",
   "16/9lg": "max-w-[356px]",
 } as const;
-
-export enum EXTRA_CONFIG {
-  ROUNDED = 0,
-}

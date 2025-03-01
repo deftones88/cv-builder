@@ -3,7 +3,6 @@ import { ImageUpIcon } from "lucide-react";
 import {
   AspectRatioClasses,
   AspectRatioWHClasses,
-  EXTRA_CONFIG,
 } from "./img-placeholder.constants";
 import { AspectRatio, UploaderSize } from "./img-placeholder.types";
 
@@ -11,17 +10,15 @@ export type ImgPlaceholderProps = {
   ratio?: AspectRatio;
   size?: UploaderSize;
   image?: File | undefined;
-  extraConfig?: boolean[]; // [rounded]
+  rounded?: boolean;
 };
 
 export const ImgPlaceholder = ({
   ratio = "2/3",
   size = "sm",
   image = undefined,
-  extraConfig = [false],
+  rounded = false,
 }: ImgPlaceholderProps) => {
-  const isRounded = extraConfig[EXTRA_CONFIG.ROUNDED];
-
   return (
     <div
       className={cn("w-full mx-auto", AspectRatioWHClasses[`${ratio}${size}`])}
@@ -41,7 +38,7 @@ export const ImgPlaceholder = ({
                 alt="image preview"
                 className={cn(
                   "w-full h-full object-cover",
-                  isRounded && "rounded-lg",
+                  rounded && "rounded-lg",
                 )}
               />
               {/* <Button
