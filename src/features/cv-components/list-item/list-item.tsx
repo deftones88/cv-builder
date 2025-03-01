@@ -4,7 +4,7 @@ import { InputVariants } from "../title-input/title-input.types";
 import { LIST_STYLE_TYPE_MAP } from "./list-item.constants";
 import { LIST_STYLE_TYPE } from "./list-item.types";
 
-type ListItemProps = {
+export type ListItemProps = {
   titleOptions?: { variant: InputVariants; title: string };
   list?: string[];
   listStyle?: LIST_STYLE_TYPE;

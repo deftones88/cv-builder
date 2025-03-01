@@ -5,7 +5,10 @@ type ComponentsStore = {
   components: ComponentElementInstance[];
   component: ComponentElementInstance | null;
   // Actions
-  addComponent: (component: Omit<ComponentElementInstance, "id">) => void;
+  addComponent: (
+    index: number,
+    component: Omit<ComponentElementInstance, "id">,
+  ) => void;
   removeComponent: (id: string) => void;
   moveComponent: (id: string, position: Position) => void;
   updateSettings: (
@@ -19,11 +22,16 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
   components: [],
   component: null,
 
-  addComponent: (component) => {
+  addComponent: (index, component) => {
     const newId = crypto.randomUUID();
     const newComponent = { ...component, id: newId };
+    console.log("add", newId, component);
     set((state) => ({
-      components: [...state.components, newComponent],
+      components: [
+        ...state.components.slice(0, index),
+        newComponent,
+        ...state.components.slice(index),
+      ],
       selectedId: newId,
       component: newComponent,
     }));
@@ -36,12 +44,14 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
     })),
 
   moveComponent: (id, position) =>
-    set((state) => ({
-      components: state.components.map((c) =>
-        c.id === id ? { ...c, position } : c,
-      ),
-    })),
-
+    // set((state) => ({
+    //   components: state.components.map((c) =>
+    //     c.id === id ? { ...c, position } : c,
+    //   ),
+    // })),
+    {
+      console.log("movecomponent", id, position);
+    },
   updateSettings: (id, newSettings) =>
     set((state) => ({
       components: state.components.map((c) =>
@@ -59,51 +69,3 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
     }
   },
 }));
-
-// import { useDroppable } from '@dnd-kit/core';
-
-// const Canvas = () => {
-//   const { setNodeRef } = useDroppable({
-//     id: 'canvas',
-//   });
-//   const components = useEditorStore((state) => state.components);
-
-//   return (
-//     <div ref={setNodeRef} className='relative w-full aspect-[1/1.4142]'>
-//       {components.map((component) => (
-//         <DraggableComponent key={component.id} id={component.id} />
-//       ))}
-//     </div>
-//   );
-// };
-//
-// const DraggableComponent = ({ id }: { id: string }) => {
-//   const component = useEditorStore(
-//     state => state.components.find(c => c.id === id)
-//   );
-//   const moveComponent = useEditorStore(state => state.moveComponent);
-//   const selectComponent = useEditorStore(state => state.selectComponent);
-
-//   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-//     id,
-//   });
-
-//   if (!component) return null;
-
-//   return (
-//     <div
-//       ref={setNodeRef}
-//       {...listeners}
-//       {...attributes}
-//       className="absolute"
-//       style={{
-//         transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
-//         left: component.position.x,
-//         top: component.position.y,
-//       }}
-//       onClick={() => selectComponent(id)}
-//     >
-//       {/* Your component renderer here */}
-//     </div>
-//   );
-// };

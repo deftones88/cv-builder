@@ -18,24 +18,79 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
 
   const components = useComponentsStore((state) => state.components);
   const addComponent = useComponentsStore((state) => state.addComponent);
+  const removeComponent = useComponentsStore((state) => state.removeComponent);
 
   useDndMonitor({
     onDragEnd: (event: DragEndEvent) => {
       const { active, over } = event;
-      if (!active?.data?.current || !over) return;
+      if (!active?.data?.current || !over?.data?.current) return;
+
+      const { type, props } = active.data.current;
+      const newElement = {
+        type,
+        settings: props,
+        // position: {
+        //   x: over.rect.left - over.rect.width / 2,
+        //   y: over.rect.top - over.rect.height / 2,
+        // },
+      };
 
       const isComponentBtnElement = active.data.current.isComponentBtnElement;
-      if (isComponentBtnElement) {
-        const { type, props } = active.data.current;
-        const newElement = {
-          type,
-          settings: props,
-          position: {
-            x: over.rect.left - over.rect.width / 2,
-            y: over.rect.top - over.rect.height / 2,
-          },
-        };
-        addComponent(newElement);
+
+      // dropping btn over paper area
+      const isDroppingOverPaperArea = over.data.current.isPaperDropArea;
+      if (isComponentBtnElement && isDroppingOverPaperArea) {
+        addComponent(components.length, newElement);
+        return;
+      }
+
+      // dropping btn over other elements
+      const isDroppingOverElementTopHalf = over.data.current.isTopHalfElement;
+      const isDroppingOverElementBottomHalf =
+        over.data.current.isBottomHalfElement;
+      const isDroppingOverElement =
+        isDroppingOverElementBottomHalf || isDroppingOverElementTopHalf;
+
+      if (isComponentBtnElement && isDroppingOverElement) {
+        const overElementIndex = components.findIndex(
+          (el) => el.id === over.data.current?.elementId,
+        );
+        if (overElementIndex === -1) {
+          throw new Error("element not found: " + over.data);
+        }
+
+        const indexForNewElement =
+          overElementIndex + Number(isDroppingOverElementBottomHalf);
+        addComponent(indexForNewElement, newElement);
+        return;
+      }
+
+      // dragging existing elements over another
+      const isDraggingExisting: boolean =
+        isDroppingOverElement && !!active.data.current.isComponentElement;
+      if (isDraggingExisting) {
+        const activeElementIndex = components.findIndex(
+          (el) => el.id === active.data.current?.elementId,
+        );
+        const overElementIndex = components.findIndex(
+          (el) => el.id === over.data.current?.elementId,
+        );
+        if (activeElementIndex === -1 || overElementIndex === -1) {
+          throw new Error(
+            "element not found\n- active : " +
+              active.data +
+              "\n- over : " +
+              over.data,
+          );
+        }
+
+        const activeComponent = { ...components[activeElementIndex] };
+        removeComponent(activeComponent.id);
+
+        const indexForNewElement =
+          overElementIndex + Number(isDroppingOverElementBottomHalf);
+        addComponent(indexForNewElement, activeComponent);
+        return;
       }
     },
   });
@@ -55,15 +110,13 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
             여기로 드래그 하세요
           </p>
         )}
-        {droppable.isOver && (
-          <div className="p-4 w-full">
-            <div className="h-[120px] rounded-md bg-gray-500/20"></div>
-          </div>
-        )}
         {components.length > 0 &&
           components.map((component) => (
             <CanvasComponentWrapper component={component} key={component.id} />
           ))}
+        {droppable.isOver && (
+          <div className="h-[120px] w-full rounded-md bg-gray-500/20" />
+        )}
       </AspectRatio>
     </div>
   );

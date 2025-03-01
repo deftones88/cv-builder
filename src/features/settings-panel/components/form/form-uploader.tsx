@@ -5,29 +5,30 @@ import {
   FormItem,
   FormMessage,
   Input,
-} from '@shared/components/shadcnui';
-import { FormFieldWithControls } from '@shared/types';
-import { X } from 'lucide-react';
-import { ChangeEvent, useState } from 'react';
+} from "@shared/components/shadcnui";
+import { FormFieldWithControls } from "@shared/types";
+import { X } from "lucide-react";
+import { ChangeEvent, useState } from "react";
 
 export const FormUploader = ({
   control,
   name,
+  // settings,
   ...props
 }: FormFieldWithControls) => {
   const {
     id,
     label,
-    value,
-    options = ['파일을 올려주세요', 'image/*'],
+    // value,
+    options = ["파일을 올려주세요", "image/*"],
   } = props;
   const [placeholder, accept] = options;
 
   const [fileName, setFileName] = useState<string | null>(null);
 
   const handleChange = (
-    fieldOnChange: (...event: any[]) => void,
-    e: ChangeEvent<HTMLInputElement>
+    fieldOnChange: (...event: unknown[]) => void,
+    e: ChangeEvent<HTMLInputElement>,
   ) => {
     e.preventDefault();
     console.log(e.target.files);
@@ -46,18 +47,18 @@ export const FormUploader = ({
       name={name}
       render={({ field }) => {
         return (
-          <FormItem className='flex'>
+          <FormItem className="flex">
             <FormControl>
-              <div className='relative w-full'>
+              <div className="relative w-full">
                 <Input
                   id={`upload.${id}.${label}`}
-                  type='file'
-                  className='absolute inset-0 opacity-0 cursor-pointer [&::file-selector-button]:cursor-pointer w-full'
+                  type="file"
+                  className="absolute inset-0 opacity-0 cursor-pointer [&::file-selector-button]:cursor-pointer w-full"
                   onChange={(e) => handleChange(field.onChange, e)}
                   accept={accept}
                 />
                 <Input
-                  className='text-zinc-800 font-bold w-full'
+                  className="text-zinc-800 font-bold w-full"
                   value={fileName ? fileName : placeholder}
                   readOnly
                 />

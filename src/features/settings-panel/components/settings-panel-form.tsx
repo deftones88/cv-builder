@@ -1,16 +1,20 @@
 import { Form, FormLabel } from "@shared/components/shadcnui";
 import { useFieldArray, useForm } from "react-hook-form";
-import { FormField as FormFieldType, FormValues } from "@shared/types";
+import { FormValues } from "@shared/types";
 import { FIELD_COMPONENTS } from "./form";
 import { useComponentsStore } from "@stores";
+import { SelectionElements } from "@shared/constants";
 
-type SettingsPanelFormProps = {
-  settingsFormField?: FormFieldType[];
-};
+export const SettingsPanelForm = () => {
+  const updateSettings = useComponentsStore((state) => state.updateSettings);
+  const component = useComponentsStore((state) => state.component);
 
-export const SettingsPanelForm = ({
-  settingsFormField,
-}: SettingsPanelFormProps) => {
+  const { id, type, settings } = component!;
+  const newSettings = { ...settings };
+
+  const settingsFormField =
+    SelectionElements[type].getSettingsFormField(newSettings);
+
   const form = useForm<FormValues>({
     values: { fields: settingsFormField ?? [] },
   });
@@ -19,15 +23,10 @@ export const SettingsPanelForm = ({
     name: "fields",
   });
 
-  const updateSettings = useComponentsStore((state) => state.updateSettings);
-  const component = useComponentsStore((state) => state.component);
-
-  if (!component) return null;
-  const { id, settings } = component;
-  const newSettings = { ...settings };
   const applyChanges = (data: FormValues) => {
     const { fields } = data;
-    fields.map((field) => {
+    // mapping value with map values
+    fields.forEach((field) => {
       const { value, propName, map } = field;
       newSettings[propName] = map ? map[value as string] : value;
     });
@@ -37,7 +36,10 @@ export const SettingsPanelForm = ({
 
   return (
     <Form {...form}>
-      <form onBlur={form.handleSubmit(applyChanges)}>
+      <form
+        onBlur={form.handleSubmit(applyChanges)}
+        onSubmit={(e) => e.preventDefault()}
+      >
         {fields.map((field, index) => {
           const Component = FIELD_COMPONENTS[field.type];
           return (
@@ -47,6 +49,7 @@ export const SettingsPanelForm = ({
                 <Component
                   control={form.control}
                   name={`fields.${index}.value`}
+                  settings={newSettings}
                   {...field}
                 />
               </div>

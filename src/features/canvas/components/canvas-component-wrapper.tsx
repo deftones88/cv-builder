@@ -89,7 +89,7 @@ export const CanvasComponentWrapper = ({
       )}
       <div
         className={cn(
-          "w-full pointer-event-none opacity-100 py-2",
+          "w-full pointer-event-none opacity-100 py-1",
           mouseIsOver && "py-4 min-h-[50px] opacity-30 bg-zinc-200 rounded-md",
         )}
       >
