@@ -7,14 +7,16 @@ import {
   FormMessage,
 } from "@shared/components/shadcnui";
 import { FormFieldWithControls } from "@shared/types";
+import { memo } from "react";
 
-export const FormCheckbox = ({
+const FormCheckboxBase = ({
   control,
   name,
   ...props
 }: FormFieldWithControls) => {
   const { value, options } = props;
   if (!options?.length) return;
+
   const [label] = options;
   return (
     <FormField
@@ -38,3 +40,4 @@ export const FormCheckbox = ({
     />
   );
 };
+export const FormCheckbox = memo(FormCheckboxBase);

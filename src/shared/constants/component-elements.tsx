@@ -1,16 +1,12 @@
 import {
   ImgPlaceholderComponentElement,
-  // ListItemComponentElement,
-  OrderedListItemComponentElement,
+  ListItemComponentElement,
   TitleInputComponentElement,
-  UnorderedListItemComponentElement,
-} from '@features/cv-components';
-import { SelectionElement } from '@shared/types';
+} from "@features/cv-components";
+import { SelectionElement } from "@shared/types";
 
 export const SelectionElements: SelectionElement = {
   TextInput: TitleInputComponentElement,
   ImgPlaceholder: ImgPlaceholderComponentElement,
-  // ListItem: ListItemComponentElement,
-  OrderedListItem: OrderedListItemComponentElement,
-  UnorderedListItem: UnorderedListItemComponentElement,
+  ListItem: ListItemComponentElement,
 };

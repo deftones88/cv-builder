@@ -8,12 +8,7 @@ export type Position = {
 
 export type ElementInstanceSettings = Record<string, unknown>;
 
-export type Elements =
-  | "TextInput"
-  | "ImgPlaceholder"
-  | "OrderedListItem"
-  | "UnorderedListItem";
-// | 'ListItem';
+export type Elements = "TextInput" | "ImgPlaceholder" | "ListItem";
 
 export type ComponentElement = {
   type: Elements;

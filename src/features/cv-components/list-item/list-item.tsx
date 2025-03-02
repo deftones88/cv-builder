@@ -12,7 +12,7 @@ export type ListItemProps = {
 
 export const ListItem = ({
   titleOptions = undefined,
-  list = ["test list"],
+  list = ["내용을 입력하세요1", "내용을 입력하세요2"],
   listStyle = "disc",
 }: ListItemProps) => {
   const ListTag = LIST_STYLE_TYPE_MAP[listStyle];
@@ -23,7 +23,9 @@ export const ListItem = ({
         <TitleInput variant={titleOptions.variant} title={titleOptions.title} />
       )}
       {
-        <ListTag className={cn("pl-2 list-inside", `list-${listStyle}`)}>
+        <ListTag
+          className={cn("pl-2 list-inside text-xs", `list-${listStyle}`)}
+        >
           {list.map((item, index) => (
             <li key={index}>{item}</li>
           ))}

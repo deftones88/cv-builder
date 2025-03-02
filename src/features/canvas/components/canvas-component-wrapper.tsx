@@ -3,7 +3,6 @@ import { SelectionElements } from "@shared/constants";
 import { cn } from "@shared/lib/utils";
 import { ComponentElementInstance } from "@shared/types";
 import { useComponentsStore } from "@stores";
-import { GrabIcon, MousePointerClickIcon } from "lucide-react";
 import { useState } from "react";
 
 type CanvasComponentWrapperProps = {
@@ -74,9 +73,9 @@ export const CanvasComponentWrapper = ({
       {mouseIsOver && (
         <>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="flex text-sm gap-2 text-black">
-              <MousePointerClickIcon size="20" /> 혹은
-              <GrabIcon size="20" />
+            <div className="text-lg font-bold text-black">
+              클릭<span className="text-sm!">하거나</span> 드래그
+              <span className="text-sm!">하세요</span>
             </div>
           </div>
         </>

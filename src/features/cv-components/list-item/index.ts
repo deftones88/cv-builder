@@ -1,2 +1,2 @@
-export { ListItem } from './list-item';
-export * from './list-item.element';
+export { ListItem } from "./list-item";
+export { ListItemComponentElement } from "./list-item.element";

@@ -8,12 +8,9 @@ import {
   RadioGroupItem,
 } from "@shared/components/shadcnui";
 import { FormFieldWithControls } from "@shared/types";
+import { memo } from "react";
 
-export const FormRadio = ({
-  control,
-  name,
-  ...props
-}: FormFieldWithControls) => {
+const FormRadioBase = ({ control, name, ...props }: FormFieldWithControls) => {
   const { value, options } = props;
   return (
     <FormField
@@ -43,3 +40,5 @@ export const FormRadio = ({
     />
   );
 };
+
+export const FormRadio = memo(FormRadioBase);

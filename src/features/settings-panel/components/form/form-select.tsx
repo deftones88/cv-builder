@@ -30,7 +30,7 @@ export const FormSelect = ({
           >
             <FormControl>
               <SelectTrigger>
-                <SelectValue placeholder={value} />
+                <SelectValue placeholder={value as string} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>

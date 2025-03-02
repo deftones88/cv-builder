@@ -8,9 +8,9 @@ import {
 } from "@shared/components/shadcnui";
 import { FormFieldWithControls } from "@shared/types";
 import { X } from "lucide-react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, memo, useState } from "react";
 
-export const FormUploader = ({
+const FormUploaderBase = ({
   control,
   name,
   settings,
@@ -23,27 +23,23 @@ export const FormUploader = ({
     (settings.image as File)?.name ?? null,
   );
 
-  const handleChange = (
-    fieldOnChange: (...event: unknown[]) => void,
-    e: ChangeEvent<HTMLInputElement>,
-  ) => {
-    e.preventDefault();
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      fieldOnChange(file);
-      setFileName(file.name);
-    }
-  };
-  const handleDelete = (fieldOnChange: (...event: unknown[]) => void) => {
-    fieldOnChange(null);
-    setFileName(null);
-  };
-
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => {
+        const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+          e.preventDefault();
+          if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            field.onChange(file);
+            setFileName(file.name);
+          }
+        };
+        const handleDelete = () => {
+          field.onChange(null);
+          setFileName(null);
+        };
         return (
           <FormItem className="flex">
             <FormControl>
@@ -52,7 +48,7 @@ export const FormUploader = ({
                   id={`upload.${id}.${label}`}
                   type="file"
                   className="absolute inset-0 opacity-0 cursor-pointer [&::file-selector-button]:cursor-pointer w-full"
-                  onChange={(e) => handleChange(field.onChange, e)}
+                  onChange={handleChange}
                   accept={accept}
                 />
                 <Input
@@ -62,7 +58,7 @@ export const FormUploader = ({
                 />
               </div>
             </FormControl>
-            <Button onClick={() => handleDelete(field.onChange)}>
+            <Button onClick={handleDelete}>
               <X />
             </Button>
             <FormMessage />
@@ -72,3 +68,5 @@ export const FormUploader = ({
     />
   );
 };
+
+export const FormUploader = memo(FormUploaderBase);
