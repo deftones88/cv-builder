@@ -20,7 +20,6 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
   const addComponent = useComponentsStore((state) => state.addComponent);
   const removeComponent = useComponentsStore((state) => state.removeComponent);
 
-  console.log("canvas-paper components", components);
   useDndMonitor({
     onDragEnd: (event: DragEndEvent) => {
       const { active, over } = event;
