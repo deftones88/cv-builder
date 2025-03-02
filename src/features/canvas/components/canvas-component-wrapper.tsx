@@ -1,8 +1,10 @@
 import { useDraggable, useDroppable } from "@dnd-kit/core";
+import { Button } from "@shared/components/shadcnui";
 import { SelectionElements } from "@shared/constants";
 import { cn } from "@shared/lib/utils";
 import { ComponentElementInstance } from "@shared/types";
 import { useComponentsStore } from "@stores";
+import { XIcon } from "lucide-react";
 import { useState } from "react";
 
 type CanvasComponentWrapperProps = {
@@ -13,6 +15,7 @@ export const CanvasComponentWrapper = ({
   component,
 }: CanvasComponentWrapperProps) => {
   const selectComponent = useComponentsStore((state) => state.selectComponent);
+  const removeComponent = useComponentsStore((state) => state.removeComponent);
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const { settings: props, id, type } = component;
   const ComponentElement = SelectionElements[type].component;
@@ -68,10 +71,21 @@ export const CanvasComponentWrapper = ({
       />
       <div
         ref={bottomHalf.setNodeRef}
-        className="absolute w-full bottom-0 h-1/2 rounded-b-md"
+        className="absolute w-full bottom-0 h-1/2 rounded-b-sm"
       />
       {mouseIsOver && (
         <>
+          <div className="absolute -right-2 h-full z-50">
+            <Button
+              variant="ghost"
+              className="flex justify-center h-full px-1! bg-zinc-900 hover:bg-zinc-700 rounded-none rounded-r-sm cursor-pointer"
+              onClick={() => {
+                removeComponent(id);
+              }}
+            >
+              <XIcon size={6} className="text-white" />
+            </Button>
+          </div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className="text-lg font-bold text-black">
               클릭<span className="text-sm!">하거나</span> 드래그

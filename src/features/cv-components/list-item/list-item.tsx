@@ -1,7 +1,7 @@
 import { cn } from "@shared/lib/utils";
 import { TitleInput } from "../title-input";
 import { InputVariants } from "../title-input/title-input.types";
-import { LIST_STYLE_TYPE_MAP } from "./list-item.constants";
+import { DEFAULT_LIST, LIST_STYLE_TYPE_MAP } from "./list-item.constants";
 import { LIST_STYLE_TYPE } from "./list-item.types";
 
 export type ListItemProps = {
@@ -12,7 +12,7 @@ export type ListItemProps = {
 
 export const ListItem = ({
   titleOptions = undefined,
-  list = ["내용을 입력하세요1", "내용을 입력하세요2"],
+  list = DEFAULT_LIST,
   listStyle = "disc",
 }: ListItemProps) => {
   const ListTag = LIST_STYLE_TYPE_MAP[listStyle];

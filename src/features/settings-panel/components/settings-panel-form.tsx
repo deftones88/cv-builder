@@ -47,30 +47,32 @@ export const SettingsPanelForm = () => {
   }, [form, applyChanges]);
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          form.handleSubmit(applyChanges);
-        }}
-      >
-        {fields.map((field, index) => {
-          const Component = FIELD_COMPONENTS[field.type];
-          return (
-            <div key={field.id} className="py-4">
-              <div className="flex flex-col gap-2">
-                <FormLabel className="font-bold">{field.label}</FormLabel>
-                <Component
-                  control={form.control}
-                  name={`fields.${index}.value`}
-                  settings={{ ...settings }}
-                  {...field}
-                />
+    <div className="px-1 pr-2">
+      <Form {...form}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            form.handleSubmit(applyChanges);
+          }}
+        >
+          {fields.map((field, index) => {
+            const Component = FIELD_COMPONENTS[field.type];
+            return (
+              <div key={field.id} className="py-4">
+                <div className="flex flex-col gap-2">
+                  <FormLabel className="font-bold">{field.label}</FormLabel>
+                  <Component
+                    control={form.control}
+                    name={`fields.${index}.value`}
+                    settings={{ ...settings }}
+                    {...field}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </form>
-    </Form>
+            );
+          })}
+        </form>
+      </Form>
+    </div>
   );
 };

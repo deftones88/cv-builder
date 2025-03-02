@@ -15,13 +15,14 @@ export const SelectionElement = ({
   element,
   categoryIdx,
 }: SelectionElementProps) => {
-  const { title, icon: Icon, className, type, props } = element;
+  const { title, icon: Icon, className, type, props, settingsTitle } = element;
   const draggable = useDraggable({
     id: `element-btn-${title}`,
     data: {
       type,
       title,
       props,
+      settingsTitle,
       categoryIdx: categoryIdx,
       isComponentBtnElement: true,
     },

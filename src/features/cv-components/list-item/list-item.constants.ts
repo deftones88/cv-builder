@@ -50,3 +50,8 @@ export const LIST_STYLE_TYPE_MAP: Record<LIST_STYLE_TYPE, "ol" | "ul"> = {
   "square": "ul",
   "none": "ul",
 };
+
+export const DEFAULT_LIST = [
+  "다양한 이해관계자와의 원활한 의사소통 및 협상 능력 보유",
+  "복잡한 문제에 대한 창의적 해결책 도출 및 실행 역량 입증",
+];

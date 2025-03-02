@@ -29,6 +29,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "h1",
     },
+    settingsTitle: "Heading H1",
   },
   {
     title: "H2",
@@ -37,11 +38,13 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "h2",
     },
+    settingsTitle: "Heading H2",
   },
   {
     title: "H3",
     icon: Heading3Icon,
     type: "TextInput",
+    settingsTitle: "Heading H3",
   },
   {
     title: "H4",
@@ -50,6 +53,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "h4",
     },
+    settingsTitle: "Heading H4",
   },
   {
     title: "p",
@@ -58,6 +62,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "p",
     },
+    settingsTitle: "Heading p",
   },
   {
     title: "blockquote",
@@ -66,6 +71,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "blockquote",
     },
+    settingsTitle: "Heading blockquote",
   },
   {
     title: "Lead",
@@ -74,6 +80,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "lead",
     },
+    settingsTitle: "Heading Lead",
   },
   {
     title: "Large",
@@ -82,6 +89,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "large",
     },
+    settingsTitle: "Heading Large",
   },
   {
     title: "Small",
@@ -90,6 +98,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "small",
     },
+    settingsTitle: "Heading Small",
   },
   {
     title: "Muted",
@@ -99,6 +108,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "muted",
     },
+    settingsTitle: "Heading Muted",
   },
 ];
 
@@ -110,6 +120,7 @@ export const IMAGE_CATEGORY: SelectionBtnElement[] = [
     props: {
       ratio: "1/1",
     },
+    settingsTitle: "Image Square",
   },
   {
     title: "2/3",
@@ -118,6 +129,7 @@ export const IMAGE_CATEGORY: SelectionBtnElement[] = [
     props: {
       ratio: "2/3",
     },
+    settingsTitle: "Image 2/3",
   },
   {
     title: "3/4",
@@ -126,6 +138,7 @@ export const IMAGE_CATEGORY: SelectionBtnElement[] = [
     props: {
       ratio: "3/4",
     },
+    settingsTitle: "Image 3/4",
   },
   {
     title: "9/16",
@@ -134,6 +147,7 @@ export const IMAGE_CATEGORY: SelectionBtnElement[] = [
     props: {
       ratio: "9/16",
     },
+    settingsTitle: "Image 9/16",
   },
 ];
 
@@ -145,6 +159,7 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
     props: {
       listStyle: "decimal",
     },
+    settingsTitle: "List Ordered",
   },
   {
     title: "Unordered",
@@ -153,6 +168,7 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
     props: {
       listStyle: "disc",
     },
+    settingsTitle: "List Unordered",
   },
 ];
 

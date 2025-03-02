@@ -3,6 +3,7 @@ import { ComponentElement, Elements } from "@shared/types";
 import { FC } from "react";
 import { ListItem, ListItemProps } from "./list-item";
 import {
+  DEFAULT_LIST,
   LIST_STYLE_DISPLAY_TO_VALUE,
   LIST_STYLE_OPTION,
   LIST_STYLE_TYPE_MAP,
@@ -24,10 +25,7 @@ export const ListItemComponentElement: ComponentElement = {
         id: 1,
         type: FIELD_TYPES.ARRAY,
         label: "목록 내용",
-        value: props.list ?? [
-          "다양한 이해관계자와의 원활한 의사소통 및 협상 능력 보유",
-          "복잡한 문제에 대한 창의적 해결책 도출 및 실행 역량 입증",
-        ],
+        value: props.list ?? DEFAULT_LIST,
         propName: "list",
       },
       {

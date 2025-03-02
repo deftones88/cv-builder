@@ -40,7 +40,7 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
   removeComponent: (id) =>
     set((state) => ({
       components: state.components.filter((c) => c.id !== id),
-      // component: state.component?.id === id ? null : state.component,
+      component: state.component?.id === id ? null : state.component,
     })),
 
   moveComponent: (id, position) =>

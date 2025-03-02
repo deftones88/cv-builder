@@ -32,39 +32,16 @@ export const ImgPlaceholder = ({
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {image ? (
-            <>
-              <img
-                src={URL.createObjectURL(image)}
-                alt="image preview"
-                className={cn(
-                  "w-full h-full object-cover",
-                  rounded && "rounded-lg",
-                )}
-              />
-              {/* <Button
-                size='icon'
-                onClick={handleDelete}
-                className='absolute top-2 right-2 p-1 bg-opacity-50 rounded-full bg-gray-400'
-                aria-label='Delete image'
-              >
-                <X className='w-5 h-5 text-white' />
-              </Button> */}
-            </>
+            <img
+              src={URL.createObjectURL(image)}
+              alt="image preview"
+              className={cn(
+                "w-full h-full object-cover",
+                rounded && "rounded-lg",
+              )}
+            />
           ) : (
-            <>
-              {/* <div className='mb-4'> */}
-              <ImageUpIcon className="w-12 h-12 text-gray-400" />
-              {/* </div> */}
-              {/* <Button onClick={onButtonClick}>upload image</Button>
-              <input
-                ref={inputRef}
-                type='file'
-                className='hidden'
-                accept='image/*'
-                onChange={handleChange}
-              />
-              <p className='mt-2 text-xs text-gray-500'>PNG, JPG, GIF</p> */}
-            </>
+            <ImageUpIcon className="w-12 h-12 text-gray-400" />
           )}
         </div>
       </div>

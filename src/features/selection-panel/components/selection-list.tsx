@@ -19,7 +19,6 @@ type SelectionListProp = { items: SelectionCategoryList[] };
 export function SelectionList({ items }: SelectionListProp) {
   return (
     <SidebarGroup>
-      {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

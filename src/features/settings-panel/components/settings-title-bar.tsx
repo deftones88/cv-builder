@@ -1,17 +1,29 @@
-// import { SidebarTrigger } from "@shared/components/shadcnui";
+import { Button } from "@shared/components/shadcnui";
+import { useComponentsStore } from "@stores";
 
-import { Settings2Icon } from "lucide-react";
+type SettingsTitleBarProps = {
+  id: string;
+  title: string;
+};
 
-export const SettingsTitleBar = () => {
+export const SettingsTitleBar = ({ id, title }: SettingsTitleBarProps) => {
+  const removeComponent = useComponentsStore((state) => state.removeComponent);
+  const [group, item] = title.split(" ");
   return (
-    <div className="flex items-center gap-1">
-      <div className="flex aspect-square size-5 m-2 items-center justify-center rounded-lg">
-        {/* <SidebarTrigger size="lg" /> */}
-        <Settings2Icon />
+    <div className="flex justify-between w-full bg-zinc-100 rounded-sm p-1 px-2">
+      <div className="space-x-2">
+        <span className="text-lg font-bold">{item.toUpperCase()}</span>
+        <span className="font-gowun-dodum text-sm font-normal">
+          [{group.toLowerCase()}]
+        </span>
       </div>
-      <div className="grid flex-1 text-left text-sm leading-tight">
-        <span className="truncate text-lg">상세 설정</span>
-      </div>
+      <Button
+        variant="outline"
+        className="text-xs px-2 h-[25px]"
+        onClick={() => removeComponent(id)}
+      >
+        삭제
+      </Button>
     </div>
   );
 };

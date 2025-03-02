@@ -19,6 +19,7 @@ export type ComponentElement = {
 export type ComponentElementInstance = {
   id: string;
   type: Elements;
+  title: string;
   settings?: ElementInstanceSettings;
   // position: Position;
 };

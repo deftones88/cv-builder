@@ -25,10 +25,12 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
       const { active, over } = event;
       if (!active?.data?.current || !over?.data?.current) return;
 
-      const { type, props } = active.data.current;
+      const { type, props, settingsTitle } = active.data.current;
+
       const newElement = {
         type,
         settings: props,
+        title: settingsTitle,
         // position: {
         //   x: over.rect.left - over.rect.width / 2,
         //   y: over.rect.top - over.rect.height / 2,
