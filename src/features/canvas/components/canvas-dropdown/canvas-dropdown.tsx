@@ -23,7 +23,7 @@ export const CanvasDropdown = ({
   };
   return (
     <Select onValueChange={handleValueChange}>
-      <SelectTrigger className="w-[100px] font-semibold tracking-tight bg-white ring-0 py-0">
+      <SelectTrigger className="w-[100px] font-semibold tracking-tight bg-white ring-0 py-0 rounded-r-none">
         {paperSize}
       </SelectTrigger>
       <SelectContent className="py-0">
