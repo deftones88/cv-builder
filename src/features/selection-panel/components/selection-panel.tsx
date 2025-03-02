@@ -1,27 +1,27 @@
-// import { Panel } from "@shared/components/panel";
-
 import { SelectionList } from "./selection-list";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@shared/components/shadcnui";
-import { SelectionHeaderBar } from "./selection-header-bar";
+import { SelectionPanelHeader } from "./selection-panel-header";
 import { SELECTION_CATEGORY } from "./selection-list.constants";
+import { SelectionPanelFooter } from "./selection-panel-footer";
 
 export const SelectionPanel = () => {
   return (
-    // <Panel width="xs" elevated>
-    //   <Panel.Title>Selection Panel</Panel.Title>
-    // </Panel>
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <SelectionHeaderBar />
+        <SelectionPanelHeader />
       </SidebarHeader>
       <SidebarContent>
         <SelectionList items={SELECTION_CATEGORY} />
       </SidebarContent>
+      <SidebarFooter>
+        <SelectionPanelFooter />
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );

@@ -5,7 +5,7 @@ import {
 } from "@shared/components/shadcnui";
 import { BlocksIcon } from "lucide-react";
 
-export const SelectionHeaderBar = () => {
+export const SelectionPanelHeader = () => {
   return (
     <SidebarMenu>
       <SidebarMenuButton

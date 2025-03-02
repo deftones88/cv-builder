@@ -17,7 +17,7 @@ export type SelectionBtnElement = {
   className?: string;
   type: Elements;
   props?: unknown;
-  settingsTitle: string;
+  settingsTitle: string[];
 };
 
 export type SelectionCategory = "Heading" | "Image" | "List";

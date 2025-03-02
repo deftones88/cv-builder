@@ -11,6 +11,7 @@ import {
   ListIcon,
   ListOrderedIcon,
   PilcrowIcon,
+  RectangleHorizontal,
   RectangleVertical,
   Square,
   TextQuoteIcon,
@@ -29,7 +30,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "h1",
     },
-    settingsTitle: "Heading H1",
+    settingsTitle: ["Heading", "H1"],
   },
   {
     title: "H2",
@@ -38,13 +39,13 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "h2",
     },
-    settingsTitle: "Heading H2",
+    settingsTitle: ["Heading", "H2"],
   },
   {
     title: "H3",
     icon: Heading3Icon,
     type: "TextInput",
-    settingsTitle: "Heading H3",
+    settingsTitle: ["Heading", "H3"],
   },
   {
     title: "H4",
@@ -53,7 +54,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "h4",
     },
-    settingsTitle: "Heading H4",
+    settingsTitle: ["Heading", "H4"],
   },
   {
     title: "p",
@@ -62,7 +63,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "p",
     },
-    settingsTitle: "Heading p",
+    settingsTitle: ["Heading", "p"],
   },
   {
     title: "blockquote",
@@ -71,7 +72,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "blockquote",
     },
-    settingsTitle: "Heading blockquote",
+    settingsTitle: ["Heading", "blockquote"],
   },
   {
     title: "Lead",
@@ -80,7 +81,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "lead",
     },
-    settingsTitle: "Heading Lead",
+    settingsTitle: ["Heading", "Lead"],
   },
   {
     title: "Large",
@@ -89,7 +90,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "large",
     },
-    settingsTitle: "Heading Large",
+    settingsTitle: ["Heading", "Large"],
   },
   {
     title: "Small",
@@ -98,7 +99,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "small",
     },
-    settingsTitle: "Heading Small",
+    settingsTitle: ["Heading", "Small"],
   },
   {
     title: "Muted",
@@ -108,11 +109,65 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     props: {
       variant: "muted",
     },
-    settingsTitle: "Heading Muted",
+    settingsTitle: ["Heading", "Muted"],
   },
 ];
 
 export const IMAGE_CATEGORY: SelectionBtnElement[] = [
+  {
+    title: "2:3 - 세로",
+    icon: RectangleVertical,
+    type: "ImgPlaceholder",
+    props: {
+      ratio: "2/3",
+    },
+    settingsTitle: ["Image", "2:3 - 세로"],
+  },
+  {
+    title: "3:2 - 가로",
+    icon: RectangleHorizontal,
+    type: "ImgPlaceholder",
+    props: {
+      ratio: "3/2",
+    },
+    settingsTitle: ["Image", "3:2 - 가로"],
+  },
+  {
+    title: "3:4 - 세로",
+    icon: RectangleVertical,
+    type: "ImgPlaceholder",
+    props: {
+      ratio: "3/4",
+    },
+    settingsTitle: ["Image", "3:4 - 세로"],
+  },
+  {
+    title: "4:3 - 가로",
+    icon: RectangleHorizontal,
+    type: "ImgPlaceholder",
+    props: {
+      ratio: "4/3",
+    },
+    settingsTitle: ["Image", "4:3 - 가로"],
+  },
+  {
+    title: "9:16 - 세로",
+    icon: RectangleVertical,
+    type: "ImgPlaceholder",
+    props: {
+      ratio: "9/16",
+    },
+    settingsTitle: ["Image", "9:16 - 세로"],
+  },
+  {
+    title: "16:9 - 가로",
+    icon: RectangleHorizontal,
+    type: "ImgPlaceholder",
+    props: {
+      ratio: "16/9",
+    },
+    settingsTitle: ["Image", "16:9 - 가로"],
+  },
   {
     title: "Square",
     icon: Square,
@@ -120,34 +175,7 @@ export const IMAGE_CATEGORY: SelectionBtnElement[] = [
     props: {
       ratio: "1/1",
     },
-    settingsTitle: "Image Square",
-  },
-  {
-    title: "2/3",
-    icon: RectangleVertical,
-    type: "ImgPlaceholder",
-    props: {
-      ratio: "2/3",
-    },
-    settingsTitle: "Image 2/3",
-  },
-  {
-    title: "3/4",
-    icon: RectangleVertical,
-    type: "ImgPlaceholder",
-    props: {
-      ratio: "3/4",
-    },
-    settingsTitle: "Image 3/4",
-  },
-  {
-    title: "9/16",
-    icon: RectangleVertical,
-    type: "ImgPlaceholder",
-    props: {
-      ratio: "9/16",
-    },
-    settingsTitle: "Image 9/16",
+    settingsTitle: ["Image", "Square"],
   },
 ];
 
@@ -159,7 +187,7 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
     props: {
       listStyle: "decimal",
     },
-    settingsTitle: "List Ordered",
+    settingsTitle: ["List", "Ordered"],
   },
   {
     title: "Unordered",
@@ -168,7 +196,7 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
     props: {
       listStyle: "disc",
     },
-    settingsTitle: "List Unordered",
+    settingsTitle: ["List", "Unordered"],
   },
 ];
 

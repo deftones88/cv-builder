@@ -37,17 +37,17 @@ const FormArrayBase = ({ control, name }: FormFieldWithControls) => {
         return (
           <FormItem className="flex flex-col">
             {fieldValue.map((item, index) => (
-              <div key={index} className="flex gap-1">
+              <div key={index} className="flex h-full">
                 <FormControl>
                   <Textarea
                     value={item}
                     onChange={(e) => handleItemChange(index, e.target.value)}
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-0 focus-visible:ring-0"
+                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-0 focus-visible:ring-0 rounded-r-none"
                   />
                 </FormControl>
                 <Button
                   onClick={() => handleRemoveItem(index)}
-                  className="w-5 h-6"
+                  className="w-5 h-[64px] rounded-l-none"
                 >
                   <X className="w-1 h-1" />
                 </Button>
@@ -55,7 +55,7 @@ const FormArrayBase = ({ control, name }: FormFieldWithControls) => {
             ))}
             <Button
               onClick={handleAddItem}
-              className="flex w-full items-center justify-center gap-2 rounded-md "
+              className="flex w-full items-center justify-center gap-2 rounded-md mt-1"
             >
               <Plus />
               <span>추가</span>
