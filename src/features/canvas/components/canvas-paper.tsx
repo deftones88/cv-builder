@@ -18,7 +18,7 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
 
   const components = useComponentsStore((state) => state.components);
   const addComponent = useComponentsStore((state) => state.addComponent);
-  const removeComponent = useComponentsStore((state) => state.removeComponent);
+  const moveComponent = useComponentsStore((state) => state.moveComponent);
 
   useDndMonitor({
     onDragEnd: (event: DragEndEvent) => {
@@ -71,13 +71,11 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
       const isDraggingExisting: boolean =
         isDroppingOverElement && !!active.data.current.isComponentElement;
       if (isDraggingExisting) {
-        const activeElementIndex = components.findIndex(
-          (el) => el.id === active.data.current?.elementId,
-        );
+        const activeElementId = active.data.current?.elementId;
         const overElementIndex = components.findIndex(
           (el) => el.id === over.data.current?.elementId,
         );
-        if (activeElementIndex === -1 || overElementIndex === -1) {
+        if (!activeElementId || overElementIndex === -1) {
           throw new Error(
             "element not found\n- active : " +
               active.data +
@@ -86,12 +84,10 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
           );
         }
 
-        const activeComponent = { ...components[activeElementIndex] };
-        removeComponent(activeComponent.id);
-
-        const indexForNewElement =
-          overElementIndex + Number(isDroppingOverElementBottomHalf);
-        addComponent(indexForNewElement, activeComponent);
+        const newIndex = isDroppingOverElementBottomHalf
+          ? overElementIndex + 1
+          : overElementIndex;
+        moveComponent(activeElementId, newIndex);
         return;
       }
     },

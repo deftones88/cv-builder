@@ -29,7 +29,7 @@ export const Canvas = () => {
       <div className="flex">
         <CanvasDropdown paperSize={paperSize} setPaperSize={setPaperSize} />
         <Button className="rounded-l-none bg-zinc-300 text-zinc-400 hover:bg-zinc-300">
-          PDF 저장 - 추후 구현
+          PDF 저장 - 구현 중
         </Button>
         {/* <PdfDownloadButton /> */}
       </div>

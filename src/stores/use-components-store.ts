@@ -1,4 +1,4 @@
-import { ComponentElementInstance, Position } from "@shared/types";
+import { ComponentElementInstance } from "@shared/types";
 import { create } from "zustand";
 
 type ComponentsStore = {
@@ -10,7 +10,8 @@ type ComponentsStore = {
     component: Omit<ComponentElementInstance, "id">,
   ) => void;
   removeComponent: (id: string) => void;
-  moveComponent: (id: string, position: Position) => void;
+  // moveComponent: (id: string, position: Position) => void;
+  moveComponent: (id: string, newIndex: number) => void;
   updateSettings: (
     id: string,
     settings: Partial<Record<string, unknown>>,
@@ -43,15 +44,23 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
       component: state.component?.id === id ? null : state.component,
     })),
 
-  moveComponent: (id, position) =>
-    // set((state) => ({
-    //   components: state.components.map((c) =>
-    //     c.id === id ? { ...c, position } : c,
-    //   ),
-    // })),
-    {
-      console.log("move component", id, position);
-    },
+  moveComponent: (id, newIndex) =>
+    set((state) => {
+      const currentIndex = state.components.findIndex((c) => c.id === id);
+
+      if (currentIndex === -1 || currentIndex === newIndex) {
+        return state;
+      }
+
+      const updatedComponents = [...state.components];
+      const [movedComponent] = updatedComponents.splice(currentIndex, 1);
+      updatedComponents.splice(newIndex, 0, movedComponent);
+
+      return {
+        components: updatedComponents,
+      };
+    }),
+
   updateSettings: (id, newSettings) => {
     console.log("update", newSettings);
     set((state) => ({

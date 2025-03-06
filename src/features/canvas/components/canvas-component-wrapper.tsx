@@ -87,9 +87,8 @@ export const CanvasComponentWrapper = ({
             </Button>
           </div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="text-lg font-bold text-black">
-              클릭<span className="text-sm!">하거나</span> 드래그
-              <span className="text-sm!">하세요</span>
+            <div className="text-xl font-bold text-black">
+              클릭하거나 드래그하세요
             </div>
           </div>
         </>
@@ -103,7 +102,7 @@ export const CanvasComponentWrapper = ({
       <div
         className={cn(
           "w-full pointer-event-none opacity-100 py-1",
-          mouseIsOver && "py-4 min-h-[50px] opacity-30 bg-zinc-200 rounded-md",
+          mouseIsOver && "py-4 min-h-[50px] opacity-20 bg-zinc-200 rounded-md",
         )}
       >
         <ComponentElement {...props} />
