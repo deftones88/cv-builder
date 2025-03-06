@@ -11,7 +11,7 @@ import {
   SidebarMenuSub,
 } from "@shared/components/shadcnui";
 import { SelectionCategoryList } from "./selection-list.types";
-import { SelectionElement } from "./selection-element";
+import { SelectionElement } from "../selection-element";
 
 type SelectionListProp = { items: SelectionCategoryList[] };
 

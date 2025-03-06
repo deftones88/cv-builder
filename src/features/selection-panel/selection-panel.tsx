@@ -1,4 +1,4 @@
-import { SelectionList } from "./selection-list";
+import { SelectionList, SELECTION_CATEGORY } from "./selection-list";
 import {
   Sidebar,
   SidebarContent,
@@ -7,7 +7,6 @@ import {
   SidebarRail,
 } from "@shared/components/shadcnui";
 import { SelectionPanelHeader } from "./selection-panel-header";
-import { SELECTION_CATEGORY } from "./selection-list.constants";
 import { SelectionPanelFooter } from "./selection-panel-footer";
 
 export const SelectionPanel = () => {

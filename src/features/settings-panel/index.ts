@@ -1,1 +1,1 @@
-export { SettingsPanel } from "./components/settings-panel";
+export { SettingsPanel } from "./settings-panel";

@@ -10,7 +10,11 @@ export const SelectionPanelFooter = () => {
     );
   };
   return (
-    <div className="w-full pb-2">
+    <div className="w-full pb-2 space-y-1">
+      <div className="px-2 py-1 flex justify-between items-center gap-2 bg-zinc-200 rounded-sm font-cookie-run">
+        <div className="">CV Builder</div>
+        <div className="text-sm">v0.0.1</div>
+      </div>
       <div className="px-2 py-1 flex justify-between items-center gap-2 bg-zinc-200 rounded-sm">
         <Button
           variant={"link"}
@@ -19,7 +23,7 @@ export const SelectionPanelFooter = () => {
         >
           <img src={Images.githubLogo} alt="github" width={20} />
         </Button>
-        <span className="text-sm font-pretendard">@deftones88</span>
+        <span className="text-sm">@deftones88</span>
       </div>
     </div>
   );

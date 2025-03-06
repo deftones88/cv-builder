@@ -1,7 +1,7 @@
 import { Active, DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useState } from "react";
-import { SelectionElementOverlay } from "./selection-elements-overlay";
-import { categoryMap } from "./selection-list.constants";
+import { SelectionElementOverlay } from "./selection-element-overlay";
+import { categoryMap } from "../selection-list/selection-list.constants";
 import { Elements } from "@shared/types";
 import { useComponentsStore } from "@stores";
 import { SelectionElements } from "@shared/constants";

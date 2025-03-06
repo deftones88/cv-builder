@@ -2,7 +2,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@shared/components/shadcnui";
-import { SelectionBtnElement } from "./selection-list.types";
+import { SelectionBtnElement } from "../selection-list/selection-list.types";
 import { cn } from "@shared/lib/utils";
 
 type SelectionElementOverlayProps = {
