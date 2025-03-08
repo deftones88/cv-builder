@@ -21,7 +21,6 @@ export type ComponentElementInstance = {
   type: Elements;
   title: string[];
   settings?: ElementInstanceSettings;
-  // position: Position;
 };
 
 export type SelectionElement = {

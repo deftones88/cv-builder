@@ -14,3 +14,4 @@ export * from "./radio-group";
 export * from "./checkbox";
 export * from "./textarea";
 export * from "./scroll-area";
+export * from "./dialog";

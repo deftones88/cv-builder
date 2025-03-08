@@ -10,7 +10,6 @@ type ComponentsStore = {
     component: Omit<ComponentElementInstance, "id">,
   ) => void;
   removeComponent: (id: string) => void;
-  // moveComponent: (id: string, position: Position) => void;
   moveComponent: (id: string, newIndex: number) => void;
   updateSettings: (
     id: string,
@@ -26,7 +25,6 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
   addComponent: (index, component) => {
     const newId = crypto.randomUUID();
     const newComponent = { ...component, id: newId };
-    console.log("add", newId, component);
     set((state) => ({
       components: [
         ...state.components.slice(0, index),
@@ -62,7 +60,6 @@ export const useComponentsStore = create<ComponentsStore>((set) => ({
     }),
 
   updateSettings: (id, newSettings) => {
-    console.log("update", newSettings);
     set((state) => ({
       components: state.components.map((c) =>
         c.id === id ? { ...c, settings: { ...c.settings, ...newSettings } } : c,

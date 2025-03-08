@@ -31,10 +31,6 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
         type,
         settings: props,
         title: settingsTitle,
-        // position: {
-        //   x: over.rect.left - over.rect.width / 2,
-        //   y: over.rect.top - over.rect.height / 2,
-        // },
       };
 
       const isComponentBtnElement = active.data.current.isComponentBtnElement;

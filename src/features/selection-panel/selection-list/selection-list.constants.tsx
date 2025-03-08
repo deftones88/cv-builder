@@ -198,6 +198,26 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
     },
     settingsTitle: ["List", "Unordered"],
   },
+  {
+    title: "제목 - OL",
+    icon: ListOrderedIcon,
+    type: "ListItem",
+    props: {
+      title: "업무 역량",
+      listStyle: "decimal",
+    },
+    settingsTitle: ["List", "Ordered"],
+  },
+  {
+    title: "제목 - UL",
+    icon: ListIcon,
+    type: "ListItem",
+    props: {
+      title: "업무 역량",
+      listStyle: "disc",
+    },
+    settingsTitle: ["List", "Unordered"],
+  },
 ];
 
 export const SELECTION_CATEGORY: SelectionCategoryList[] = [
