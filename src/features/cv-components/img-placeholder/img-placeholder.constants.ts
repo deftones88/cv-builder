@@ -1,4 +1,8 @@
-import { AspectRatio, RatioSizeKey } from "./img-placeholder.types";
+import {
+  AspectRatio,
+  RatioSizeKey,
+  UploaderSize,
+} from "./img-placeholder.types";
 
 export const AspectRatioClasses: Record<AspectRatio, string> = {
   "1/1": "aspect-square",
@@ -33,3 +37,9 @@ export const AspectRatioWHClasses: Record<RatioSizeKey, string> = {
   "16/9md": "max-w-[107px]",
   "16/9lg": "max-w-[190px]",
 } as const;
+
+export const sizeMap: Record<string, UploaderSize> = {
+  small: "sm",
+  medium: "md",
+  large: "lg",
+};

@@ -1,4 +1,4 @@
-import { SelectionList, SELECTION_CATEGORY } from "./selection-list";
+import { SelectionList } from "./selection-list";
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +16,7 @@ export const SelectionPanel = () => {
         <SelectionPanelHeader />
       </SidebarHeader>
       <SidebarContent>
-        <SelectionList items={SELECTION_CATEGORY} />
+        <SelectionList />
       </SidebarContent>
       <SidebarFooter>
         <SelectionPanelFooter />

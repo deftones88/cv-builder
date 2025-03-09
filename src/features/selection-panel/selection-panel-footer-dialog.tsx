@@ -12,44 +12,37 @@ import { CircleHelpIcon } from "lucide-react";
 export const SelectionPanelFooterDialog = () => {
   return (
     <Dialog>
-      <DialogTrigger>
-        <CircleHelpIcon size={14} />
+      <DialogTrigger asChild>
+        <CircleHelpIcon size={14} className="cursor-pointer" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>버전 히스토리</DialogTitle>
           <DialogDescription>
-            {VERSION_HISTORY.map((history) => {
-              const { majorVersion, subVersions } = history;
-              return (
-                <>
-                  {subVersions.map((subVersion) => {
-                    const { version, updates } = subVersion;
-                    return (
-                      <>
-                        <h6 className="pt-2 font-bold"> v{majorVersion}</h6>
-                        {updates.map((update) => {
-                          const { version: miniVersion, update: miniUpdate } =
-                            update;
-                          return (
-                            <p className="ml-2">
-                              <span className="inline-block w-11">
-                                v{majorVersion}.{version}.{miniVersion}
-                              </span>
-                              <span>: {miniUpdate}</span>
-                            </p>
-                          );
-                        })}
-                      </>
-                    );
-                  })}
-                </>
-              );
-            })}
+            {VERSION_HISTORY.map((versionGroup) => (
+              <div key={versionGroup.majorVersion}>
+                {versionGroup.subVersions.map((subVersion) => (
+                  <div key={subVersion.version}>
+                    <h6 className="pt-2 font-bold">
+                      v{versionGroup.majorVersion}
+                    </h6>
+                    {subVersion.updates.map((minorVersion) => (
+                      <p key={minorVersion.version} className="ml-2">
+                        <span className="inline-block w-11">
+                          v{versionGroup.majorVersion}.{subVersion.version}.
+                          {minorVersion.version}
+                        </span>
+                        <span>: {minorVersion.update}</span>
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ))}
             <h6 className="pt-8 pb-2 font-bold"> 업데이트 계획</h6>
             <ul className="ml-6 list-disc [&>li]:mt-1">
               {TODOS.map((todo) => (
-                <li>{todo}</li>
+                <li key={todo}>{todo}</li>
               ))}
             </ul>
           </DialogDescription>

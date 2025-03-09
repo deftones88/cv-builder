@@ -1,7 +1,7 @@
 import { cn } from "@shared/lib/utils";
 import { TitleInput } from "../title-input";
 import { DEFAULT_LIST, LIST_STYLE_TYPE_MAP } from "./list-item.constants";
-import { LIST_STYLE_TYPE } from "./list-item.types";
+import type { LIST_STYLE_TYPE } from "./list-item.types";
 
 export type ListItemProps = {
   title?: string;
@@ -17,7 +17,7 @@ export const ListItem = ({
   const ListTag = LIST_STYLE_TYPE_MAP[listStyle];
 
   return (
-    <>
+    <section>
       {title && <TitleInput variant={"h4"} title={title} />}
       {
         <ListTag
@@ -28,6 +28,6 @@ export const ListItem = ({
           ))}
         </ListTag>
       }
-    </>
+    </section>
   );
 };

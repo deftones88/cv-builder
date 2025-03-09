@@ -2,12 +2,12 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@shared/components/shadcnui";
-import { SelectionBtnElement } from "../selection-list/selection-list.types";
+import { SelectionListType } from "../selection-list/";
 import { cn } from "@shared/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
 
 type SelectionElementProps = {
-  element: SelectionBtnElement;
+  element: SelectionListType.SelectionBtnElement;
   categoryIdx: number;
 };
 

@@ -2,13 +2,19 @@ import { Elements } from "@shared/types";
 import { LucideIcon } from "lucide-react";
 import { ElementType } from "react";
 
-export type SelectionCategoryList = {
-  title: SelectionCategory;
+export type CategoryList = {
+  title: string;
   // url: string;
   icon?: LucideIcon;
-  isActive?: boolean;
   items?: SelectionBtnElement[];
   type: Elements;
+  isActive?: boolean;
+};
+
+export type SelectionCategoryList = {
+  groupTitle: string;
+  categoryList: CategoryList[];
+  isActive?: boolean;
 };
 
 export type SelectionBtnElement = {
@@ -19,5 +25,3 @@ export type SelectionBtnElement = {
   props?: unknown;
   settingsTitle: string[];
 };
-
-export type SelectionCategory = "Heading" | "Image" | "List";

@@ -2,15 +2,9 @@ import { FIELD_TYPES } from "@shared/constants/form";
 import { ComponentElement, Elements, FormField } from "@shared/types";
 import { FC } from "react";
 import { ImgPlaceholder, ImgPlaceholderProps } from "./img-placeholder";
-import { UploaderSize } from "./img-placeholder.types";
+import { sizeMap } from "./img-placeholder.constants";
 
 const type: Elements = "ImgPlaceholder";
-
-const sizeMap: Record<string, UploaderSize> = {
-  small: "sm",
-  medium: "md",
-  large: "lg",
-};
 
 export const ImgPlaceholderComponentElement: ComponentElement = {
   type,

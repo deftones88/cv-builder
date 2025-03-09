@@ -14,14 +14,17 @@ import {
   RectangleHorizontal,
   RectangleVertical,
   Square,
+  SquareUserIcon,
   TextQuoteIcon,
   TypeIcon,
 } from "lucide-react";
 import {
   SelectionBtnElement,
   SelectionCategoryList,
+  CategoryList,
 } from "./selection-list.types";
 
+//#region Custom
 export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
   {
     title: "H1",
@@ -220,13 +223,13 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
   },
 ];
 
-export const SELECTION_CATEGORY: SelectionCategoryList[] = [
+export const CUSTOM_CATEGORY_LIST: CategoryList[] = [
   {
     title: "Heading",
     icon: Heading,
-    isActive: true,
     items: HEADINGS_CATEGORY,
     type: "TextInput",
+    isActive: true,
   },
   {
     title: "Image",
@@ -241,9 +244,66 @@ export const SELECTION_CATEGORY: SelectionCategoryList[] = [
     type: "ListItem",
   },
 ];
+//#endregion custom
+
+//#region Presets
+export const CONTACT_CATEGORY: SelectionBtnElement[] = [
+  {
+    title: "Icon List",
+    icon: ListOrderedIcon,
+    type: "Contact",
+    props: {
+      listStyle: "decimal",
+    },
+    settingsTitle: ["Contact", "Icon List"],
+  },
+  // {
+  //   title: "Image + List",
+  //   icon: ListOrderedIcon,
+  //   type: "Contact",
+  //   props: {
+  //     hasImage: true,
+  //   },
+  //   settingsTitle: ["Contact", "Image + List"],
+  // },
+  {
+    title: "제목 + List",
+    icon: ListOrderedIcon,
+    type: "Contact",
+    props: {
+      title: "Contact",
+    },
+    settingsTitle: ["Contact", "제목 + List"],
+  },
+];
+
+export const PRESET_CATEGORY_LIST: CategoryList[] = [
+  {
+    title: "Contact",
+    icon: SquareUserIcon,
+    items: CONTACT_CATEGORY,
+    type: "Contact",
+    isActive: true,
+  },
+];
+//#endregion presets
+
+export const SELECTION_CATEGORY: SelectionCategoryList[] = [
+  {
+    groupTitle: "Presets",
+    categoryList: PRESET_CATEGORY_LIST,
+    isActive: true,
+  },
+  {
+    groupTitle: "Custom",
+    categoryList: CUSTOM_CATEGORY_LIST,
+    isActive: true,
+  },
+];
 
 export const categoryMap: Record<Elements, SelectionBtnElement[]> = {
   TextInput: HEADINGS_CATEGORY,
   ImgPlaceholder: IMAGE_CATEGORY,
   ListItem: LIST_CATEGORY,
+  Contact: CONTACT_CATEGORY,
 };

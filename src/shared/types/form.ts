@@ -23,3 +23,8 @@ export type FormFieldWithControls = FormField & {
   name: `fields.${number}.value`;
   settings: ElementInstanceSettings;
 };
+
+export type IconType =
+  | string
+  | React.FC<React.SVGProps<SVGSVGElement>>
+  | React.ElementType;

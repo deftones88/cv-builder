@@ -20,8 +20,8 @@ export const ImgPlaceholder = ({
   rounded = false,
 }: ImgPlaceholderProps) => {
   return (
-    <div
-      className={cn("w-full mx-auto", AspectRatioWHClasses[`${ratio}${size}`])}
+    <section
+      className={cn("w-full h-full", AspectRatioWHClasses[`${ratio}${size}`])}
     >
       <div
         className={cn(
@@ -45,6 +45,6 @@ export const ImgPlaceholder = ({
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
