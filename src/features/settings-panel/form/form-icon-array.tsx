@@ -63,8 +63,8 @@ const FormIconArrayBase = ({ control, name }: FormFieldWithControls) => {
                       <SelectValue placeholder="선택" />
                     </SelectTrigger>
                     <SelectContent position="popper" className="w-20 min-w-0">
-                      {FORM_ICON_LIST.map(({ id, icon, value }) => (
-                        <SelectItem key={id} value={value}>
+                      {FORM_ICON_LIST.map(({ icon, value }) => (
+                        <SelectItem key={value} value={value}>
                           {renderIcon(icon)}
                         </SelectItem>
                       ))}

@@ -257,23 +257,34 @@ export const CONTACT_CATEGORY: SelectionBtnElement[] = [
     },
     settingsTitle: ["Contact", "Icon List"],
   },
-  // {
-  //   title: "Image + List",
-  //   icon: ListOrderedIcon,
-  //   type: "Contact",
-  //   props: {
-  //     hasImage: true,
-  //   },
-  //   settingsTitle: ["Contact", "Image + List"],
-  // },
+  {
+    title: "사진 + List",
+    icon: ListOrderedIcon,
+    type: "Contact",
+    props: {
+      hasImage: true,
+    },
+    settingsTitle: ["Contact", "사진 + List"],
+  },
   {
     title: "제목 + List",
     icon: ListOrderedIcon,
     type: "Contact",
     props: {
       title: "Contact",
+      variant: "h3",
     },
     settingsTitle: ["Contact", "제목 + List"],
+  },
+  {
+    title: "이름 + List",
+    icon: ListOrderedIcon,
+    type: "Contact",
+    props: {
+      name: "김영희",
+      variant: "h1",
+    },
+    settingsTitle: ["Contact", "이름 + List"],
   },
 ];
 

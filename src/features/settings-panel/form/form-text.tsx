@@ -21,28 +21,32 @@ export const FormTextBase = ({
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormControl>
-            {isTextArea ? (
-              <Textarea
-                placeholder={value as string}
-                onChange={field.onChange}
-                value={field.value as string}
-                onKeyDown={(e) => e.key === "Enter" && e.currentTarget.blur()}
-              />
-            ) : (
-              <Input
-                placeholder={value as string}
-                onChange={field.onChange}
-                value={field.value as string}
-                onKeyDown={(e) => e.key === "Enter" && e.currentTarget.blur()}
-              />
-            )}
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
+      render={({ field }) => {
+        const handleChange = (value: string) => {
+          const newValue = value ? value : " ";
+          field.onChange(newValue);
+        };
+        return (
+          <FormItem>
+            <FormControl>
+              {isTextArea ? (
+                <Textarea
+                  placeholder={value as string}
+                  onChange={(e) => handleChange(e.target.value)}
+                  value={field.value as string}
+                />
+              ) : (
+                <Input
+                  placeholder={value as string}
+                  onChange={(e) => handleChange(e.target.value)}
+                  value={field.value as string}
+                />
+              )}
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        );
+      }}
     />
   );
 };

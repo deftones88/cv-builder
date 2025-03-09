@@ -11,6 +11,7 @@ export type ContactProps = {
   infoList?: InfoList[];
   hasImage?: boolean;
   title?: string | undefined;
+  name?: string | undefined;
   listAlignment?: Alignment;
 } & Partial<ImgPlaceholderProps>;
 
@@ -18,7 +19,9 @@ export const Contact = ({
   infoList = DEFAULT_INFO_LIST,
   hasImage = false,
   title = undefined,
+  name = undefined,
   listAlignment = "left",
+  ...imgProps
 }: ContactProps) => {
   const alignmentClass =
     listAlignment === "right"
@@ -28,21 +31,28 @@ export const Contact = ({
       : "items-center";
   return (
     <section className="w-full px-2">
-      {title ? <TitleInput title={title} /> : null}
-      <div className="flex justify-end">
+      {title && <TitleInput title={title} />}
+      <div className={cn("flex justify-end", hasImage && "items-center")}>
         {hasImage && (
-          <div className="mr-auto w-full">
-            <ImgPlaceholder />
+          <div className="mr-auto w-70">
+            <ImgPlaceholder {...imgProps} />
           </div>
         )}
-        <div className="w-auto">
+        {name && (
+          <div className="mr-auto w-70 overflow-hidden">
+            <TitleInput variant={"h1"} title={name} />
+          </div>
+        )}
+        <div className={"w-auto h-full"}>
           <ul className={cn("flex flex-col text-sm", alignmentClass)}>
             {infoList.map((info) => {
               const icon = mapString2Icon(info.icon);
               return (
                 <li key={info.id} className="flex gap-2 items-center">
                   <p>{renderIcon(icon)}</p>
-                  <p>{info.info}</p>
+                  <p className="max-w-50 overflow-hidden truncate">
+                    {info.info}
+                  </p>
                 </li>
               );
             })}

@@ -8,7 +8,7 @@ import {
   LIST_STYLE_VALUE_TO_DISPLAY,
 } from "./list-item.constants";
 
-export const getListItemList = (props: ListItemProps) => {
+export const getListItemFormFieldList = (props: ListItemProps) => {
   const { listStyle, title, list } = props;
   const listType = LIST_STYLE_TYPE_MAP[listStyle ?? "disc"]; // 'ol' | 'ul'
   const selectValue = listStyle

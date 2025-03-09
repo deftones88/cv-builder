@@ -27,7 +27,8 @@ export const ImgPlaceholder = ({
         className={cn(
           "relative w-full",
           AspectRatioClasses[ratio],
-          !image && "rounded-lg border-2 border-dashed border-gray-300",
+          !image && "border-2 border-dashed border-gray-300",
+          rounded && "rounded-lg",
         )}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center">

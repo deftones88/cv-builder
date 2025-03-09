@@ -1,6 +1,18 @@
 import Images from "@shared/assets/images";
 import { IconType } from "@shared/types";
-import { GlobeIcon, HomeIcon, PhoneIcon } from "lucide-react";
+import {
+  AppWindowIcon,
+  AtSignIcon,
+  AudioWaveformIcon,
+  EyeIcon,
+  GlobeIcon,
+  HomeIcon,
+  InboxIcon,
+  MailIcon,
+  PhoneIcon,
+  SendIcon,
+  SignalIcon,
+} from "lucide-react";
 
 export const FIELD_TYPES = {
   TEXT: "text",
@@ -12,9 +24,20 @@ export const FIELD_TYPES = {
   ICON_ARRAY: "icon-array",
 } as const;
 
-export const FORM_ICON_LIST: { id: string; icon: IconType; value: string }[] = [
-  { id: "github", icon: Images.githubLogo, value: "github" },
-  { id: "home", icon: HomeIcon, value: "home" },
-  { id: "cell", icon: PhoneIcon, value: "cell" },
-  { id: "web", icon: GlobeIcon, value: "web" },
+export const FORM_ICON_LIST: { icon: IconType; value: string }[] = [
+  { icon: HomeIcon, value: "home" },
+  { icon: PhoneIcon, value: "cell" },
+  { icon: MailIcon, value: "email" },
+  { icon: AtSignIcon, value: "atSign" },
+  { icon: GlobeIcon, value: "web" },
+  { icon: Images.githubLogo, value: "github" },
+  { icon: Images.linkedInLogo, value: "linkedIn" },
+  { icon: Images.discordLogo, value: "discord" },
+  { icon: Images.mediumLogo, value: "medium" },
+  { icon: SendIcon, value: "send" },
+  { icon: InboxIcon, value: "inbox" },
+  { icon: AudioWaveformIcon, value: "audioWave" },
+  { icon: SignalIcon, value: "signal" },
+  { icon: EyeIcon, value: "eye" },
+  { icon: AppWindowIcon, value: "appWindow" },
 ];
