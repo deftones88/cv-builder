@@ -2,6 +2,8 @@ import { Elements } from "@shared/types";
 import {
   AArrowDownIcon,
   AArrowUpIcon,
+  BriefcaseBusinessIcon,
+  CalendarClockIcon,
   Heading,
   Heading1Icon,
   Heading2Icon,
@@ -23,6 +25,7 @@ import {
   SelectionCategoryList,
   CategoryList,
 } from "./selection-list.types";
+import { EXPERIENCE_DEFAULT_TEXT } from "@features/cv-components/experience";
 
 //#region Custom
 export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
@@ -263,6 +266,8 @@ export const CONTACT_CATEGORY: SelectionBtnElement[] = [
     type: "Contact",
     props: {
       hasImage: true,
+      ratio: "1/1",
+      size: "lg",
     },
     settingsTitle: ["Contact", "사진 + List"],
   },
@@ -288,6 +293,16 @@ export const CONTACT_CATEGORY: SelectionBtnElement[] = [
   },
 ];
 
+export const EXPERIENCE_CATEGORY: SelectionBtnElement[] = [
+  {
+    title: "Date",
+    icon: CalendarClockIcon,
+    type: "Experience",
+    props: EXPERIENCE_DEFAULT_TEXT,
+    settingsTitle: ["Contact", "Icon List"],
+  },
+];
+
 export const PRESET_CATEGORY_LIST: CategoryList[] = [
   {
     title: "Contact",
@@ -295,6 +310,12 @@ export const PRESET_CATEGORY_LIST: CategoryList[] = [
     items: CONTACT_CATEGORY,
     type: "Contact",
     isActive: true,
+  },
+  {
+    title: "Experience",
+    icon: BriefcaseBusinessIcon,
+    items: EXPERIENCE_CATEGORY,
+    type: "Experience",
   },
 ];
 //#endregion presets
@@ -312,9 +333,10 @@ export const SELECTION_CATEGORY: SelectionCategoryList[] = [
   },
 ];
 
-export const categoryMap: Record<Elements, SelectionBtnElement[]> = {
+export const CATEGORY_MAP: Record<Elements, SelectionBtnElement[]> = {
   TextInput: HEADINGS_CATEGORY,
   ImgPlaceholder: IMAGE_CATEGORY,
   ListItem: LIST_CATEGORY,
   Contact: CONTACT_CATEGORY,
+  Experience: EXPERIENCE_CATEGORY,
 };

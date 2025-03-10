@@ -7,6 +7,7 @@ import { FormUploader } from "./form-uploader";
 import { FormCheckbox } from "./form-checkbox";
 import { FormArray } from "./form-array";
 import { FormIconArray } from "./form-icon-array";
+import { FormDateRange } from "./form-date-range";
 
 export const FIELD_COMPONENTS: Record<
   FieldType,
@@ -19,4 +20,5 @@ export const FIELD_COMPONENTS: Record<
   "checkbox": FormCheckbox,
   "array": FormArray,
   "icon-array": FormIconArray,
+  "date-range": FormDateRange,
 };

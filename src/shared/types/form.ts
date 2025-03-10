@@ -24,7 +24,15 @@ export type FormFieldWithControls = FormField & {
   settings: ElementInstanceSettings;
 };
 
+/* icon array type */
 export type IconType =
   | string
   | React.FC<React.SVGProps<SVGSVGElement>>
   | React.ElementType;
+
+/* date range types */
+export type DateRange = {
+  from: Date;
+  to: Date;
+};
+export type DateSeparator = "." | "/";

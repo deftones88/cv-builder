@@ -4,6 +4,7 @@ import {
   TitleInputComponentElement,
   ContactComponentElement,
 } from "@features/cv-components";
+import { ExperienceComponentElement } from "@features/cv-components/experience";
 import { SelectionElement } from "@shared/types";
 
 export const SelectionElements: SelectionElement = {
@@ -11,4 +12,5 @@ export const SelectionElements: SelectionElement = {
   ImgPlaceholder: ImgPlaceholderComponentElement,
   ListItem: ListItemComponentElement,
   Contact: ContactComponentElement,
+  Experience: ExperienceComponentElement,
 };

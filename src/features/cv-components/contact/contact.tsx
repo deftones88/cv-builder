@@ -1,9 +1,9 @@
 import { mapString2Icon, renderIcon } from "@shared/utilities";
-import { ImgPlaceholder } from "../img-placeholder";
-import { ImgPlaceholderProps } from "../img-placeholder/img-placeholder";
+import { ImgPlaceholder } from "@features/cv-components/img-placeholder";
+import { ImgPlaceholderProps } from "@features/cv-components/img-placeholder/img-placeholder";
 import { DEFAULT_INFO_LIST } from "./contact.constants";
 import { InfoList } from "./contact.type";
-import { TitleInput } from "../title-input";
+import { TitleInput } from "@features/cv-components/title-input";
 import { cn } from "@shared/lib/utils";
 import { Alignment } from "@shared/types";
 

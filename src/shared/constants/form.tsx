@@ -22,6 +22,7 @@ export const FIELD_TYPES = {
   CHECKBOX: "checkbox",
   ARRAY: "array",
   ICON_ARRAY: "icon-array",
+  DATE_RANGE: "date-range",
 } as const;
 
 export const FORM_ICON_LIST: { icon: IconType; value: string }[] = [

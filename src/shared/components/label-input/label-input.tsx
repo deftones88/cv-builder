@@ -1,5 +1,5 @@
-import { Input } from "../shadcnui";
-import { Label } from "../shadcnui";
+import { Input } from "@shared/components/shadcnui";
+import { Label } from "@shared/components/shadcnui";
 
 type LabelInputProps = {
   title?: string;

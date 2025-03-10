@@ -1,5 +1,5 @@
 import { cn } from "@shared/lib/utils";
-import { TitleInput } from "../title-input";
+import { TitleInput } from "@features/cv-components/title-input";
 import { DEFAULT_LIST, LIST_STYLE_TYPE_MAP } from "./list-item.constants";
 import type { LIST_STYLE_TYPE } from "./list-item.types";
 

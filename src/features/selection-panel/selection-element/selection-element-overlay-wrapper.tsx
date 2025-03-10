@@ -1,10 +1,10 @@
 import { Active, DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useState } from "react";
 import { SelectionElementOverlay } from "./selection-element-overlay";
-import { categoryMap } from "../selection-list/selection-list.constants";
 import { Elements } from "@shared/types";
 import { useComponentsStore } from "@stores";
 import { SelectionElements } from "@shared/constants";
+import { CATEGORY_MAP } from "../selection-list";
 
 export const SelectionElementOverlayWrapper = () => {
   const [draggedItem, setDraggedItem] = useState<Active | null>(null);
@@ -33,7 +33,7 @@ export const SelectionElementOverlayWrapper = () => {
     const { type, categoryIdx } = draggedItem.data.current;
     node = (
       <SelectionElementOverlay
-        element={categoryMap[type as Elements][categoryIdx]}
+        element={CATEGORY_MAP[type as Elements][categoryIdx]}
       />
     );
   }

@@ -5,7 +5,7 @@ import {
   ALIGNMENT_KOR_TO_ENG_MAP,
   DEFAULT_INFO_LIST,
 } from "./contact.constants";
-import { sizeMap } from "../img-placeholder";
+import { sizeMap } from "@features/cv-components/img-placeholder";
 
 export const getContactFormFieldList = (props: ContactProps) => {
   const { hasImage, title, name, listAlignment, infoList } = props;
@@ -33,7 +33,7 @@ export const getContactFormFieldList = (props: ContactProps) => {
           label: "크기",
           value:
             Object.keys(sizeMap).find((key) => sizeMap[key] === props.size) ||
-            "small",
+            "large",
           options: ["small", "medium", "large"],
           propName: "size",
           map: sizeMap,
