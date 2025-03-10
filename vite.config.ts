@@ -15,4 +15,5 @@ export default defineConfig({
       "@stores": path.resolve(__dirname, "./src/stores"),
     },
   },
+  base: "/cv-builder",
 });
