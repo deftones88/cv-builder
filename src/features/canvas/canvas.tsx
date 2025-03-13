@@ -1,13 +1,13 @@
 import { Container } from "@shared/components/container";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CanvasDropdown, PAPER_PRESETS } from "./canvas-dropdown";
 import { Paper } from "./canvas-paper.types";
 import { CanvasPaper } from "./canvas-paper";
 import { useComponentsStore } from "@stores";
-import { Button } from "@shared/components/shadcnui";
-// import { PdfDownloadButton } from "@features/pdf-components";
+import { ExportToPDF } from "@features/export-to-pdf";
 
 export const Canvas = () => {
+  const aspectRatioRef = useRef<HTMLDivElement>(null);
   const [paperSize, setPaperSize] = useState<Paper>("A4");
 
   const component = useComponentsStore((state) => state.component);
@@ -23,17 +23,20 @@ export const Canvas = () => {
   return (
     <Container
       align="center"
-      className="bg-zinc-200 w-full h-full pr-45 "
+      className="bg-zinc-200 w-full h-full pr-45 relative pt-20"
       onClick={handleOutsideClick}
     >
-      <div className="flex">
+      <div className="absolute top-4 flex">
         <CanvasDropdown paperSize={paperSize} setPaperSize={setPaperSize} />
-        <Button className="rounded-l-none bg-zinc-300 text-zinc-400 hover:bg-zinc-300">
-          PDF 저장 - 구현 중
-        </Button>
-        {/* <PdfDownloadButton /> */}
+        <ExportToPDF aspectRatioRef={aspectRatioRef} />
       </div>
-      <CanvasPaper selectedDimension={selectedDimension} />
+
+      <div
+        ref={aspectRatioRef}
+        className="flex flex-col items-center justify-center"
+      >
+        <CanvasPaper selectedDimension={selectedDimension} />
+      </div>
     </Container>
   );
 };
