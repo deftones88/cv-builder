@@ -8,9 +8,10 @@ type ExportToPDFProps = {
 export const ExportToPDF = ({ aspectRatioRef }: ExportToPDFProps) => {
   const generatePDF = async () => {
     if (!aspectRatioRef.current) return;
+
     const opt = {
       margin: 0,
-      filename: "canvas-export.pdf",
+      filename: "cv-builder.pdf",
       image: { type: "jpeg", quality: 1 },
       html2canvas: { scale: 2, useCORS: true },
       jsPDF: {
