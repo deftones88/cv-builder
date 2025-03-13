@@ -12,7 +12,7 @@ export const VERSION_HISTORY: VersionHistory[] = [
       {
         version: 0,
         updates: [
-          { version: 2, update: "Presets - Contact" },
+          { version: 2, update: "Presets - Contact, Experience" },
           { version: 1, update: "Custom - Heading, Image, List" },
         ],
       },

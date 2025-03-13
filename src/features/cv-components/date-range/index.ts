@@ -1,1 +1,1 @@
-export { DateRange } from "./date-range";
+export { DateRange, type DateRangeProps } from "./date-range";

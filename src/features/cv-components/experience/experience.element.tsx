@@ -17,7 +17,7 @@ export const ExperienceComponentElement: ComponentElement = {
       {
         id: 1,
         type: FIELD_TYPES.TEXT,
-        label: "내용",
+        label: "제목",
         value: props.title ? props.title : EXPERIENCE_DEFAULT_TEXT.title,
         propName: "title",
       },
@@ -31,11 +31,27 @@ export const ExperienceComponentElement: ComponentElement = {
         propName: "description",
       },
       {
-        id: 2,
+        id: 3,
         type: FIELD_TYPES.DATE_RANGE,
-        label: "내용",
+        label: "기간 설정",
         value: props.dateRange ? props.dateRange : DEFAULT_DATE_RANGE,
         propName: "dateRange",
+      },
+      {
+        id: 4,
+        type: FIELD_TYPES.SELECT,
+        label: "기간 구분자",
+        value: props.separator ? props.separator : ".",
+        propName: "separator",
+        options: [".", "/"],
+      },
+      {
+        id: 5,
+        type: FIELD_TYPES.CHECKBOX,
+        label: "날짜 표시 형식",
+        value: props.hasDate ? props.hasDate : true,
+        propName: "hasDate",
+        options: ["연월일 표시"],
       },
     ];
   },

@@ -28,11 +28,11 @@ export const FormDateRange = ({ control, name }: FormFieldWithControls) => {
                 <Button
                   variant={"outline"}
                   className={cn(
-                    "w-[240px] pl-3 text-left font-normal",
+                    "w-[240px] text-left font-normal",
                     !field.value && "text-muted-foreground",
                   )}
                 >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  <CalendarIcon className="h-4 w-4" />
                   {(field.value as DateRange)?.from ? (
                     (field.value as DateRange).to ? (
                       <>
