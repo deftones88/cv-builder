@@ -94,3 +94,10 @@
     @apply list-[square];
   }
 }
+
+/* html2pdf */
+@layer base {
+  img {
+    display: initial;
+  }
+}

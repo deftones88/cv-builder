@@ -90,7 +90,7 @@ export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
   });
 
   return (
-    <div className="scroll-m-20 w-lg h-full flex items-center">
+    <div className="w-lg h-full flex items-center">
       <AspectRatio
         ref={droppable.setNodeRef}
         ratio={selectedDimension}
