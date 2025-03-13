@@ -2,7 +2,7 @@ import { FIELD_TYPES } from "@shared/constants/form";
 import { ComponentElement, Elements, FormField } from "@shared/types";
 import { FC } from "react";
 import { ImgPlaceholder, ImgPlaceholderProps } from "./img-placeholder";
-import { sizeMap } from "./img-placeholder.constants";
+import { SIZE_MAP } from "./img-placeholder.constants";
 
 const type: Elements = "ImgPlaceholder";
 
@@ -24,11 +24,11 @@ export const ImgPlaceholderComponentElement: ComponentElement = {
         type: FIELD_TYPES.RADIO,
         label: "크기",
         value:
-          Object.keys(sizeMap).find((key) => sizeMap[key] === props.size) ||
+          Object.keys(SIZE_MAP).find((key) => SIZE_MAP[key] === props.size) ||
           "small",
         options: ["small", "medium", "large"],
         propName: "size",
-        map: sizeMap,
+        map: SIZE_MAP,
       },
       {
         id: 3,

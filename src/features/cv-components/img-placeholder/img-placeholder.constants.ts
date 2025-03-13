@@ -38,7 +38,7 @@ export const AspectRatioWHClasses: Record<RatioSizeKey, string> = {
   "16/9lg": "max-w-[190px]",
 } as const;
 
-export const sizeMap: Record<string, UploaderSize> = {
+export const SIZE_MAP: Record<string, UploaderSize> = {
   small: "sm",
   medium: "md",
   large: "lg",

@@ -10,6 +10,7 @@ import {
   Heading3Icon,
   Heading4Icon,
   Image,
+  ImageIcon,
   ListIcon,
   ListOrderedIcon,
   PilcrowIcon,
@@ -17,8 +18,10 @@ import {
   RectangleVertical,
   Square,
   SquareUserIcon,
+  TextIcon,
   TextQuoteIcon,
   TypeIcon,
+  UserRoundPenIcon,
 } from "lucide-react";
 import {
   SelectionBtnElement,
@@ -250,6 +253,33 @@ export const CUSTOM_CATEGORY_LIST: CategoryList[] = [
 //#endregion custom
 
 //#region Presets
+export const PROFILE_CATEGORY: SelectionBtnElement[] = [
+  {
+    title: "사진 + 이름",
+    icon: ImageIcon,
+    type: "Profile",
+    props: {
+      isImageFirst: true,
+      ratio: "1/1",
+      size: "lg",
+      variant: "h1",
+    },
+    settingsTitle: ["Profile", "사진 + 이름"],
+  },
+  {
+    title: "이름 + 사진",
+    icon: TextIcon,
+    type: "Profile",
+    props: {
+      isImageFirst: false,
+      ratio: "1/1",
+      size: "lg",
+      variant: "h1",
+    },
+    settingsTitle: ["Profile", "이름 + 사진"],
+  },
+];
+
 export const CONTACT_CATEGORY: SelectionBtnElement[] = [
   {
     title: "Icon List",
@@ -305,11 +335,17 @@ export const EXPERIENCE_CATEGORY: SelectionBtnElement[] = [
 
 export const PRESET_CATEGORY_LIST: CategoryList[] = [
   {
+    title: "Profile",
+    icon: UserRoundPenIcon,
+    items: PROFILE_CATEGORY,
+    type: "Profile",
+    isActive: true,
+  },
+  {
     title: "Contact",
     icon: SquareUserIcon,
     items: CONTACT_CATEGORY,
     type: "Contact",
-    isActive: true,
   },
   {
     title: "Experience",
@@ -337,6 +373,7 @@ export const CATEGORY_MAP: Record<Elements, SelectionBtnElement[]> = {
   TextInput: HEADINGS_CATEGORY,
   ImgPlaceholder: IMAGE_CATEGORY,
   ListItem: LIST_CATEGORY,
+  Profile: PROFILE_CATEGORY,
   Contact: CONTACT_CATEGORY,
   Experience: EXPERIENCE_CATEGORY,
 };

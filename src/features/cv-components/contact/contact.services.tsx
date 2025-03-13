@@ -5,7 +5,7 @@ import {
   ALIGNMENT_KOR_TO_ENG_MAP,
   DEFAULT_INFO_LIST,
 } from "./contact.constants";
-import { sizeMap } from "@features/cv-components/img-placeholder";
+import { SIZE_MAP } from "@features/cv-components/img-placeholder";
 
 export const getContactFormFieldList = (props: ContactProps) => {
   const { hasImage, title, name, listAlignment, infoList } = props;
@@ -14,7 +14,7 @@ export const getContactFormFieldList = (props: ContactProps) => {
         {
           id: 0,
           type: FIELD_TYPES.SELECT,
-          label: "비율",
+          label: "사진 비율",
           value: props.ratio ?? "1/1",
           propName: "ratio",
           options: ["1/1", "2/3", "3/2", "3/4", "4/3", "16/9", "9/16"],
@@ -22,7 +22,7 @@ export const getContactFormFieldList = (props: ContactProps) => {
         {
           id: 1,
           type: FIELD_TYPES.UPLOADER,
-          label: "파일 업로드",
+          label: "사진 파일 업로드",
           value: props.image ?? undefined,
           propName: "image",
           options: ["업로드할 파일을 선택해주세요", "image/*"],
@@ -30,18 +30,18 @@ export const getContactFormFieldList = (props: ContactProps) => {
         {
           id: 2,
           type: FIELD_TYPES.RADIO,
-          label: "크기",
+          label: "사진 크기",
           value:
-            Object.keys(sizeMap).find((key) => sizeMap[key] === props.size) ||
+            Object.keys(SIZE_MAP).find((key) => SIZE_MAP[key] === props.size) ||
             "large",
           options: ["small", "medium", "large"],
           propName: "size",
-          map: sizeMap,
+          map: SIZE_MAP,
         },
         {
           id: 3,
           type: FIELD_TYPES.CHECKBOX,
-          label: "모서리 설정",
+          label: "사진 모서리 설정",
           value: props?.rounded ?? false,
           propName: "rounded",
           options: ["둥근 모서리"],

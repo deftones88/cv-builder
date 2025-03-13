@@ -9,3 +9,5 @@ export {
   type TitleInputProps,
 } from "./title-input";
 export { Contact, ContactComponentElement } from "./contact";
+export { Experience, ExperienceComponentElement } from "./experience";
+export { Profile, ProfileComponentElement } from "./profile";
