@@ -33,8 +33,10 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@react-pdf/renderer": "^4.2.2",
     "@tailwindcss/vite": "^4.0.6",
+    "@types/crypto-js": "^4.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
     "gh-pages": "^6.3.0",
     "html2pdf.js": "^0.10.3",
@@ -46,7 +48,8 @@
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.25.0-canary.20250211T214501",
-    "zustand": "^5.0.3"
+    "zustand": "^5.0.3",
+    "zustand-persist": "^0.4.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.5",
