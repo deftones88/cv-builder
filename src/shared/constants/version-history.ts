@@ -12,6 +12,7 @@ export const VERSION_HISTORY: VersionHistory[] = [
       {
         version: 0,
         updates: [
+          { version: 3, update: "Export to PDF" },
           { version: 2, update: "Presets - Contact, Experience" },
           { version: 1, update: "Custom - Heading, Image, List" },
         ],
@@ -20,9 +21,4 @@ export const VERSION_HISTORY: VersionHistory[] = [
   },
 ] as const;
 
-export const TODOS = [
-  "페이지 추가",
-  "PDF 내보내기 기능",
-  "이력서 템플릿",
-  "작업 내용 자동 저장",
-];
+export const TODOS = ["페이지 추가", "이력서 템플릿", "작업 내용 자동 저장"];
