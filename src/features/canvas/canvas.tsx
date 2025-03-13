@@ -1,10 +1,10 @@
 import { Container } from "@shared/components/container";
 import { useRef, useState } from "react";
-import { CanvasDropdown, PAPER_PRESETS } from "./canvas-dropdown";
+import { PAPER_PRESETS } from "./canvas-size-select";
 import { Paper } from "./canvas-paper.types";
 import { CanvasPaper } from "./canvas-paper";
 import { useComponentsStore } from "@stores";
-import { ExportToPDF } from "@features/export-to-pdf";
+import { CanvasMenu } from "./canvas-menu/canvas-menu";
 
 export const Canvas = () => {
   const aspectRatioRef = useRef<HTMLDivElement>(null);
@@ -26,10 +26,11 @@ export const Canvas = () => {
       className="bg-zinc-200 w-full h-full pr-45 relative pt-20"
       onClick={handleOutsideClick}
     >
-      <div className="absolute top-4 flex">
-        <CanvasDropdown paperSize={paperSize} setPaperSize={setPaperSize} />
-        <ExportToPDF aspectRatioRef={aspectRatioRef} />
-      </div>
+      <CanvasMenu
+        paperSize={paperSize}
+        setPaperSize={setPaperSize}
+        aspectRatioRef={aspectRatioRef}
+      />
 
       <div
         ref={aspectRatioRef}

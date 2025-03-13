@@ -12,6 +12,7 @@ type ComponentsStore = {
     component: Omit<ComponentElementInstance, "id">,
   ) => void;
   removeComponent: (id: string) => void;
+  removeAllComponents: () => void;
   moveComponent: (id: string, newIndex: number) => void;
   updateSettings: (
     id: string,
@@ -45,6 +46,9 @@ export const useComponentsStore = create<ComponentsStore>()(
           components: state.components.filter((c) => c.id !== id),
           component: state.component?.id === id ? null : state.component,
         })),
+
+      removeAllComponents: () =>
+        set(() => ({ component: null, components: [] })),
 
       moveComponent: (id, newIndex) =>
         set((state) => {

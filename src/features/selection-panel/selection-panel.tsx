@@ -15,10 +15,10 @@ export const SelectionPanel = () => {
       <SidebarHeader>
         <SelectionPanelHeader />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="group-data-[state=collapsed]:opacity-0 group-data-[state=expanded]:opacity-100">
         <SelectionList />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="group-data-[state=collapsed]:opacity-0 group-data-[state=expanded]:opacity-100">
         <SelectionPanelFooter />
       </SidebarFooter>
       <SidebarRail />

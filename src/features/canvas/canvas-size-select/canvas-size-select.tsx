@@ -6,18 +6,18 @@ import {
   SelectTrigger,
 } from "@shared/components/shadcnui";
 import { Dispatch, SetStateAction } from "react";
-import { PAPER_PRESETS } from "./canvas-dropdown.constants";
+import { PAPER_PRESETS } from "./canvas-size-select.constants";
 import { Paper } from "../canvas-paper.types";
 
-type CanvasDropdownProps = {
+type CanvasSizeSelectProps = {
   paperSize: string;
   setPaperSize: Dispatch<SetStateAction<Paper>>;
 };
 
-export const CanvasDropdown = ({
+export const CanvasSizeSelect = ({
   paperSize,
   setPaperSize,
-}: CanvasDropdownProps) => {
+}: CanvasSizeSelectProps) => {
   const handleValueChange = (value: Paper) => {
     setPaperSize(value);
   };

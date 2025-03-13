@@ -15,7 +15,7 @@ export const SettingsPanel = () => {
 
   const { id, title } = component;
   return (
-    <Sidebar side="right" collapsible="icon" className="w-110">
+    <Sidebar side="right" collapsible="icon" className="w-110 z-50">
       <SidebarHeader>
         <SettingsPanelHeader />
       </SidebarHeader>

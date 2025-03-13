@@ -13,7 +13,7 @@ export const VERSION_HISTORY: VersionHistory[] = [
         version: 1,
         updates: [
           { version: 2, update: "Presets - Profile" },
-          { version: 1, update: "Export to PDF, save to session" },
+          { version: 1, update: "PDF 저장, 작업 내용 저장" },
         ],
       },
       {
