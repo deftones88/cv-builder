@@ -3,14 +3,16 @@ import {
   ListItemComponentElement,
   TitleInputComponentElement,
   ContactComponentElement,
+  ExperienceComponentElement,
+  ProfileComponentElement,
 } from "@features/cv-components";
-import { ExperienceComponentElement } from "@features/cv-components/experience";
 import { SelectionElement } from "@shared/types";
 
 export const SelectionElements: SelectionElement = {
   TextInput: TitleInputComponentElement,
   ImgPlaceholder: ImgPlaceholderComponentElement,
   ListItem: ListItemComponentElement,
+  Profile: ProfileComponentElement,
   Contact: ContactComponentElement,
   Experience: ExperienceComponentElement,
 };

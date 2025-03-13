@@ -12,6 +12,7 @@ export type Elements =
   | "TextInput"
   | "ImgPlaceholder"
   | "ListItem"
+  | "Profile"
   | "Contact"
   | "Experience";
 

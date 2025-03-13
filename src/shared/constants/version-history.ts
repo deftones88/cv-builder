@@ -10,9 +10,15 @@ export const VERSION_HISTORY: VersionHistory[] = [
     majorVersion: 0,
     subVersions: [
       {
+        version: 1,
+        updates: [
+          { version: 2, update: "Presets - Profile" },
+          { version: 1, update: "Export to PDF, save to session" },
+        ],
+      },
+      {
         version: 0,
         updates: [
-          { version: 3, update: "Export to PDF" },
           { version: 2, update: "Presets - Contact, Experience" },
           { version: 1, update: "Custom - Heading, Image, List" },
         ],
