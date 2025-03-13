@@ -27,7 +27,7 @@ export const ExportToPDF = ({ aspectRatioRef }: ExportToPDFProps) => {
 
   return (
     <Button className="rounded-l-none" onClick={generatePDF}>
-      Export to PDF
+      PDF로 저장하기
     </Button>
   );
 };
