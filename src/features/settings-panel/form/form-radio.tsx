@@ -12,7 +12,6 @@ import { memo } from "react";
 
 const FormRadioBase = ({ control, name, ...props }: FormFieldWithControls) => {
   const { value, options } = props;
-  console.log("value", value);
   return (
     <FormField
       control={control}

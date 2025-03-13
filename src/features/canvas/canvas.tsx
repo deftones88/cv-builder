@@ -17,7 +17,7 @@ export const Canvas = () => {
     210 / 297;
 
   const handleOutsideClick = () => {
-    console.log("canvas click");
+    // console.log("canvas click");
     if (component) selectComponent(null);
   };
   return (
