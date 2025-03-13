@@ -27,4 +27,4 @@ export const VERSION_HISTORY: VersionHistory[] = [
   },
 ] as const;
 
-export const TODOS = ["페이지 추가", "이력서 템플릿", "작업 내용 자동 저장"];
+export const TODOS = ["페이지 추가", "이력서 템플릿"];
