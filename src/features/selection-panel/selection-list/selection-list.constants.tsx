@@ -120,7 +120,7 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     },
     settingsTitle: ["Heading", "Muted"],
   },
-];
+] as const;
 
 export const IMAGE_CATEGORY: SelectionBtnElement[] = [
   {
@@ -186,7 +186,7 @@ export const IMAGE_CATEGORY: SelectionBtnElement[] = [
     },
     settingsTitle: ["Image", "Square"],
   },
-];
+] as const;
 
 export const LIST_CATEGORY: SelectionBtnElement[] = [
   {
@@ -227,7 +227,7 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
     },
     settingsTitle: ["List", "Unordered"],
   },
-];
+] as const;
 
 export const CUSTOM_CATEGORY_LIST: CategoryList[] = [
   {
@@ -249,7 +249,7 @@ export const CUSTOM_CATEGORY_LIST: CategoryList[] = [
     items: LIST_CATEGORY,
     type: "ListItem",
   },
-];
+] as const;
 //#endregion custom
 
 //#region Presets
@@ -278,7 +278,7 @@ export const PROFILE_CATEGORY: SelectionBtnElement[] = [
     },
     settingsTitle: ["Profile", "이름 + 사진"],
   },
-];
+] as const;
 
 export const CONTACT_CATEGORY: SelectionBtnElement[] = [
   {
@@ -321,7 +321,7 @@ export const CONTACT_CATEGORY: SelectionBtnElement[] = [
     },
     settingsTitle: ["Contact", "이름 + List"],
   },
-];
+] as const;
 
 export const EXPERIENCE_CATEGORY: SelectionBtnElement[] = [
   {
@@ -331,7 +331,7 @@ export const EXPERIENCE_CATEGORY: SelectionBtnElement[] = [
     props: EXPERIENCE_DEFAULT_TEXT,
     settingsTitle: ["Contact", "Icon List"],
   },
-];
+] as const;
 
 export const PRESET_CATEGORY_LIST: CategoryList[] = [
   {
@@ -353,7 +353,7 @@ export const PRESET_CATEGORY_LIST: CategoryList[] = [
     items: EXPERIENCE_CATEGORY,
     type: "Experience",
   },
-];
+] as const;
 //#endregion presets
 
 export const SELECTION_CATEGORY: SelectionCategoryList[] = [
@@ -367,7 +367,7 @@ export const SELECTION_CATEGORY: SelectionCategoryList[] = [
     categoryList: CUSTOM_CATEGORY_LIST,
     isActive: true,
   },
-];
+] as const;
 
 export const CATEGORY_MAP: Record<Elements, SelectionBtnElement[]> = {
   TextInput: HEADINGS_CATEGORY,
@@ -376,4 +376,4 @@ export const CATEGORY_MAP: Record<Elements, SelectionBtnElement[]> = {
   Profile: PROFILE_CATEGORY,
   Contact: CONTACT_CATEGORY,
   Experience: EXPERIENCE_CATEGORY,
-};
+} as const;

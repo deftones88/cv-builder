@@ -7,6 +7,7 @@ type ComponentsStore = {
   components: ComponentElementInstance[];
   component: ComponentElementInstance | null;
   // Actions
+  componentsCount: () => number;
   addComponent: (
     index: number,
     component: Omit<ComponentElementInstance, "id">,
@@ -19,14 +20,16 @@ type ComponentsStore = {
     settings: Partial<Record<string, unknown>>,
   ) => void;
   selectComponent: (id: string | null) => void;
+  findComponent: (id: string | null) => ComponentElementInstance | undefined;
 };
 
 export const useComponentsStore = create<ComponentsStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       components: [],
       component: null,
 
+      componentsCount: () => get().components.length,
       addComponent: (index, component) => {
         const newId = crypto.randomUUID();
         const newComponent = { ...component, id: newId };
@@ -84,6 +87,14 @@ export const useComponentsStore = create<ComponentsStore>()(
           set((state) => ({
             component: state.components.find((el) => el.id === id) ?? null,
           }));
+        }
+      },
+
+      findComponent: (elementId) => {
+        if (!elementId) {
+          return;
+        } else {
+          return get().components.find((el) => el.id === elementId);
         }
       },
     }),

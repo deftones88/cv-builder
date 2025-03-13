@@ -8,8 +8,9 @@ import {
 } from "@shared/components/shadcnui";
 import { SelectionPanelHeader } from "./selection-panel-header";
 import { SelectionPanelFooter } from "./selection-panel-footer";
+import { memo } from "react";
 
-export const SelectionPanel = () => {
+export const SelectionPanel = memo(() => {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -24,4 +25,4 @@ export const SelectionPanel = () => {
       <SidebarRail />
     </Sidebar>
   );
-};
+});

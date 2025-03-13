@@ -10,8 +10,9 @@ import {
 } from "@shared/components/shadcnui";
 import { SELECTION_CATEGORY } from "./selection-list.constants";
 import { SelectionListSubmenu } from "./selection-list-submenu";
+import { memo } from "react";
 
-export function SelectionList() {
+export const SelectionList = memo(() => {
   return (
     <>
       {SELECTION_CATEGORY.map((group) => {
@@ -48,4 +49,4 @@ export function SelectionList() {
       })}
     </>
   );
-}
+});

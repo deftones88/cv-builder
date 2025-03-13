@@ -7,7 +7,7 @@ import {
 } from "@shared/components/shadcnui";
 import { Dispatch, SetStateAction } from "react";
 import { PAPER_PRESETS } from "./canvas-size-select.constants";
-import { Paper } from "../canvas-paper.types";
+import { Paper } from "../../canvas-paper.types";
 
 type CanvasSizeSelectProps = {
   paperSize: string;

@@ -1,14 +1,14 @@
 import { Active, DragOverlay, useDndMonitor } from "@dnd-kit/core";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { SelectionElementOverlay } from "./selection-element-overlay";
 import { Elements } from "@shared/types";
 import { useComponentsStore } from "@stores";
 import { SelectionElements } from "@shared/constants";
 import { CATEGORY_MAP } from "../selection-list";
 
-export const SelectionElementOverlayWrapper = () => {
+export const SelectionElementOverlayWrapper = memo(() => {
   const [draggedItem, setDraggedItem] = useState<Active | null>(null);
-  const components = useComponentsStore((state) => state.components);
+  const findComponent = useComponentsStore((state) => state.findComponent);
 
   useDndMonitor({
     onDragStart: (event) => {
@@ -42,7 +42,7 @@ export const SelectionElementOverlayWrapper = () => {
   const isComponentElement = draggedItem.data.current.isComponentElement;
   if (isComponentElement) {
     const { elementId } = draggedItem.data.current;
-    const component = components.find((el) => el.id === elementId);
+    const component = findComponent(elementId);
     if (!component) {
       node = <div>Element not found!</div>;
     } else {
@@ -58,4 +58,4 @@ export const SelectionElementOverlayWrapper = () => {
   //#endregion
 
   return <DragOverlay>{node}</DragOverlay>;
-};
+});
