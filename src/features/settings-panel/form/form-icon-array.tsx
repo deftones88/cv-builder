@@ -82,7 +82,7 @@ const FormIconArrayBase = ({ control, name }: FormFieldWithControls) => {
                 </FormControl>
                 <Button
                   onClick={() => handleRemoveItem(index)}
-                  className="w-5 rounded-l-none"
+                  className="w-5 rounded-l-none -ml-1"
                 >
                   <X className="w-4 h-4" />
                 </Button>

@@ -41,7 +41,7 @@ const FormUploaderBase = ({
           setFileName(null);
         };
         return (
-          <FormItem className="flex">
+          <FormItem className="flex gap-0">
             <FormControl>
               <div className="relative w-full">
                 <Input
@@ -52,13 +52,13 @@ const FormUploaderBase = ({
                   accept={accept}
                 />
                 <Input
-                  className="text-zinc-800 font-bold w-full"
+                  className="text-zinc-800 font-bold w-full rounded-r-none"
                   value={fileName ? fileName : placeholder}
                   readOnly
                 />
               </div>
             </FormControl>
-            <Button onClick={handleDelete}>
+            <Button onClick={handleDelete} className="rounded-l-none">
               <X />
             </Button>
             <FormMessage />
