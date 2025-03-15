@@ -17,3 +17,4 @@ export * from "./scroll-area";
 export * from "./dialog";
 export * from "./calendar";
 export * from "./popover";
+export * from "./alert-dialog";

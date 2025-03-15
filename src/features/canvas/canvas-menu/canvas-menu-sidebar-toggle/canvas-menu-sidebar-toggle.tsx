@@ -7,7 +7,7 @@ import {
 } from "@shared/components/shadcnui";
 import { ChevronsLeftRightIcon, ChevronsRightLeftIcon } from "lucide-react";
 
-export const CanvasMenuToggle = () => {
+export const CanvasMenuSidebarToggle = () => {
   const { open, toggleSidebar } = useSidebar();
   return (
     <Tooltip>
@@ -15,7 +15,7 @@ export const CanvasMenuToggle = () => {
         <Button
           variant="outline"
           size={"icon"}
-          className="ml-4 shadow-sm"
+          className="shadow-sm ml-6"
           onClick={toggleSidebar}
         >
           {open ? <ChevronsLeftRightIcon /> : <ChevronsRightLeftIcon />}

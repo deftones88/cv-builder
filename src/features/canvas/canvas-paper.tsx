@@ -6,13 +6,18 @@ import { CanvasComponentWrapper } from "./canvas-component-wrapper";
 
 type PaperProps = {
   selectedDimension: number;
+  pageIndex?: number;
 };
 
-export const CanvasPaper = ({ selectedDimension }: PaperProps) => {
+export const CanvasPaper = ({
+  selectedDimension,
+  pageIndex = 0,
+}: PaperProps) => {
   const droppable = useDroppable({
     id: "canvas-paper-drop-area",
     data: {
       isPaperDropArea: true,
+      pageIndex,
     },
   });
 

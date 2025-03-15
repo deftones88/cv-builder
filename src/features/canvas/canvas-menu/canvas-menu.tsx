@@ -1,9 +1,10 @@
 import { Dispatch, memo, RefObject, SetStateAction } from "react";
 import { Paper } from "../canvas-paper.types";
-import { CanvasSizeSelect } from "./canvas-size-select";
+import { CanvasMenuSizeSelect } from "./canvas-menu-size-select";
 import { ExportToPDF } from "@features/export-to-pdf";
-import { CanvasMenuToggle } from "./canvas-menu-toggle";
+import { CanvasMenuSidebarToggle } from "./canvas-menu-sidebar-toggle";
 import { CanvasMenuRemoveAll } from "./canvas-menu-remove-all";
+import { CanvasMenuAddPaper } from "./canvas-menu-add-paper";
 
 type CanvasMenuProps = {
   paperSize: Paper;
@@ -14,11 +15,15 @@ type CanvasMenuProps = {
 export const CanvasMenu = memo(
   ({ paperSize, setPaperSize, aspectRatioRef }: CanvasMenuProps) => {
     return (
-      <div className="absolute top-4 flex">
-        <CanvasSizeSelect paperSize={paperSize} setPaperSize={setPaperSize} />
+      <div className="absolute top-4 pl-8 flex">
+        <CanvasMenuSizeSelect
+          paperSize={paperSize}
+          setPaperSize={setPaperSize}
+        />
         <ExportToPDF aspectRatioRef={aspectRatioRef} />
-        <CanvasMenuToggle />
+        <CanvasMenuAddPaper />
         <CanvasMenuRemoveAll />
+        <CanvasMenuSidebarToggle />
       </div>
     );
   },

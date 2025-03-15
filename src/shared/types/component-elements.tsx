@@ -29,6 +29,13 @@ export type ComponentElementInstance = {
   settings?: ElementInstanceSettings;
 };
 
+export type CVPage = {
+  pageIndex: number;
+  Components: ComponentElementInstance[];
+};
+
+export type CVPages = CVPage[];
+
 export type SelectionElement = {
   [key in Elements]: ComponentElement;
 };

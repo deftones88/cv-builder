@@ -1,6 +1,6 @@
 import { Container } from "@shared/components/container";
 import { useRef, useState } from "react";
-import { PAPER_PRESETS } from "./canvas-menu/canvas-size-select";
+import { PAPER_PRESETS } from "./canvas-menu/canvas-menu-size-select";
 import { Paper } from "./canvas-paper.types";
 import { CanvasPaper } from "./canvas-paper";
 import { useComponentsStore } from "@stores";

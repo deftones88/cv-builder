@@ -6,8 +6,9 @@ import { encryptedStorage } from "./encryptedStorage";
 type ComponentsStore = {
   components: ComponentElementInstance[];
   component: ComponentElementInstance | null;
+  componentsCount: number;
   // Actions
-  componentsCount: () => number;
+  updateComponentsCount: () => void;
   addComponent: (
     index: number,
     component: Omit<ComponentElementInstance, "id">,
@@ -28,8 +29,12 @@ export const useComponentsStore = create<ComponentsStore>()(
     (set, get) => ({
       components: [],
       component: null,
+      componentsCount: 0,
 
-      componentsCount: () => get().components.length,
+      updateComponentsCount: () =>
+        set((state) => ({
+          componentsCount: state.components.length,
+        })),
       addComponent: (index, component) => {
         const newId = crypto.randomUUID();
         const newComponent = { ...component, id: newId };
@@ -42,16 +47,19 @@ export const useComponentsStore = create<ComponentsStore>()(
           selectedId: newId,
           component: newComponent,
         }));
+        get().updateComponentsCount();
       },
 
-      removeComponent: (id) =>
+      removeComponent: (id) => {
         set((state) => ({
           components: state.components.filter((c) => c.id !== id),
           component: state.component?.id === id ? null : state.component,
-        })),
+        }));
+        get().updateComponentsCount();
+      },
 
       removeAllComponents: () =>
-        set(() => ({ component: null, components: [] })),
+        set(() => ({ component: null, components: [], componentsCount: 0 })),
 
       moveComponent: (id, newIndex) =>
         set((state) => {
