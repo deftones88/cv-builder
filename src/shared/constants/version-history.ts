@@ -7,6 +7,15 @@ export const PROJECT_INFO = {
 
 export const VERSION_HISTORY: VersionHistory[] = [
   {
+    majorVersion: 1,
+    subVersions: [
+      {
+        version: 0,
+        updates: [{ version: 1, update: "Page 추가" }],
+      },
+    ],
+  },
+  {
     majorVersion: 0,
     subVersions: [
       {
