@@ -2,13 +2,13 @@ import { Form, FormLabel } from "@shared/components/shadcnui";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FormValues } from "@shared/types";
 import { FIELD_COMPONENTS } from "./form";
-import { useComponentsStore } from "@stores";
+import { useComponentEditStore, useComponentsStore } from "@stores";
 import { SelectionElements } from "@shared/constants";
 import { useCallback, useEffect } from "react";
 
 export const SettingsPanelForm = () => {
   const updateSettings = useComponentsStore((state) => state.updateSettings);
-  const component = useComponentsStore((state) => state.component);
+  const component = useComponentEditStore((state) => state.component);
 
   const { id, type, settings } = component!;
 

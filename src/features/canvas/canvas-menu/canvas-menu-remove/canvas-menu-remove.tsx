@@ -13,23 +13,18 @@ import {
   TooltipTrigger,
 } from "@shared/components/shadcnui";
 import { XIcon } from "lucide-react";
-import { useComponentsStore } from "@stores";
+import { usePagesStore } from "@stores";
 import { AlertDialogTrigger } from "@radix-ui/react-alert-dialog";
-import { useEffect } from "react";
 
-export const CanvasMenuRemoveAll = () => {
-  const componentsCount = useComponentsStore((state) => state.componentsCount);
-  const removeAllComponents = useComponentsStore(
-    (state) => state.removeAllComponents,
-  );
+export const CanvasMenuRemove = () => {
+  const removePage = usePagesStore((state) => state.removePage);
+  const selectedPageIndex = usePagesStore((state) => state.selectedPageIndex);
+  const pagesCount = usePagesStore((state) => state.pagesCount);
 
   const handleClick = () => {
-    removeAllComponents();
+    removePage(selectedPageIndex);
   };
 
-  useEffect(() => {
-    console.log(componentsCount);
-  }, [componentsCount]);
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -40,7 +35,7 @@ export const CanvasMenuRemoveAll = () => {
                 // variant="outline"
                 size={"icon"}
                 className="shadow-sm rounded-l-none disabled:bg-gray-300 disabled:text-gray-500"
-                disabled={!componentsCount}
+                disabled={!selectedPageIndex && pagesCount === 1}
               >
                 <XIcon />
               </Button>
@@ -48,7 +43,7 @@ export const CanvasMenuRemoveAll = () => {
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>
-                  작업한 이력서를 삭제하시겠습니까?
+                  현재 페이지를 삭제하시겠습니까?
                 </AlertDialogTitle>
                 <AlertDialogDescription>
                   삭제된 내용은 되돌릴 수 없습니다.
@@ -64,7 +59,7 @@ export const CanvasMenuRemoveAll = () => {
           </AlertDialog>
         </div>
       </TooltipTrigger>
-      <TooltipContent>전체 삭제</TooltipContent>
+      <TooltipContent>페이지 삭제</TooltipContent>
     </Tooltip>
   );
 };

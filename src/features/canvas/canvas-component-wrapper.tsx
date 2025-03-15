@@ -3,7 +3,7 @@ import { Button } from "@shared/components/shadcnui";
 import { SelectionElements } from "@shared/constants";
 import { cn } from "@shared/lib/utils";
 import { ComponentElementInstance } from "@shared/types";
-import { useComponentsStore } from "@stores";
+import { useComponentEditStore, useComponentsStore } from "@stores";
 import { XIcon } from "lucide-react";
 import { memo, useState } from "react";
 
@@ -13,7 +13,7 @@ type CanvasComponentWrapperProps = {
 
 export const CanvasComponentWrapper = memo(
   ({ component }: CanvasComponentWrapperProps) => {
-    const selectComponent = useComponentsStore(
+    const selectComponent = useComponentEditStore(
       (state) => state.selectComponent,
     );
     const removeComponent = useComponentsStore(

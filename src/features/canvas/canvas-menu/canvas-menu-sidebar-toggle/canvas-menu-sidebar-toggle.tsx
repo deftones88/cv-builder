@@ -15,7 +15,7 @@ export const CanvasMenuSidebarToggle = () => {
         <Button
           variant="outline"
           size={"icon"}
-          className="shadow-sm ml-6"
+          className="shadow-sm ml-6 rounded-r-none"
           onClick={toggleSidebar}
         >
           {open ? <ChevronsLeftRightIcon /> : <ChevronsRightLeftIcon />}

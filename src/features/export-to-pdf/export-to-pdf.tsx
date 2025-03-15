@@ -1,11 +1,15 @@
 import { RefObject } from "react";
 import html2pdf from "html2pdf.js";
 import { Button } from "@shared/components/shadcnui";
+import { useComponentsStore, usePagesStore } from "@stores";
 
 type ExportToPDFProps = {
   aspectRatioRef: RefObject<HTMLDivElement | null>;
 };
 export const ExportToPDF = ({ aspectRatioRef }: ExportToPDFProps) => {
+  const componentsCount = useComponentsStore((state) => state.componentsCount);
+  const pagesCount = usePagesStore((state) => state.pagesCount);
+
   const generatePDF = async () => {
     if (!aspectRatioRef.current) return;
 
@@ -27,7 +31,11 @@ export const ExportToPDF = ({ aspectRatioRef }: ExportToPDFProps) => {
   };
 
   return (
-    <Button className="rounded-l-none" onClick={generatePDF}>
+    <Button
+      className="rounded-l-none disabled:bg-gray-300 disabled:text-gray-500"
+      onClick={generatePDF}
+      disabled={pagesCount === 1 && !componentsCount}
+    >
       PDF로 저장하기
     </Button>
   );

@@ -1,7 +1,7 @@
 import { mapString2Icon, renderIcon } from "@shared/utilities";
 import { ImgPlaceholder } from "@features/cv-components/img-placeholder";
 import { ImgPlaceholderProps } from "@features/cv-components/img-placeholder/";
-import { DEFAULT_INFO_LIST } from "./contact.constants";
+import { AlignmentClass, DEFAULT_INFO_LIST } from "./contact.constants";
 import { InfoList } from "./contact.type";
 import { TitleInput } from "@features/cv-components/title-input";
 import { cn } from "@shared/lib/utils";
@@ -23,12 +23,6 @@ export const Contact = ({
   listAlignment = "left",
   ...imgProps
 }: ContactProps) => {
-  const alignmentClass =
-    listAlignment === "right"
-      ? "items-end"
-      : listAlignment === "left"
-      ? "items-start"
-      : "items-center";
   return (
     <section className="w-full px-2">
       {title && <TitleInput title={title} />}
@@ -44,7 +38,12 @@ export const Contact = ({
           </div>
         )}
         <div className={"w-auto h-full"}>
-          <ul className={cn("flex flex-col text-sm", alignmentClass)}>
+          <ul
+            className={cn(
+              "flex flex-col text-sm",
+              AlignmentClass[listAlignment],
+            )}
+          >
             {infoList.map((info) => {
               const icon = mapString2Icon(info.icon);
               return (

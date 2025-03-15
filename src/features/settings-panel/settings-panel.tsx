@@ -4,13 +4,13 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@shared/components/shadcnui";
-import { useComponentsStore } from "@stores";
+import { useComponentEditStore } from "@stores";
 import { SettingsPanelForm } from "./settings-panel-form";
 import { SettingsPanelHeader } from "./settings-panel-header";
 import { SettingsTitleBar } from "./settings-title-bar";
 
 export const SettingsPanel = () => {
-  const component = useComponentsStore((state) => state.component);
+  const component = useComponentEditStore((state) => state.component);
   if (!component) return null;
 
   const { id, title } = component;

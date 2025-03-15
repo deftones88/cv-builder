@@ -3,15 +3,17 @@ import { useRef, useState } from "react";
 import { PAPER_PRESETS } from "./canvas-menu/canvas-menu-size-select";
 import { Paper } from "./canvas-paper.types";
 import { CanvasPaper } from "./canvas-paper";
-import { useComponentsStore } from "@stores";
+import { useComponentEditStore } from "@stores";
 import { CanvasMenu } from "./canvas-menu/";
 
 export const Canvas = () => {
   const aspectRatioRef = useRef<HTMLDivElement>(null);
   const [paperSize, setPaperSize] = useState<Paper>("A4");
 
-  const component = useComponentsStore((state) => state.component);
-  const selectComponent = useComponentsStore((state) => state.selectComponent);
+  const component = useComponentEditStore((state) => state.component);
+  const selectComponent = useComponentEditStore(
+    (state) => state.selectComponent,
+  );
   const selectedDimension =
     PAPER_PRESETS.find((preset) => preset.label === paperSize)?.dimension ??
     210 / 297;

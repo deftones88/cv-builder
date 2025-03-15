@@ -15,3 +15,9 @@ export const ALIGNMENT_ENG_TO_KOR_MAP = {
   center: "가운데",
   left: "왼쪽",
 };
+
+export const AlignmentClass = {
+  right: "items-end",
+  left: "items-start",
+  center: "items-center",
+};

@@ -1,11 +1,6 @@
 import { FC } from "react";
 import { FormField } from "./form";
 
-export type Position = {
-  x: number;
-  y: number;
-};
-
 export type ElementInstanceSettings = Record<string, unknown>;
 
 export type Elements =
@@ -29,12 +24,8 @@ export type ComponentElementInstance = {
   settings?: ElementInstanceSettings;
 };
 
-export type CVPage = {
-  pageIndex: number;
-  Components: ComponentElementInstance[];
-};
-
-export type CVPages = CVPage[];
+export type Page = { components: ComponentElementInstance[] };
+export type Pages = Page[];
 
 export type SelectionElement = {
   [key in Elements]: ComponentElement;

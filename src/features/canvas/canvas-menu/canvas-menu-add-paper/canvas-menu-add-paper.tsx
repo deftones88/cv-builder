@@ -1,28 +1,96 @@
 import {
   Button,
+  Input,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@shared/components/shadcnui";
-import { PlusIcon } from "lucide-react";
+import { usePagesStore } from "@stores";
+import { ChevronDown, ChevronUp, PlusIcon } from "lucide-react";
+import { ChangeEvent } from "react";
 
 export const CanvasMenuAddPaper = () => {
+  const pagesCount = usePagesStore((state) => state.pagesCount);
+  const selectedPageIndex = usePagesStore((state) => state.selectedPageIndex);
+  const selectPage = usePagesStore((state) => state.selectPage);
+  const addPage = usePagesStore((state) => state.addPage);
+
+  const pageIndex = selectedPageIndex + 1;
+  const [min, max] = [1, pagesCount];
+
+  const handleIncrement = () => {
+    const newValue = Math.min(pageIndex + 1, max);
+    selectPage(newValue - 1);
+  };
+
+  const handleDecrement = () => {
+    const newValue = Math.max(pageIndex - 1, min);
+    selectPage(newValue - 1);
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value === "" ? min : Number(e.target.value);
+
+    if (!isNaN(inputValue)) {
+      const clampedValue = Math.max(min, Math.min(max, inputValue));
+      selectPage(clampedValue - 1);
+    }
+  };
+  const handleAddPage = () => {
+    addPage(selectedPageIndex + 1);
+  };
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <div>
+    <>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div>
+            <Button
+              variant="outline"
+              size={"icon"}
+              className="ml-4 rounded-r-none shadow-sm"
+              onClick={handleAddPage}
+            >
+              <PlusIcon />
+            </Button>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>페이지 추가</TooltipContent>
+      </Tooltip>
+      <div className="relative flex items-center">
+        <Input
+          type="number"
+          value={pageIndex}
+          onChange={handleInputChange}
+          className="rounded-none focus:ring-0 focus-visible:ring-0 focus-visible:outline-0 w-15 bg-zinc-100 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          min={min}
+          max={max}
+          step={1}
+        />
+        <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col">
           <Button
-            variant="outline"
-            size={"icon"}
-            className="ml-4 rounded-r-none shadow-sm"
-            // disabled={!componentsCount}
-            // onClick={() => removeAllComponents()}
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-4 w-4 disabled:text-zinc-400"
+            onClick={handleIncrement}
+            disabled={pageIndex >= max}
           >
-            <PlusIcon />
+            <ChevronUp className="h-2 w-2" />
+            <span className="sr-only">Increase</span>
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-4 w-4 disabled:text-zinc-400"
+            onClick={handleDecrement}
+            disabled={pageIndex <= min}
+          >
+            <ChevronDown className="h-2 w-2" />
+            <span className="sr-only">Decrease</span>
           </Button>
         </div>
-      </TooltipTrigger>
-      <TooltipContent>페이지 추가</TooltipContent>
-    </Tooltip>
+      </div>
+    </>
   );
 };

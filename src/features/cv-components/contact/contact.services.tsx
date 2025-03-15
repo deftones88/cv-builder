@@ -74,7 +74,7 @@ export const getContactFormFieldList = (props: ContactProps) => {
     {
       id: 6,
       type: FIELD_TYPES.RADIO,
-      label: "연락처 정렬",
+      label: "연락처 정렬 (연락처 한 개 이상일 때)",
       value: ALIGNMENT_ENG_TO_KOR_MAP[listAlignment ?? "left"],
       propName: "listAlignment",
       options: ["왼쪽", "가운데", "오른쪽"],
