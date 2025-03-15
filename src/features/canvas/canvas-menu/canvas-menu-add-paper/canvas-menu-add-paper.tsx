@@ -39,6 +39,7 @@ export const CanvasMenuAddPaper = () => {
   const handleAddPage = () => {
     addPage(selectedPageIndex + 1);
   };
+
   return (
     <>
       <Tooltip>

@@ -2,6 +2,8 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { encryptedStorage } from "./encryptedStorage";
 import { ComponentElementInstance, Pages } from "@shared/types";
 import { create } from "zustand";
+import { useComponentsStore } from "./use-components-store";
+import { useComponentEditStore } from "./use-component-edit-store";
 
 type PagesStore = {
   pages: Pages;
@@ -39,7 +41,6 @@ export const usePagesStore = create<PagesStore>()(
           pagesCount: newPages.length,
           selectedPageIndex: pageIndex,
         });
-        get().selectPage(pageIndex);
       },
 
       removePage: (pageIndex) => {
@@ -50,13 +51,24 @@ export const usePagesStore = create<PagesStore>()(
           get().selectedPageIndex >= newPages.length
             ? Math.max(0, newPages.length - 1)
             : get().selectedPageIndex;
-        // console.log("newIndex", newIndex);
 
         set({
           pages: newPages,
           selectedPageIndex: newIndex,
           pagesCount: newPages.length,
         });
+
+        // components 리셋해줘야 함
+        const newPageComponents = newPages[newIndex]?.components || [];
+
+        useComponentsStore.setState({
+          components: newPageComponents,
+          componentsCount: newPageComponents.length,
+        });
+        // settings로 리셋
+        if (useComponentEditStore.getState().component) {
+          useComponentEditStore.setState({ component: null });
+        }
       },
 
       //   reorderPages: (pageIndex, newIndex) =>
