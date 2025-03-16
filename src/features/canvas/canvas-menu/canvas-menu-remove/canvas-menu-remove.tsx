@@ -59,7 +59,7 @@ export const CanvasMenuRemove = () => {
           </AlertDialog>
         </div>
       </TooltipTrigger>
-      <TooltipContent>페이지 삭제</TooltipContent>
+      <TooltipContent side="bottom">페이지 삭제</TooltipContent>
     </Tooltip>
   );
 };

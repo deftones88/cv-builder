@@ -57,12 +57,8 @@ export const CanvasComponentWrapper = memo(
         {...draggable.listeners}
         {...draggable.attributes}
         className="relative w-full min-h-[10px] hover:cursor-pointer rounded-md border-none hover:border-none"
-        onMouseEnter={() => {
-          setMouseIsOver(true);
-        }}
-        onMouseLeave={() => {
-          setMouseIsOver(false);
-        }}
+        onMouseEnter={() => setMouseIsOver(true)}
+        onMouseLeave={() => setMouseIsOver(false)}
         onClick={(event) => {
           event.stopPropagation();
           selectComponent(id);
@@ -82,9 +78,7 @@ export const CanvasComponentWrapper = memo(
               <Button
                 variant="ghost"
                 className="flex justify-center h-full px-1! bg-zinc-900 hover:bg-zinc-700 rounded-none rounded-r-sm cursor-pointer"
-                onClick={() => {
-                  removeComponent(id);
-                }}
+                onClick={() => removeComponent(id)}
               >
                 <XIcon size={6} className="text-white" />
               </Button>

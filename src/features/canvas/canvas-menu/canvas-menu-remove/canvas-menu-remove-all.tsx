@@ -58,7 +58,7 @@ export const CanvasMenuRemoveAll = () => {
           </AlertDialog>
         </div>
       </TooltipTrigger>
-      <TooltipContent>전체 삭제</TooltipContent>
+      <TooltipContent side="right">전체 삭제</TooltipContent>
     </Tooltip>
   );
 };

@@ -4,19 +4,22 @@ import { ComponentElementInstance, Pages } from "@shared/types";
 import { create } from "zustand";
 import { useComponentsStore } from "./use-components-store";
 import { useComponentEditStore } from "./use-component-edit-store";
+import { EmblaCarouselType } from "embla-carousel";
 
 type PagesStore = {
   pages: Pages;
   selectedPageIndex: number;
   pagesCount: number;
+  carouselApi: EmblaCarouselType | null;
 
   // Actions
+  setCarouselApi: (api: EmblaCarouselType) => void;
   addPage: (pageIndex: number) => void;
   removePage: (pageIndex: number) => void;
   //   reorderPages: (pageIndex: number, newIndex: number) => void;
   selectPage: (pageIndex: number) => void;
   removeAllPages: () => void;
-  getSelectedPageComponents: () => ComponentElementInstance[];
+  getSelectedPageComponents: (pageindex?: number) => ComponentElementInstance[];
   updatePageComponents: (
     pageIndex: number,
     components: ComponentElementInstance[],
@@ -29,7 +32,9 @@ export const usePagesStore = create<PagesStore>()(
       pages: [{ components: [] }],
       selectedPageIndex: 0,
       pagesCount: 1,
+      carouselApi: null,
 
+      setCarouselApi: (api) => set({ carouselApi: api }),
       addPage: (pageIndex) => {
         const newPages = [
           ...get().pages.slice(0, pageIndex),
@@ -91,9 +96,11 @@ export const usePagesStore = create<PagesStore>()(
           pagesCount: 1,
         }),
 
-      getSelectedPageComponents: () => {
+      getSelectedPageComponents: (pageIndex) => {
         const { pages, selectedPageIndex } = get();
-        return pages[selectedPageIndex]?.components || [];
+        const index = pageIndex ?? selectedPageIndex;
+
+        return pages[index]?.components || [];
       },
 
       updatePageComponents: (pageIndex, components) => {

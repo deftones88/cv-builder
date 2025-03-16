@@ -60,7 +60,7 @@ export const CanvasMenuClear = () => {
           </AlertDialog>
         </div>
       </TooltipTrigger>
-      <TooltipContent>내용 삭제</TooltipContent>
+      <TooltipContent side="bottom">내용 삭제</TooltipContent>
     </Tooltip>
   );
 };

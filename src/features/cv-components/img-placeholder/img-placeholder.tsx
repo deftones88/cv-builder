@@ -30,6 +30,7 @@ export const ImgPlaceholder = ({
           !image && "border-2 border-dashed border-gray-300",
           rounded && "rounded-lg",
         )}
+        data-html2canvas-ignore={!image}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {image ? (

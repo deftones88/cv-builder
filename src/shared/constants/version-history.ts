@@ -10,6 +10,10 @@ export const VERSION_HISTORY: VersionHistory[] = [
     majorVersion: 1,
     subVersions: [
       {
+        version: 1,
+        updates: [{ version: 1, update: "Carousel 추가 및 PDF 오류 해결" }],
+      },
+      {
         version: 0,
         updates: [{ version: 1, update: "Page 추가" }],
       },
