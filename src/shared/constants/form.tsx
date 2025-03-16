@@ -23,6 +23,7 @@ export const FIELD_TYPES = {
   ARRAY: "array",
   ICON_ARRAY: "icon-array",
   DATE_RANGE: "date-range",
+  SWITCH: "switch",
 } as const;
 
 export const FORM_ICON_LIST: { icon: IconType; value: string }[] = [

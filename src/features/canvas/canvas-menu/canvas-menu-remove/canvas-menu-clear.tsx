@@ -35,7 +35,7 @@ export const CanvasMenuClear = () => {
               <Button
                 // variant="outline"
                 size={"icon"}
-                className="shadow-sm rounded-none disabled:bg-gray-300 disabled:text-gray-500"
+                className="shadow-sm rounded-none disabled:bg-gray-300 disabled:text-gray-500 cursor-pointer"
                 disabled={!componentsCount}
               >
                 <EraserIcon />

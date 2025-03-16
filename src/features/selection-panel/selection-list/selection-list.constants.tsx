@@ -352,6 +352,7 @@ export const PRESET_CATEGORY_LIST: CategoryList[] = [
     icon: BriefcaseBusinessIcon,
     items: EXPERIENCE_CATEGORY,
     type: "Experience",
+    isActive: true,
   },
 ] as const;
 //#endregion presets

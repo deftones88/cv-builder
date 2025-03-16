@@ -43,7 +43,7 @@ export const PdfExportButton = ({ pageRefs, paperSize }: ExportToPDFProps) => {
     try {
       await exportCanvasToPDF(pageRefs, {
         paperSize,
-        showLoading: true,
+        // showLoading: true,
         filename: `${filename}.pdf`,
       });
     } catch (error) {
@@ -69,13 +69,13 @@ export const PdfExportButton = ({ pageRefs, paperSize }: ExportToPDFProps) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="rounded-l-none disabled:bg-gray-300 disabled:text-gray-500 w-[120px] focus-visible:ring-0 focus-visible:outline-0"
+          className="rounded-l-none disabled:bg-gray-300 disabled:text-gray-500 w-[100px] focus-visible:ring-0 focus-visible:outline-0 cursor-pointer"
           disabled={pagesCount === 1 && !componentsCount}
         >
           {isExporting ? (
             <LoaderCircleIcon className="animate-spin" />
           ) : (
-            "PDF로 저장하기"
+            "PDF로 저장"
           )}
         </Button>
       </DialogTrigger>

@@ -16,10 +16,10 @@ export const DateRange = ({
   const { from, to } = dateRange;
   const placeholder = "현재";
   return (
-    <div className="text-xs pt-1 font-bold font-gowun-dodum flex gap-1">
+    <div className="text-xs pt-1 font-bold font-gowun-dodum flex gap-1 pr-1">
       <p>{from ? formatDate(from, separator, hasDate) : placeholder}</p>
       <p> - </p>
-      <p className="pr-2">
+      <p className="min-w-6">
         {to ? formatDate(to, separator, hasDate) : placeholder}
       </p>
     </div>

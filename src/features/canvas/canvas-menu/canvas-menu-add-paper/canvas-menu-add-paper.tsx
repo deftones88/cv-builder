@@ -48,7 +48,7 @@ export const CanvasMenuAddPaper = () => {
             <Button
               variant="outline"
               size={"icon"}
-              className="ml-4 rounded-r-none shadow-sm"
+              className="ml-4 rounded-r-none shadow-sm cursor-pointer"
               onClick={handleAddPage}
             >
               <PlusIcon />
@@ -72,7 +72,7 @@ export const CanvasMenuAddPaper = () => {
             type="button"
             variant="ghost"
             size="icon"
-            className="h-4 w-4 disabled:text-zinc-400"
+            className="h-4 w-4 disabled:text-zinc-400 cursor-pointer"
             onClick={handleIncrement}
             disabled={pageIndex >= max}
           >
@@ -83,7 +83,7 @@ export const CanvasMenuAddPaper = () => {
             type="button"
             variant="ghost"
             size="icon"
-            className="h-4 w-4 disabled:text-zinc-400"
+            className="h-4 w-4 disabled:text-zinc-400 cursor-pointer"
             onClick={handleDecrement}
             disabled={pageIndex <= min}
           >

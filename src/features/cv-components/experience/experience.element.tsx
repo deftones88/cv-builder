@@ -45,11 +45,11 @@ export const ExperienceComponentElement: ComponentElement = {
       },
       {
         id: 5,
-        type: FIELD_TYPES.CHECKBOX,
+        type: FIELD_TYPES.SWITCH,
         label: "날짜 표시 형식",
         value: props.hasDate ?? true,
         propName: "hasDate",
-        options: ["연월일 표시"],
+        options: ["연월 표시", "연월일 표시"],
       },
     ];
   },

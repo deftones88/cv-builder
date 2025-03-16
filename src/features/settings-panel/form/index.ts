@@ -5,3 +5,4 @@ export { FormUploader } from "./form-uploader";
 export { FormCheckbox } from "./form-checkbox";
 export { FormDateRange } from "./form-date-range";
 export * from "./form.constants";
+export { FormSwitch } from "./form-switch";

@@ -34,7 +34,7 @@ export const CanvasMenuRemove = () => {
               <Button
                 // variant="outline"
                 size={"icon"}
-                className="shadow-sm rounded-l-none disabled:bg-gray-300 disabled:text-gray-500"
+                className="shadow-sm rounded-l-none disabled:bg-gray-300 disabled:text-gray-500 cursor-pointer"
                 disabled={!selectedPageIndex && pagesCount === 1}
               >
                 <XIcon />

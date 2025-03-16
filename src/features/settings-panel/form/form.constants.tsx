@@ -8,6 +8,7 @@ import { FormCheckbox } from "./form-checkbox";
 import { FormArray } from "./form-array";
 import { FormIconArray } from "./form-icon-array";
 import { FormDateRange } from "./form-date-range";
+import { FormSwitch } from "./form-switch";
 
 export const FIELD_COMPONENTS: Record<
   FieldType,
@@ -21,4 +22,5 @@ export const FIELD_COMPONENTS: Record<
   "array": FormArray,
   "icon-array": FormIconArray,
   "date-range": FormDateRange,
+  "switch": FormSwitch,
 };

@@ -11,7 +11,10 @@ export const VERSION_HISTORY: VersionHistory[] = [
     subVersions: [
       {
         version: 1,
-        updates: [{ version: 1, update: "Carousel 추가 및 PDF 오류 해결" }],
+        updates: [
+          { version: 2, update: "From Switch 추가" },
+          { version: 1, update: "Carousel 추가 및 PDF 오류 해결" },
+        ],
       },
       {
         version: 0,
@@ -40,4 +43,9 @@ export const VERSION_HISTORY: VersionHistory[] = [
   },
 ] as const;
 
-export const TODOS = ["페이지 추가", "이력서 템플릿"];
+export const TODOS = [
+  "이력서 템플릿",
+  "기간 설정 방식 보강",
+  "storybook 에러 해결",
+  "error boundary 구현",
+];

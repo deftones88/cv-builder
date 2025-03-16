@@ -23,7 +23,7 @@ export const CanvasMenuSizeSelect = ({
   };
   return (
     <Select onValueChange={handleValueChange}>
-      <SelectTrigger className="w-[100px] font-semibold tracking-tight bg-white ring-0 py-0 rounded-r-none">
+      <SelectTrigger className="w-[100px] font-semibold tracking-tight bg-white ring-0 py-0 rounded-r-none cursor-pointer">
         {paperSize}
       </SelectTrigger>
       <SelectContent className="py-0">
