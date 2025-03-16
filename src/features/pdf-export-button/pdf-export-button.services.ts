@@ -2,6 +2,7 @@ import { Paper, PAPER_PRESETS } from "@features/canvas";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas-pro";
 import { RefObject } from "react";
+import { toast } from "sonner";
 
 type PDFExportOptions = {
   paperSize: Paper;
@@ -103,7 +104,6 @@ export const exportCanvasToPDF = async (
       // 첫 페이지 아닐 시 있는 거에 추가
       if (i > 0) {
         pdf.addPage();
-        console.log("add page");
       }
 
       // img들 추가
@@ -119,9 +119,13 @@ export const exportCanvasToPDF = async (
     if (showLoading) {
       console.log("export status : success");
     }
+    toast(filename + "을 저장하였습니다.");
 
     return true;
   } catch (error) {
+    toast.error(
+      "PDF 생성 중 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.",
+    );
     console.error("PDF 생성 중 오류 발생:", error);
 
     if (showLoading) {

@@ -19,3 +19,4 @@ export * from "./calendar";
 export * from "./popover";
 export * from "./alert-dialog";
 export * from "./carousel";
+export * from "./sonner";
