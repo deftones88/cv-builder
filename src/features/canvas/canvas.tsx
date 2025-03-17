@@ -69,6 +69,7 @@ export const Canvas = () => {
       <Carousel
         opts={{
           slidesToScroll: 1,
+          watchDrag: false,
         }}
         setApi={setApi}
         className="w-full max-w-xl"
