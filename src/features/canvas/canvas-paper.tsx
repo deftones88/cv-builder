@@ -29,10 +29,12 @@ export const CanvasPaper = ({ paperSize, pageIndex }: PaperProps) => {
       >
         {!components.length && !droppable.isOver && (
           <p
-            className="text-3xl text-muted-foreground flex flex-grow items-center font-bold"
+            className="text-3xl text-muted-foreground flex flex-grow items-center font-bold text-center"
             data-html2canvas-ignore
           >
-            여기로 드래그 하세요
+            컴포넌트를
+            <br />
+            이곳으로 드레그해보세요
           </p>
         )}
         {components.length > 0 &&
