@@ -13,7 +13,7 @@ export const getListItemFormFieldList = (props: ListItemProps) => {
   const listType = LIST_STYLE_TYPE_MAP[listStyle ?? "disc"]; // 'ol' | 'ul'
   const selectValue = listStyle
     ? LIST_STYLE_VALUE_TO_DISPLAY[listStyle]
-    : "불렛 종류룰 고르세요";
+    : "불렛 종류를 고르세요";
 
   const defaultList = [
     {

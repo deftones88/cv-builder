@@ -5,7 +5,7 @@ export const LIST_STYLE_OPTION = {
     "1, 2, 3, ...",
     "01, 02, 03, ...",
     "I, II, III, IV, ...",
-    "li, ii, iii, iv, ...",
+    "i, ii, iii, iv, ...",
     "A, B, C, ...",
     "a, b, c, ...",
   ],

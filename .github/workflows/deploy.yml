@@ -3,17 +3,31 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+# 연속 push 시 이전 배포를 취소하고 최신 것만 반영한다
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: npm install --legacy-peer-deps
+          node-version: 20
+          cache: npm
+
+      # react-day-picker@8이 React 19를 peer로 허용하지 않아 플래그가 필요하다
+      - run: npm ci --legacy-peer-deps
+
       - run: npm run build
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:

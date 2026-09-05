@@ -46,6 +46,7 @@ const FormArrayBase = ({ control, name }: FormFieldWithControls) => {
                   />
                 </FormControl>
                 <Button
+                  type="button"
                   onClick={() => handleRemoveItem(index)}
                   className="w-5 h-[64px] rounded-l-none"
                 >
@@ -54,6 +55,7 @@ const FormArrayBase = ({ control, name }: FormFieldWithControls) => {
               </div>
             ))}
             <Button
+              type="button"
               onClick={handleAddItem}
               className="flex w-full items-center justify-center gap-2 rounded-md mt-1"
             >

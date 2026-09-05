@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 *storybook.log
+
+# 로컬 환경변수
+.env
+.env.local
+.env.*.local

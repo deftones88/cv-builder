@@ -54,6 +54,9 @@ export const HEADINGS_CATEGORY: SelectionBtnElement[] = [
     title: "H3",
     icon: Heading3Icon,
     type: "TextInput",
+    props: {
+      variant: "h3",
+    },
     settingsTitle: ["Heading", "H3"],
   },
   {
@@ -215,7 +218,7 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
       title: "업무 역량",
       listStyle: "decimal",
     },
-    settingsTitle: ["List", "Ordered"],
+    settingsTitle: ["List", "제목 - Ordered"],
   },
   {
     title: "제목 - UL",
@@ -225,7 +228,7 @@ export const LIST_CATEGORY: SelectionBtnElement[] = [
       title: "업무 역량",
       listStyle: "disc",
     },
-    settingsTitle: ["List", "Unordered"],
+    settingsTitle: ["List", "제목 - Unordered"],
   },
 ] as const;
 
@@ -329,7 +332,7 @@ export const EXPERIENCE_CATEGORY: SelectionBtnElement[] = [
     icon: CalendarClockIcon,
     type: "Experience",
     props: EXPERIENCE_DEFAULT_TEXT,
-    settingsTitle: ["Contact", "Icon List"],
+    settingsTitle: ["Experience", "Date"],
   },
 ] as const;
 

@@ -33,7 +33,7 @@ export const getContactFormFieldList = (props: ContactProps) => {
           label: "사진 크기",
           value:
             Object.keys(SIZE_MAP).find((key) => SIZE_MAP[key] === props.size) ||
-            "large",
+            "small",
           options: ["small", "medium", "large"],
           propName: "size",
           map: SIZE_MAP,

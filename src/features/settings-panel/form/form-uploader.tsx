@@ -9,6 +9,11 @@ import {
 import { FormFieldWithControls } from "@shared/types";
 import { X } from "lucide-react";
 import { ChangeEvent, memo, useState } from "react";
+import { toast } from "sonner";
+import { fileToStorableDataUrl } from "./form-uploader.services";
+
+/** 새로고침 이후에는 원본 파일명을 알 수 없으므로 대체 표기 */
+const RESTORED_LABEL = "업로드된 이미지";
 
 const FormUploaderBase = ({
   control,
@@ -20,7 +25,7 @@ const FormUploaderBase = ({
   const [placeholder, accept] = options;
 
   const [fileName, setFileName] = useState<string | null>(
-    (settings.image as File)?.name ?? null,
+    typeof settings.image === "string" && settings.image ? RESTORED_LABEL : null,
   );
 
   return (
@@ -28,18 +33,29 @@ const FormUploaderBase = ({
       control={control}
       name={name}
       render={({ field }) => {
-        const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-          e.preventDefault();
-          if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            field.onChange(file);
+        const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+
+          try {
+            // File 객체는 직렬화되지 않으므로 data URL로 바꿔 저장한다
+            const dataUrl = await fileToStorableDataUrl(file);
+            field.onChange(dataUrl);
             setFileName(file.name);
+          } catch (error) {
+            console.error("이미지 업로드 실패:", error);
+            toast.error("이미지를 불러오지 못했습니다. 다른 파일을 선택해주세요.");
+          } finally {
+            // 같은 파일을 다시 선택해도 change가 발생하도록 초기화
+            e.target.value = "";
           }
         };
+
         const handleDelete = () => {
-          field.onChange(null);
+          field.onChange(undefined);
           setFileName(null);
         };
+
         return (
           <FormItem className="flex gap-0">
             <FormControl>
@@ -58,7 +74,11 @@ const FormUploaderBase = ({
                 />
               </div>
             </FormControl>
-            <Button onClick={handleDelete} className="rounded-l-none">
+            <Button
+              type="button"
+              onClick={handleDelete}
+              className="rounded-l-none"
+            >
               <X />
             </Button>
             <FormMessage />

@@ -1,7 +1,6 @@
 import { Paper, PAPER_PRESETS } from "@features/canvas";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas-pro";
-import { RefObject } from "react";
 import { toast } from "sonner";
 
 type PDFExportOptions = {
@@ -10,8 +9,56 @@ type PDFExportOptions = {
   filename?: string;
 };
 
+/** 캡처 전에 제거할 UI 요소 */
+const IGNORED_SELECTOR =
+  "[data-html2canvas-ignore], [data-pdf-ignore], .drag-handle, .component-toolbar";
+
+/**
+ * 페이지 DOM을 화면 밖 클론으로 렌더해 canvas로 캡처한다.
+ * 클론은 실패 여부와 무관하게 반드시 제거한다.
+ */
+const capturePage = async (pageElement: HTMLElement, scale: number) => {
+  const clonedPage = pageElement.cloneNode(true) as HTMLElement;
+
+  clonedPage.querySelectorAll(IGNORED_SELECTOR).forEach((el) => el.remove());
+
+  clonedPage.style.position = "absolute";
+  clonedPage.style.left = "-9999px";
+  clonedPage.style.top = "0";
+  clonedPage.style.width = pageElement.offsetWidth + "px";
+  clonedPage.style.height = pageElement.offsetHeight + "px";
+  document.body.appendChild(clonedPage);
+
+  try {
+    return await html2canvas(clonedPage, {
+      scale,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#ffffff",
+      logging: false,
+      // oklch() 용 수정 : css 있는 모든 element 찾아서 수정
+      onclone: (_, elem) => {
+        elem.querySelectorAll("*").forEach((el) => {
+          const style = window.getComputedStyle(el);
+
+          if (style.color.includes("oklch")) {
+            (el as HTMLElement).style.color = "#000000";
+          }
+          if (style.backgroundColor.includes("oklch")) {
+            (el as HTMLElement).style.backgroundColor = "#ffffff";
+          }
+        });
+        return elem;
+      },
+    });
+  } finally {
+    // html2canvas가 던져도 클론이 화면 밖에 영구히 남지 않도록 보장한다
+    clonedPage.remove();
+  }
+};
+
 export const exportCanvasToPDF = async (
-  pageRefs: RefObject<(HTMLDivElement | null)[]>,
+  pages: HTMLElement[],
   options: PDFExportOptions,
 ) => {
   const {
@@ -20,12 +67,14 @@ export const exportCanvasToPDF = async (
     filename = "cv-builder.pdf",
   } = options;
 
+  if (!pages.length) {
+    toast.error("저장할 페이지가 없습니다.");
+    return false;
+  }
+
   // 나중에 customize 할 때를 대비해 변수 처리
   const scale = 2;
   const quality = 1;
-
-  // page index들 array로
-  const pageLength = Object.keys(pageRefs.current).length;
 
   // paper orientation과 size
   const dimension =
@@ -49,53 +98,8 @@ export const exportCanvasToPDF = async (
     const pdfWidth = pdf.internal.pageSize.getWidth();
 
     // 여러 장 저장
-    for (let i = 0; i < pageLength; i++) {
-      const pageElement = pageRefs.current[i];
-
-      if (!pageElement) continue;
-
-      // 클론 버전 사용
-      const clonedPage = pageElement!.cloneNode(true) as HTMLElement;
-
-      // 지울 것들 지움
-      const elementsToRemove = clonedPage.querySelectorAll(
-        "[data-html2canvas-ignore], [data-pdf-ignore], .drag-handle, .component-toolbar",
-      );
-      elementsToRemove.forEach((el) => el.remove());
-
-      // document에 임시로 클론 렌더
-      clonedPage.style.position = "absolute";
-      clonedPage.style.left = "-9999px";
-      clonedPage.style.top = "0";
-      clonedPage.style.width = pageElement!.offsetWidth + "px";
-      clonedPage.style.height = pageElement!.offsetHeight + "px";
-      document.body.appendChild(clonedPage);
-
-      // 페이지 렌더
-      const canvas = await html2canvas(clonedPage, {
-        scale,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: "#ffffff",
-        logging: false,
-        // oklch() 용 수정 : css 있는 모든 element 찾아서 수정
-        onclone: (_, elem) => {
-          const allElems = elem.querySelectorAll("*");
-          allElems.forEach((el) => {
-            const style = window.getComputedStyle(el);
-            const color = style.color;
-            const backgroundColor = style.backgroundColor;
-
-            if (color.includes("oklch")) {
-              (el as HTMLElement).style.color = "#000000";
-            }
-            if (backgroundColor.includes("oklch")) {
-              (el as HTMLElement).style.backgroundColor = "#ffffff";
-            }
-          });
-          return elem;
-        },
-      });
+    for (let i = 0; i < pages.length; i++) {
+      const canvas = await capturePage(pages[i], scale);
 
       // aspect ratio에 맞는 dimension 계산
       const imgWidth = pdfWidth;
@@ -107,11 +111,8 @@ export const exportCanvasToPDF = async (
       }
 
       // img들 추가
-      const imgData = canvas.toDataURL(`image/jpeg`, quality);
+      const imgData = canvas.toDataURL("image/jpeg", quality);
       pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
-
-      // 클론 삭제
-      document.body.removeChild(clonedPage);
     }
 
     pdf.save(filename);

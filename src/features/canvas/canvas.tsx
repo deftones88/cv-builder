@@ -18,14 +18,14 @@ export const Canvas = () => {
   const [paperSize, setPaperSize] = useState<Paper>("A4");
   const [api, setApi] = useState<CarouselApi>();
 
-  const component = useComponentEditStore((state) => state.component);
+  const selectedId = useComponentEditStore((state) => state.selectedId);
   const selectComponent = useComponentEditStore(
     (state) => state.selectComponent,
   );
 
   const handleOutsideClick = () => {
     // console.log("canvas click");
-    if (component) selectComponent(null);
+    if (selectedId) selectComponent(null);
   };
 
   const pagesCount = usePagesStore((state) => state.pagesCount);
@@ -50,9 +50,10 @@ export const Canvas = () => {
     };
   }, [api, selectPage, setCarouselApi]);
 
-  // for typescript
+  // 언마운트(페이지 삭제) 시에도 슬롯을 비워야 한다.
+  // `if (el)` 로 걸러버리면 삭제된 페이지의 DOM 참조가 남아 PDF에 그대로 출력된다.
   const setPageRef = useCallback((el: HTMLDivElement | null, index: number) => {
-    if (el) pageRefs.current[index] = el;
+    pageRefs.current[index] = el;
   }, []);
 
   return (

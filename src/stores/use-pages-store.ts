@@ -1,5 +1,5 @@
 import { createJSONStorage, persist } from "zustand/middleware";
-import { encryptedStorage } from "./encryptedStorage";
+import { persistStorage } from "./persist-storage";
 import { ComponentElementInstance, Pages } from "@shared/types";
 import { create } from "zustand";
 import { useComponentsStore } from "./use-components-store";
@@ -24,6 +24,18 @@ type PagesStore = {
     pageIndex: number,
     components: ComponentElementInstance[],
   ) => void;
+};
+
+/** 페이지 구성이 통째로 바뀔 때 파생 스토어들을 함께 되돌린다 */
+const syncComponentStores = (components: ComponentElementInstance[]) => {
+  useComponentsStore.setState({
+    components,
+    componentsCount: components.length,
+  });
+  // 선택 상태도 함께 초기화
+  if (useComponentEditStore.getState().selectedId) {
+    useComponentEditStore.setState({ selectedId: null });
+  }
 };
 
 export const usePagesStore = create<PagesStore>()(
@@ -64,16 +76,7 @@ export const usePagesStore = create<PagesStore>()(
         });
 
         // components 리셋해줘야 함
-        const newPageComponents = newPages[newIndex]?.components || [];
-
-        useComponentsStore.setState({
-          components: newPageComponents,
-          componentsCount: newPageComponents.length,
-        });
-        // settings로 리셋
-        if (useComponentEditStore.getState().component) {
-          useComponentEditStore.setState({ component: null });
-        }
+        syncComponentStores(newPages[newIndex]?.components || []);
       },
 
       //   reorderPages: (pageIndex, newIndex) =>
@@ -89,12 +92,17 @@ export const usePagesStore = create<PagesStore>()(
 
       selectPage: (pageIndex) => set({ selectedPageIndex: pageIndex }),
 
-      removeAllPages: () =>
+      removeAllPages: () => {
         set({
           pages: [{ components: [] }],
           selectedPageIndex: 0,
           pagesCount: 1,
-        }),
+        });
+
+        // removePage와 동일하게 다른 스토어도 리셋해야 한다.
+        // 빠뜨리면 stale한 components를 기반으로 다음 추가가 일어나 삭제분이 되살아난다.
+        syncComponentStores([]);
+      },
 
       getSelectedPageComponents: (pageIndex) => {
         const { pages, selectedPageIndex } = get();
@@ -113,7 +121,14 @@ export const usePagesStore = create<PagesStore>()(
     }),
     {
       name: "cv-builder-pages",
-      storage: createJSONStorage(() => encryptedStorage),
+      storage: createJSONStorage(() => persistStorage),
+      // carouselApi(Embla 인스턴스)는 직렬화되지 않는다.
+      // 저장하면 복원 시 `{}`가 되어 scrollTo 등이 터지므로 저장 대상에서 제외한다.
+      partialize: (state) => ({
+        pages: state.pages,
+        selectedPageIndex: state.selectedPageIndex,
+        pagesCount: state.pagesCount,
+      }),
     },
   ),
 );

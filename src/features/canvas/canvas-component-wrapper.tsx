@@ -76,9 +76,14 @@ export const CanvasComponentWrapper = memo(
           <>
             <div className="absolute -right-2 h-full z-50">
               <Button
+                type="button"
                 variant="ghost"
                 className="flex justify-center h-full px-1! bg-zinc-900 hover:bg-zinc-700 rounded-none rounded-r-sm cursor-pointer"
-                onClick={() => removeComponent(id)}
+                onClick={(event) => {
+                  // 부모 div의 onClick(selectComponent)까지 버블링되는 것을 막는다
+                  event.stopPropagation();
+                  removeComponent(id);
+                }}
               >
                 <XIcon size={6} className="text-white" />
               </Button>
@@ -98,7 +103,7 @@ export const CanvasComponentWrapper = memo(
         )}
         <div
           className={cn(
-            "w-full pointer-event-none opacity-100 py-1",
+            "w-full pointer-events-none opacity-100 py-1",
             mouseIsOver &&
               "py-4 min-h-[50px] opacity-20 bg-zinc-200 rounded-md",
           )}

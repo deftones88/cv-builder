@@ -6,14 +6,10 @@ import { PROJECT_INFO } from "@shared/constants";
 
 export const SelectionPanelFooter = () => {
   const version = getCurrentVersion();
-  const { title, github } = PROJECT_INFO;
+  const { title, github, githubUrl } = PROJECT_INFO;
 
   const handleClick = () => {
-    window.open(
-      "https://github.com/deftones88?tab=repositories",
-      "_blank",
-      "noopener,noreferrer",
-    );
+    window.open(githubUrl, "_blank", "noopener,noreferrer");
   };
   return (
     <div className="w-full pb-2 space-y-1">
@@ -26,6 +22,7 @@ export const SelectionPanelFooter = () => {
       </div>
       <div className="px-2 py-1 flex justify-between items-center gap-2 bg-zinc-200 rounded-sm">
         <Button
+          type="button"
           variant={"link"}
           className="p-0 cursor-pointer h-full"
           onClick={handleClick}

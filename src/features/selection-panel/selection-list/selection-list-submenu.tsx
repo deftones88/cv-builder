@@ -30,7 +30,7 @@ export const SelectionListSubmenu = memo(
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
                   {item.icon && <item.icon />}
-                  <span className="font-gawun-dodum">{item.title}</span>
+                  <span className="font-gowun-dodum">{item.title}</span>
                   <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                 </SidebarMenuButton>
               </CollapsibleTrigger>

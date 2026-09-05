@@ -8,6 +8,7 @@ import {
 } from "@features/cv-components/title-input";
 import { cn } from "@shared/lib/utils";
 import { ProfileAlignmentEng } from "./profile.types";
+import { PROFILE_ALIGNMENT_CLASS } from "./profile.constants";
 
 export type ProfileProps = ImgPlaceholderProps &
   TitleInputProps & {
@@ -33,7 +34,7 @@ export const Profile = ({
     className,
   };
   return (
-    <section className={cn("flex items-end gap-2", `justify-${alignment}`)}>
+    <section className={cn("flex items-end gap-2", PROFILE_ALIGNMENT_CLASS[alignment])}>
       {isImageFirst && <ImgPlaceholder {...imgPlaceHolderProps} />}
       <TitleInput {...titleInputProps} />
       {!isImageFirst && <ImgPlaceholder {...imgPlaceHolderProps} />}

@@ -21,16 +21,20 @@
 - TypeScript와 React를 활용한 복잡한 UI 구현
 - 드래그 앤 드롭 기능 구현
 - 상태 관리 및 데이터 흐름 설계
-- 반응형 웹 디자인
+- 데스크톱 환경에 최적화된 3-패널 레이아웃
 - 클린 코드 작성 및 모듈화
 
 ## 주요 기능
 
 - 직관적인 드래그 앤 드롭 인터페이스
 - 실시간 미리보기
-- 반응형 디자인
 - PDF 내보내기 기능
-- 작업 내용 자동 저장
+- 작업 내용 자동 저장 (브라우저 localStorage)
+
+> 데스크톱 환경 전용입니다. 화면 너비가 1024px 이하이면 PC 사용을 권장하는 안내를 표시합니다.
+>
+> 작업 내용은 브라우저의 localStorage에만 저장되며 서버로 전송되지 않습니다.
+> 브라우저 데이터를 삭제하면 함께 사라집니다.
   
 ## 업데이트 예정
 
@@ -55,7 +59,8 @@ git clone https://github.com/deftones88/cv-builder.git
 cd cv-builder
 
 # 의존성 설치
-npm install
+# react-day-picker@8이 React 19를 peer로 허용하지 않아 플래그가 필요합니다
+npm install --legacy-peer-deps
 
 # 개발 서버 실행
 npm run dev

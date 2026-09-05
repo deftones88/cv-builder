@@ -9,7 +9,8 @@ import { AspectRatio, UploaderSize } from "./img-placeholder.types";
 export type ImgPlaceholderProps = {
   ratio?: AspectRatio;
   size?: UploaderSize;
-  image?: File | undefined;
+  /** data URL 문자열. File 객체는 persist 직렬화가 되지 않아 사용하지 않는다. */
+  image?: string;
   rounded?: boolean;
 };
 
@@ -19,6 +20,9 @@ export const ImgPlaceholder = ({
   image = undefined,
   rounded = false,
 }: ImgPlaceholderProps) => {
+  // 예전 버전이 저장한 `{}`(직렬화된 File) 같은 값이 남아 있어도 안전하게 무시한다
+  const src = typeof image === "string" && image ? image : undefined;
+
   return (
     <section
       className={cn("w-full h-full", AspectRatioWHClasses[`${ratio}${size}`])}
@@ -27,15 +31,15 @@ export const ImgPlaceholder = ({
         className={cn(
           "relative w-full",
           AspectRatioClasses[ratio],
-          !image && "border-2 border-dashed border-gray-300",
+          !src && "border-2 border-dashed border-gray-300",
           rounded && "rounded-lg",
         )}
-        data-html2canvas-ignore={!image}
+        data-html2canvas-ignore={!src}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          {image ? (
+          {src ? (
             <img
-              src={URL.createObjectURL(image)}
+              src={src}
               alt="image preview"
               className={cn(
                 "w-full h-full object-cover",

@@ -25,11 +25,16 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
+      "@features": ["src/features"],
       "@features/*": ["src/features/*"],
-      "@shared/*": ["src/shared/*"],
       "@layouts": ["src/layouts"],
+      "@layouts/*": ["src/layouts/*"],
+      "@pages": ["src/pages"],
       "@pages/*": ["src/pages/*"],
-      "@stores": ["src/stores"]
+      "@shared": ["src/shared"],
+      "@shared/*": ["src/shared/*"],
+      "@stores": ["src/stores"],
+      "@stores/*": ["src/stores/*"]
     }
   },
   "include": ["src"]

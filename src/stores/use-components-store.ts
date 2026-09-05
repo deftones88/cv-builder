@@ -1,7 +1,7 @@
 import { ComponentElementInstance } from "@shared/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { encryptedStorage } from "./encryptedStorage";
+import { persistStorage } from "./persist-storage";
 import { usePagesStore } from "./use-pages-store";
 import { useComponentEditStore } from "./use-component-edit-store";
 
@@ -75,7 +75,7 @@ export const useComponentsStore = create<ComponentsStore>()(
         );
 
         // 선택 초기화
-        if (useComponentEditStore.getState().component?.id === id) {
+        if (useComponentEditStore.getState().selectedId === id) {
           useComponentEditStore.getState().selectComponent(null);
         }
       },
@@ -140,7 +140,7 @@ export const useComponentsStore = create<ComponentsStore>()(
     }),
     {
       name: "cv-builder-components",
-      storage: createJSONStorage(() => encryptedStorage),
+      storage: createJSONStorage(() => persistStorage),
     },
   ),
 );

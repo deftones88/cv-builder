@@ -34,14 +34,17 @@ export const PdfExportButton = ({ pageRefs, paperSize }: ExportToPDFProps) => {
 
   const generatePDF = async () => {
     if (isExporting) return;
-    if (!pageRefs.current) {
-      console.error("pageRefs is null");
-      return;
-    }
+
+    // 삭제된 페이지의 stale ref가 남아 있을 수 있으므로
+    // 현재 페이지 수만큼 자르고 비어 있는 슬롯을 걸러낸다
+    const pages = (pageRefs.current ?? [])
+      .slice(0, pagesCount)
+      .filter((el): el is HTMLDivElement => el !== null);
+
     setIsExporting(true);
 
     try {
-      await exportCanvasToPDF(pageRefs, {
+      await exportCanvasToPDF(pages, {
         paperSize,
         // showLoading: true,
         filename: `${filename}.pdf`,
@@ -103,7 +106,7 @@ export const PdfExportButton = ({ pageRefs, paperSize }: ExportToPDFProps) => {
             </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type="submit" onClick={generatePDF}>
+            <Button type="button" onClick={generatePDF}>
               저장하기
             </Button>
           </DialogClose>

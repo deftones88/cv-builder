@@ -3,12 +3,17 @@ import { VersionHistory } from "@shared/types";
 export const PROJECT_INFO = {
   title: "CV Builder",
   github: "@deftones88",
+  githubUrl: "https://github.com/deftones88?tab=repositories",
 } as const;
 
 export const VERSION_HISTORY: VersionHistory[] = [
   {
     majorVersion: 1,
     subVersions: [
+      {
+        version: 2,
+        updates: [{ version: 1, update: "AI 기반 코드 최적화" }],
+      },
       {
         version: 1,
         updates: [

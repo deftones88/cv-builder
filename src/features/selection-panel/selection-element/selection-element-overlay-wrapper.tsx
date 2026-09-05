@@ -49,7 +49,7 @@ export const SelectionElementOverlayWrapper = memo(() => {
       const { settings: props, type } = component;
       const ComponentElement = SelectionElements[type].component;
       node = (
-        <div className="w-full pointer-event-none py-4 min-h-[50px] opacity-30 bg-zinc-200 rounded-md">
+        <div className="w-full pointer-events-none py-4 min-h-[50px] opacity-30 bg-zinc-200 rounded-md">
           <ComponentElement {...props} />
         </div>
       );
