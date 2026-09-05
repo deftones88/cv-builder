@@ -72,7 +72,7 @@ export const PdfExportButton = ({ pageRefs, paperSize }: ExportToPDFProps) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="rounded-l-none disabled:bg-gray-300 disabled:text-gray-500 w-[100px] focus-visible:ring-0 focus-visible:outline-0 cursor-pointer"
+          className="rounded-l-none disabled:bg-gray-300 disabled:text-gray-500 w-[84px] md:w-[100px] px-2 focus-visible:ring-0 focus-visible:outline-0 cursor-pointer"
           disabled={pagesCount === 1 && !componentsCount}
         >
           {isExporting ? (

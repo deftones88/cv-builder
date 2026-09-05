@@ -19,8 +19,13 @@ type CanvasMenuProps = {
 export const CanvasMenu = memo(
   ({ paperSize, setPaperSize, pageRefs }: CanvasMenuProps) => {
     return (
-      <div className="absolute top-4 flex flex-col gap-2 items-center">
-        <div className="flex pl-8">
+      <div
+        className="absolute top-4 flex flex-col gap-2 items-center"
+        // 메뉴 클릭이 캔버스 컨테이너로 버블링되면 handleOutsideClick이 돌아
+        // 선택이 풀려 설정 패널이 닫힌다
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="flex pl-0 md:pl-8">
           <CanvasMenuSizeSelect
             paperSize={paperSize}
             setPaperSize={setPaperSize}

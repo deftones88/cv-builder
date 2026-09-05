@@ -18,7 +18,7 @@ export const CanvasPaper = ({ paperSize, pageIndex }: PaperProps) => {
   const { droppable, components } = useCanvasPaper({ pageIndex });
 
   return (
-    <div className="w-lg h-full flex items-center">
+    <div className="w-full max-w-lg h-full flex items-center">
       <AspectRatio
         ref={droppable.setNodeRef}
         ratio={selectedDimension}

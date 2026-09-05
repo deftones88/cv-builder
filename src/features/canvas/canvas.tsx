@@ -59,7 +59,7 @@ export const Canvas = () => {
   return (
     <Container
       align="center"
-      className="bg-zinc-200 w-full h-full pr-45 relative pt-20"
+      className="bg-zinc-200 w-full h-full px-2 md:px-0 md:pr-45 relative pt-32 md:pt-20"
       onClick={handleOutsideClick}
     >
       <CanvasMenu
@@ -88,8 +88,8 @@ export const Canvas = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="left-0 md:-left-12" />
+        <CarouselNext className="right-0 md:-right-12" />
       </Carousel>
     </Container>
   );
