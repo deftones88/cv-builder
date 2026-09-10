@@ -11,6 +11,10 @@ export const VERSION_HISTORY: VersionHistory[] = [
     majorVersion: 1,
     subVersions: [
       {
+        version: 3,
+        updates: [{ version: 0, update: "모바일 대응" }],
+      },
+      {
         version: 2,
         updates: [{ version: 1, update: "AI 기반 코드 최적화" }],
       },
@@ -51,6 +55,4 @@ export const VERSION_HISTORY: VersionHistory[] = [
 export const TODOS = [
   "이력서 템플릿",
   "기간 설정 방식 보강",
-  "storybook 에러 해결",
-  "error boundary 구현",
 ];

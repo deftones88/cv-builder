@@ -2,7 +2,7 @@
   "name": "cv-builder",
   "homepage": "https://deftones88.github.io/cv-builder/",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
