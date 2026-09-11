@@ -7,15 +7,17 @@ import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
+  SidebarProvider,
   SidebarRail,
 } from "@shared/components/shadcnui";
 import { useComponentEditStore, useSelectedComponent } from "@stores";
 import { useIsMobile } from "@shared/hooks/use-mobile";
+import { SETTINGS_PANEL_STYLE } from "@shared/constants";
 import { SettingsPanelForm } from "./settings-panel-form";
 import { SettingsPanelHeader } from "./settings-panel-header";
 import { SettingsTitleBar } from "./settings-title-bar";
 
-export const SettingsPanel = () => {
+const SettingsPanelBody = () => {
   const isMobile = useIsMobile();
   const component = useSelectedComponent();
   const selectComponent = useComponentEditStore(
@@ -62,14 +64,32 @@ export const SettingsPanel = () => {
   }
 
   return (
-    <Sidebar side="right" collapsible="icon" className="w-full md:w-110 z-50">
+    <Sidebar side="right" collapsible="icon" className="z-50">
       <SidebarHeader>
         <SettingsPanelHeader />
       </SidebarHeader>
-      <SidebarContent className="mt-4 group-data-[state=collapsed]:opacity-0 group-data-[state=expanded]:opacity-100">
+      <SidebarContent className="mt-4 overflow-x-hidden group-data-[state=collapsed]:opacity-0 group-data-[state=expanded]:opacity-100">
         {body}
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
   );
 };
+
+/**
+ * 상세 설정 패널은 자체 SidebarProvider를 갖는다.
+ *
+ * 프로바이더가 하나뿐이면 open 상태를 선택 패널과 공유해 한쪽을 접을 때
+ * 양쪽이 같이 접혔다. 여기서 감싸 두 패널이 독립적으로 접히게 한다.
+ * - `contents`: 프로바이더의 래퍼 div를 레이아웃에서 지워 기존 flex 행을 그대로 둔다
+ * - `shortcutKey={null}`: Cmd+B가 양쪽을 동시에 토글하지 않도록 끈다
+ */
+export const SettingsPanel = () => (
+  <SidebarProvider
+    className="contents"
+    style={SETTINGS_PANEL_STYLE}
+    shortcutKey={null}
+  >
+    <SettingsPanelBody />
+  </SidebarProvider>
+);

@@ -55,6 +55,11 @@ const SidebarProvider = React.forwardRef<
     defaultOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
+    /**
+     * 토글 단축키. 프로바이더를 둘 이상 두면 같은 키가 양쪽을 동시에 토글하므로
+     * 보조 프로바이더에는 null을 넘겨 단축키를 끈다.
+     */
+    shortcutKey?: string | null;
   }
 >(
   (
@@ -62,6 +67,7 @@ const SidebarProvider = React.forwardRef<
       defaultOpen = true,
       open: openProp,
       onOpenChange: setOpenProp,
+      shortcutKey = SIDEBAR_KEYBOARD_SHORTCUT,
       className,
       style,
       children,
@@ -100,11 +106,10 @@ const SidebarProvider = React.forwardRef<
 
     // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
+      if (!shortcutKey) return;
+
       const handleKeyDown = (event: KeyboardEvent) => {
-        if (
-          event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
-          (event.metaKey || event.ctrlKey)
-        ) {
+        if (event.key === shortcutKey && (event.metaKey || event.ctrlKey)) {
           event.preventDefault();
           toggleSidebar();
         }
@@ -112,7 +117,7 @@ const SidebarProvider = React.forwardRef<
 
       window.addEventListener("keydown", handleKeyDown);
       return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [toggleSidebar]);
+    }, [toggleSidebar, shortcutKey]);
 
     // We add a state so that we can do data-state="expanded" or "collapsed".
     // This makes it easier to style the sidebar with Tailwind classes.

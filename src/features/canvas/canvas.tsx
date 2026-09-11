@@ -59,7 +59,15 @@ export const Canvas = () => {
   return (
     <Container
       align="center"
-      className="bg-zinc-200 w-full h-full px-2 md:px-0 md:pr-45 relative pt-32 md:pt-20"
+      /*
+       * 세로가 짧으면 종이가 뷰포트보다 커진다. justify-center인 채로 넘치면
+       * 위쪽이 잘려 상단 툴바와 겹쳤다. 스크롤을 열고 정렬은 종이 쪽의
+       * `my-auto`에 맡긴다 (auto margin은 넘칠 때 0으로 접혀 위쪽이 잘리지 않는다).
+       *
+       * `md:pr-45`는 상세 설정 패널이 예약하는 폭(--sidebar-width)보다
+       * 실제 폭(w-110)이 넓어서 넣었던 보정값이다. 이제 두 값이 같아 필요 없다.
+       */
+      className="bg-zinc-200 w-full h-full min-w-0 px-2 md:px-4 py-4 relative overflow-y-auto justify-start"
       onClick={handleOutsideClick}
     >
       <CanvasMenu
@@ -73,7 +81,7 @@ export const Canvas = () => {
           watchDrag: false,
         }}
         setApi={setApi}
-        className="w-full max-w-xl"
+        className="w-full max-w-xl my-auto"
       >
         <CarouselContent>
           {Array.from({ length: pagesCount }).map((_, index) => (
@@ -88,8 +96,14 @@ export const Canvas = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-0 md:-left-12" />
-        <CarouselNext className="right-0 md:-right-12" />
+        {/*
+         * 화살표를 종이 바깥(-left-12)에 두면 캔버스를 벗어난다.
+         * 예전에는 `md:pr-45`가 만들던 여백에 기대고 있었다.
+         * 종이 가장자리 안쪽에 겹쳐 두면 어느 폭에서도 넘치지 않는다.
+         * (캐러셀 바깥이라 PDF 캡처에는 포함되지 않는다)
+         */}
+        <CarouselPrevious className="left-1" />
+        <CarouselNext className="right-1" />
       </Carousel>
     </Container>
   );

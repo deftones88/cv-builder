@@ -22,11 +22,26 @@ const capturePage = async (pageElement: HTMLElement, scale: number) => {
 
   clonedPage.querySelectorAll(IGNORED_SELECTOR).forEach((el) => el.remove());
 
+  /*
+   * 화면의 종이는 `transform: scale()`로 축소되어 있다. 그대로 캡처하면
+   * 창 폭에 따라 PDF 해상도가 달라지므로, 클론에서는 scale을 풀어
+   * 항상 설계 크기(PAPER_DESIGN_WIDTH)로 캡처한다.
+   */
+  const sheet = clonedPage.querySelector<HTMLElement>("[data-paper-sheet]");
+  const viewport = clonedPage.querySelector<HTMLElement>("[data-paper-viewport]");
+
+  if (sheet && viewport) {
+    sheet.style.transform = "none";
+    viewport.style.width = sheet.style.width;
+    viewport.style.height = sheet.style.height;
+  }
+
   clonedPage.style.position = "absolute";
   clonedPage.style.left = "-9999px";
   clonedPage.style.top = "0";
-  clonedPage.style.width = pageElement.offsetWidth + "px";
-  clonedPage.style.height = pageElement.offsetHeight + "px";
+  clonedPage.style.width = sheet?.style.width || pageElement.offsetWidth + "px";
+  clonedPage.style.height =
+    sheet?.style.height || pageElement.offsetHeight + "px";
   document.body.appendChild(clonedPage);
 
   try {
