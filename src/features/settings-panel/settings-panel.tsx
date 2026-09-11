@@ -10,7 +10,11 @@ import {
   SidebarProvider,
   SidebarRail,
 } from "@shared/components/shadcnui";
-import { useComponentEditStore, useSelectedComponent } from "@stores";
+import {
+  useComponentEditStore,
+  useSelectedComponent,
+  useSettingsPanelStore,
+} from "@stores";
 import { useIsMobile } from "@shared/hooks/use-mobile";
 import { SETTINGS_PANEL_STYLE } from "@shared/constants";
 import { SettingsPanelForm } from "./settings-panel-form";
@@ -83,13 +87,24 @@ const SettingsPanelBody = () => {
  * 양쪽이 같이 접혔다. 여기서 감싸 두 패널이 독립적으로 접히게 한다.
  * - `contents`: 프로바이더의 래퍼 div를 레이아웃에서 지워 기존 flex 행을 그대로 둔다
  * - `shortcutKey={null}`: Cmd+B가 양쪽을 동시에 토글하지 않도록 끈다
+ *
+ * 열림 상태는 스토어에서 받는다. 캔버스에서 컴포넌트를 클릭했을 때
+ * 접혀 있던 패널을 펼쳐야 하는데, 캔버스는 이 프로바이더 바깥이라
+ * 컨텍스트에 닿을 수 없기 때문이다.
  */
-export const SettingsPanel = () => (
-  <SidebarProvider
-    className="contents"
-    style={SETTINGS_PANEL_STYLE}
-    shortcutKey={null}
-  >
-    <SettingsPanelBody />
-  </SidebarProvider>
-);
+export const SettingsPanel = () => {
+  const open = useSettingsPanelStore((state) => state.open);
+  const setOpen = useSettingsPanelStore((state) => state.setOpen);
+
+  return (
+    <SidebarProvider
+      className="contents"
+      style={SETTINGS_PANEL_STYLE}
+      shortcutKey={null}
+      open={open}
+      onOpenChange={setOpen}
+    >
+      <SettingsPanelBody />
+    </SidebarProvider>
+  );
+};

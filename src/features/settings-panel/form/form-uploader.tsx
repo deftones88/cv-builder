@@ -52,9 +52,18 @@ const FormUploaderBase = ({
         };
 
         const handleDelete = () => {
-          field.onChange(undefined);
+          /*
+           * undefined가 아니라 ""로 비운다.
+           * react-hook-form의 useWatch는 값이 undefined면 defaultValue로 되돌아가
+           * 지운 직후 field.value에 원래 이미지가 다시 잡힌다(= 버튼이 계속 활성).
+           * ""는 그대로 유지되면서 falsy라 "비어 있음" 판정에 그대로 쓸 수 있다.
+           */
+          field.onChange("");
           setFileName(null);
         };
+
+        // 지울 이미지가 없으면 삭제 버튼을 쓸 수 없게 한다
+        const hasImage = Boolean(field.value);
 
         return (
           <FormItem className="flex gap-0">
@@ -77,7 +86,9 @@ const FormUploaderBase = ({
             <Button
               type="button"
               onClick={handleDelete}
-              className="rounded-l-none"
+              disabled={!hasImage}
+              aria-label="업로드한 이미지 삭제"
+              className="rounded-l-none disabled:bg-gray-300 disabled:text-gray-500 disabled:opacity-100"
             >
               <X />
             </Button>

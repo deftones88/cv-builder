@@ -53,7 +53,15 @@ export const CanvasPaper = ({ paperSize, pageIndex }: PaperProps) => {
   return (
     <div ref={measureRef} className="w-full flex justify-center">
       {/* 축소된 크기만큼만 자리를 차지한다 (transform은 레이아웃 박스를 바꾸지 않는다) */}
+      {/*
+       * 드롭 영역은 scale이 걸린 종이가 아니라 이 래퍼에 건다.
+       * dnd-kit의 기본 측정(getTransformAgnosticClientRect)은 요소 자신의
+       * transform을 역산하므로, 스케일된 종이에 걸면 실제로 보이는 것보다
+       * 훨씬 큰 영역(scale 0.76에서 오른쪽 124px/아래 175px)을 드롭 영역으로 잡는다.
+       * 이 래퍼는 transform이 없어 화면에 보이는 크기와 rect가 일치한다.
+       */}
       <div
+        ref={droppable.setNodeRef}
         data-paper-viewport
         style={{
           width: PAPER_DESIGN_WIDTH * scale,
@@ -61,7 +69,6 @@ export const CanvasPaper = ({ paperSize, pageIndex }: PaperProps) => {
         }}
       >
         <div
-          ref={droppable.setNodeRef}
           data-paper-sheet
           style={{
             width: PAPER_DESIGN_WIDTH,

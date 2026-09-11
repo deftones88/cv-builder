@@ -3,7 +3,11 @@ import { Button } from "@shared/components/shadcnui";
 import { SelectionElements } from "@shared/constants";
 import { cn } from "@shared/lib/utils";
 import { ComponentElementInstance } from "@shared/types";
-import { useComponentEditStore, useComponentsStore } from "@stores";
+import {
+  useComponentEditStore,
+  useComponentsStore,
+  useSettingsPanelStore,
+} from "@stores";
 import { XIcon } from "lucide-react";
 import { memo, useState } from "react";
 
@@ -19,6 +23,7 @@ export const CanvasComponentWrapper = memo(
     const removeComponent = useComponentsStore(
       (state) => state.removeComponent,
     );
+    const expandSettingsPanel = useSettingsPanelStore((state) => state.expand);
     const [mouseIsOver, setMouseIsOver] = useState(false);
     const { settings: props, id, type } = component;
     const ComponentElement = SelectionElements[type].component;
@@ -62,6 +67,12 @@ export const CanvasComponentWrapper = memo(
         onClick={(event) => {
           event.stopPropagation();
           selectComponent(id);
+          /*
+           * 접혀 있던 상세 설정 패널을 펼친다.
+           * 드래그 중에는 이 컴포넌트가 언마운트되므로(`isDragging` 시 null)
+           * click 이벤트가 발생하지 않는다. 즉 끌어서 옮길 때는 접힌 채로 남는다.
+           */
+          expandSettingsPanel();
         }}
       >
         <div
